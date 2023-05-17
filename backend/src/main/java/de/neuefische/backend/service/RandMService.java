@@ -18,7 +18,7 @@ public class RandMService {
     private final RandMRepo randMRepo;
     private GenerateUUIDService generateUUIDService;
 
-    WebClient webClient = WebClient.create("https://rickandmortyapi.com/api/");
+    WebClient webClient = WebClient.create("https://rickandmortyapi.com/api/character");
 
     public List<RandMCharacter> getAllCharacters() {
         return randMRepo.getAllCharacters();
