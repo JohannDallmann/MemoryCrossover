@@ -1,8 +1,15 @@
 import React from 'react';
+import {RandMCharacter} from "../model/RandMCharacter";
 
-function CharacterCard() {
+type Props={
+    character:RandMCharacter
+}
+
+function CharacterCard(props:Props) {
     return (
-        <div></div>
+        <div>
+            {props.character.name}
+        </div>
     );
 }
 

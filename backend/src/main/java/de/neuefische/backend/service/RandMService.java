@@ -1,5 +1,6 @@
 package de.neuefische.backend.service;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import de.neuefische.backend.model.RandMCharacter;
 import de.neuefische.backend.model.RickAndMortyCharacterCollection;
