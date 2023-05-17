@@ -2,6 +2,7 @@ package de.neuefische.backend.service;
 
 import lombok.RequiredArgsConstructor;
 import de.neuefische.backend.model.RandMCharacter;
+import de.neuefische.backend.model.RickAndMortyCharacterCollection;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
