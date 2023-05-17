@@ -1,8 +1,6 @@
-package repository;
+package de.neuefische.backend.repository;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import model.RandMCharacter;
+import de.neuefische.backend.model.RandMCharacter;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

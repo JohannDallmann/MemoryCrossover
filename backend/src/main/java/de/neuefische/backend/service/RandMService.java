@@ -1,12 +1,12 @@
-package service;
+package de.neuefische.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import model.RandMCharacter;
+import de.neuefische.backend.model.RandMCharacter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import repository.RandMRepo;
+import de.neuefische.backend.repository.RandMRepo;
 
 import java.util.ArrayList;
 import java.util.List;
