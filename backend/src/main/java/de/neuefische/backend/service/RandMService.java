@@ -25,22 +25,27 @@ public class RandMService {
     }
 
 
-    public void fillCharactersFromApi() {
-        List<RandMCharacter> randMCharacterList = new ArrayList<>();
-        int page =1;
-        int pageSize = 20;
-        RandMRepo response;
-        do {
-            response = Objects.requireNonNull(webClient.get())
-                    .uri("/character?page={page}&pageSize={pageSize}",page,pageSize)
-                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                    .retrieve()
-                    .toEntity(RandMRepo.class)
-                    .block()
-                    .getBody();
-            randMCharacterList.addAll(response.getAllCharacters());
-            page++;
-        } while (response.getAllCharacters().size() == pageSize);
+    public List<RandMCharacter> fillCharactersFromApi() {
+        int pageSize = 42;
+        List<RandMCharacter> allCharacters = new ArrayList<>();
+        for (int page = 1; page <= pageSize; page++) {
+            String uri = "/?page=" + page;
+            RickAndMortyCharacterCollection response =
+                    Objects.requireNonNull(webClient.get()
+                                    .uri(uri)
+                                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                                    .retrieve()
+                                    .toEntity(RickAndMortyCharacterCollection.class)
+                                    .block())
+                            .getBody();
+            List<RandMCharacter> characters = response.getResults();
+            allCharacters.addAll(characters);
+        }
 
+        for (int i = 0; i < allCharacters.size(); i++) {
+            randMRepo.addCharacter(allCharacters.get(i));
+        }
+
+        return allCharacters;
     }
 }

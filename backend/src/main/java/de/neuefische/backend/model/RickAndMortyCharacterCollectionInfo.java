@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RandMCharacter {
-    private String uuid;
-    private int id;
-    private String name;
-    private String species;
-    private String image;
+public class RickAndMortyCharacterCollectionInfo {
+    private int count;
+    private int pages;
+    private String next;
 }

@@ -21,8 +21,8 @@ public class RandMController {
     }
 
     @GetMapping("/fill")
-    public void fillCharactersFromApi(){
-        randMService.fillCharactersFromApi();
+    public List<RandMCharacter> fillCharactersFromApi(){
+        return randMService.fillCharactersFromApi();
     }
 
 
