@@ -17,7 +17,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class RandMService {
     private final RandMRepo randMRepo;
-    private GenerateUUIDService generateUUIDService;
+    private final GenerateUUIDService generateUUIDService;
 
     WebClient webClient = WebClient.create("https://rickandmortyapi.com/api/character");
 
@@ -44,6 +44,7 @@ public class RandMService {
         }
 
         for (int i = 0; i < allCharacters.size(); i++) {
+            allCharacters.get(i).setUuid(generateUUIDService.generateUUID());
             randMRepo.addCharacter(allCharacters.get(i));
         }
 
