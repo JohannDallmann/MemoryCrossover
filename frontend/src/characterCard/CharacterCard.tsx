@@ -9,6 +9,7 @@ function CharacterCard(props:Props) {
     return (
         <div>
             {props.character.name}
+
         </div>
     );
 }

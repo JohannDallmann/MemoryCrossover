@@ -9,20 +9,22 @@
   color: white;
 }
 .button {
+  display: flex;
   padding: 10px;
   margin: 10px;
-  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  background-image: url("https://i.pinimg.com/originals/64/5c/8d/645c8d877f6e2aad7fa6545140c72a52.gif");
+  background-position: center;
 }
 .Dashboard {
   display: flex;
   justify-content: center;
   padding: 50px;
-  border-radius: 60px;
-  background-color: tomato;
-  border: #282c34;
+  background-size: cover;
+  background-repeat: no-repeat;
+
 }
