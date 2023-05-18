@@ -11,7 +11,9 @@ function App() {
 
     return (
         <div className="App">
+            <Link to="home">
             <h1 className="Dashboard">Memory Crossover</h1>
+        </Link>
             <Link to="/rickandmortygallery">
                 <button className="button"> Rick and Morty Gallery</button>
             </Link>
