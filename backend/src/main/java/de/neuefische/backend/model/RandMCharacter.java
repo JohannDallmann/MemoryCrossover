@@ -13,4 +13,5 @@ public class RandMCharacter {
     private String name;
     private String species;
     private String image;
+
 }
