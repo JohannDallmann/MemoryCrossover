@@ -33,7 +33,7 @@ public class RandMService {
 
     public List<RandMCharacter> getAllCharacters() {
 
-        if(randMRepo.getAllCharacters().isEmpty()) {
+        if (randMRepo.getAllCharacters().isEmpty()) {
             return fillCharactersFromApi();
         } else {
             return randMRepo.getAllCharacters();
@@ -57,13 +57,16 @@ public class RandMService {
                             .block())
                     .getBody();
 
-            List<RandMCharacter> characters = response.getResults();
-            allCharacters.addAll(characters);
+            if(response != null) {
+                List<RandMCharacter> characters = response.getResults();
+                allCharacters.addAll(characters);
 
-            hasNextPage = response.getInfo().getNext() != null;
-            if (hasNextPage) {
-                page++;
+                hasNextPage = response.getInfo().getNext() != null;
+                if (hasNextPage) {
+                    page++;
+                }
             }
+
         }
 
         for (RandMCharacter character : allCharacters) {
