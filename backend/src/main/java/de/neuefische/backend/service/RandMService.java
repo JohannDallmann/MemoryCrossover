@@ -23,7 +23,13 @@ public class RandMService {
     WebClient webClient = WebClient.create("https://rickandmortyapi.com/api/character");
 
     public List<RandMCharacter> getAllCharacters() {
-        return randMRepo.getAllCharacters();
+
+        if(randMRepo.getAllCharacters().isEmpty()) {
+            return fillCharactersFromApi();
+        } else {
+            return randMRepo.getAllCharacters();
+        }
+
     }
 
 
