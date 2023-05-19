@@ -1,7 +1,9 @@
 package de.neuefische.backend.repository;
 
 import de.neuefische.backend.model.RandMCharacter;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
+@AllArgsConstructor
 @Data
 public class RandMRepo {
     private Map<String, RandMCharacter> randMCharacterMap = new HashMap<>();
@@ -20,8 +23,9 @@ public class RandMRepo {
         return new ArrayList<>(randMCharacterMap.values());
     }
 
-    public void addCharacter(RandMCharacter character) {
+    public RandMCharacter addCharacter(RandMCharacter character) {
         randMCharacterMap.put(String.valueOf(character.getId()), character);
+        return randMCharacterMap.get(String.valueOf(character.getId()));
     }
 
 
