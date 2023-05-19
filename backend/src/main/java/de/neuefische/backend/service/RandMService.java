@@ -1,8 +1,10 @@
 package de.neuefische.backend.service;
 
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import de.neuefische.backend.model.RandMCharacter;
 import de.neuefische.backend.model.RickAndMortyCharacterCollection;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,15 @@ public class RandMService {
     private final RandMRepo randMRepo;
     private final GenerateUUIDService generateUUIDService;
 
-    WebClient webClient = WebClient.create("https://rickandmortyapi.com/api/character");
+    WebClient webClient;
+
+    @Value("${rickandmorty.url}")
+    private String url;
+
+    @PostConstruct
+    public void initializeWebClient() {
+        this.webClient = WebClient.create(url);
+    }
 
     public List<RandMCharacter> getAllCharacters() {
 
