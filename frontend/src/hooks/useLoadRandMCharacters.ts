@@ -7,7 +7,7 @@ function UseLoadRandMCharacters() {
 
     useEffect(loadCharacters,[])
 
-    function loadCharacters(url: string = 'http://localhost:8080/api/randm/characters') {
+    function loadCharacters(url: string = "/api/randm/characters") {
         axios.get(url).then(response => {
             setCharacters(response.data)
         })

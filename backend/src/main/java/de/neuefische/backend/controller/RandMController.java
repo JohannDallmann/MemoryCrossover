@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/randm")
 @RequiredArgsConstructor
-@CrossOrigin
 public class RandMController {
     private final RandMService randMService;
 
