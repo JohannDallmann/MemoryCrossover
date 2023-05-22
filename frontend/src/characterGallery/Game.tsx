@@ -8,10 +8,27 @@ type Props = {
 }
 
 function Game(props:Props) {
+    let counter:number = 0;
+
+    function increaseCounter(){
+        counter = counter + 1;
+        console.log(counter);
+        if (counter%2 === 0){
+            compareCardAttributes();
+        }
+    }
+
+    function compareCardAttributes(){
+        console.log("gerade zahl")
+    }
+
     return (
         <div className="character-gallery">
+            <div>{"Current Counter: " + counter}</div>
             {props.gameCharacters.map((currentCharacter:RandMCharacter)=>{
-                return <GameCard key={currentCharacter.id} character={currentCharacter}></GameCard>
+                return <GameCard key={currentCharacter.id}
+                                 character={currentCharacter}
+                                 increaseCounter={increaseCounter}></GameCard>
             })
             }
         </div>
