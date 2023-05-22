@@ -3,8 +3,8 @@ import './App.css';
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Link, Routes} from "react-router-dom";
-import {RandMCharacter} from "./model/RandMCharacter";
 import Game from "./characterGallery/Game";
+import {RandMCharacter} from "./model/RandMCharacter";
 
 
 function App() {
