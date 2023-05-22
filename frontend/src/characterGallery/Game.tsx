@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {RandMCharacter} from "../model/RandMCharacter";
 import CharacterCard from "../characterCard/CharacterCard";
 import GameCard from "../characterCard/GameCard";
@@ -8,10 +8,10 @@ type Props = {
 }
 
 function Game(props:Props) {
-    let counter:number = 0;
+    const [counter, setCounter] = useState<number>(0);
 
     function increaseCounter(){
-        counter = counter + 1;
+        setCounter(counter + 1);
         console.log(counter);
         if (counter%2 === 0){
             compareCardAttributes();
