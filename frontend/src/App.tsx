@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
+import CharacterGallery from "./characterGallery/CharacterGallery";
+import {Route, Link, Routes} from "react-router-dom";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const {characters} = useLoadRandMCharacters();
+
+
+    return (
+        <div className="App">
+            <Link to="home">
+            <h1 className="Dashboard">Memory Crossover</h1>
+        </Link>
+            <Link to="/rickandmortygallery">
+                <button className="button"> Rick and Morty Gallery</button>
+            </Link>
+            <Routes>
+                <Route path="/rickandmortygallery" element=
+                    {<CharacterGallery characters={characters}/>}/>
+            </Routes>
+
+        </div>
+    );
 }
 
 export default App;
