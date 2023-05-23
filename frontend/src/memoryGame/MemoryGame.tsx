@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './MemoryGame.css';
 
 type card = {
     id:number,
@@ -55,7 +56,9 @@ function MemoryGame() {
 
     return (
         <div>
-            <h2>Klick-Counter: {clickCounter}</h2>
+            <h2>Klick-Counter: {clickCounter} {selectedCards.length === 2 && (
+                <button onClick={checkCards}>Karten überprüfen</button>
+            )}</h2>
             <div className="card-container">
                 {cards.map((card) => (
                     <div
@@ -69,14 +72,11 @@ function MemoryGame() {
                                 <h3>{card.lastName}</h3>
                             </div>
                         ) : (
-                            <div className="card-back">Karte umdrehen</div>
+                            <div className="card-back"><div className="text-card-back">Karte umdrehen</div></div>
                         )}
                     </div>
                 ))}
             </div>
-            {selectedCards.length === 2 && (
-                <button onClick={checkCards}>Karten überprüfen</button>
-            )}
         </div>
     );
 }

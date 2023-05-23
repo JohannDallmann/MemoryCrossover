@@ -1,0 +1,38 @@
+.card .character-card {
+    font-size: 4rem;
+    color: #ffffff;
+    background: rgb(97, 189, 80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-back {
+    font-size: 2rem;
+    color: #ffffff;
+    background-image: url("img/cover.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 340px;
+    text-align: justify;
+    border-radius: 10px;
+}
+
+.text-card-back{
+    background-color: green;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 800px;
+    height: 400px;
+    gap: 4px;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+
+}
