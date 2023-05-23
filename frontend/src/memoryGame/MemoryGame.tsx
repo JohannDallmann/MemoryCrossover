@@ -56,9 +56,12 @@ function MemoryGame() {
 
     return (
         <div>
-            <h2>Klick-Counter: {clickCounter} {selectedCards.length === 2 && (
-                <button onClick={checkCards}>Karten überprüfen</button>
-            )}</h2>
+            <div className={"status-bar"}>
+                <div className={"turns-counter"}>Klick-Counter: {clickCounter} {selectedCards.length === 2 && (
+                    <button onClick={checkCards}>Karten überprüfen</button>
+                )}</div>
+            <div className={"timer"}>Time left: 01:26</div>
+            </div>
             <div className="card-container">
                 {cards.map((card) => (
                     <div

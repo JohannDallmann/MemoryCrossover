@@ -28,11 +28,33 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    width: 800px;
+    width: 960px;
     height: 400px;
     gap: 4px;
     align-items: center;
     margin: auto;
     padding: 10px;
+}
 
+.status-bar {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 960px;
+    display: block;
+    background-color: #eee;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.turns-counter, .timer {
+    display: inline-block;
+    color: green;
+    margin: 10px 20px;
+    font-size: 25px;
+}
+
+.timer {
+    float: right;
 }
