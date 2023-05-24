@@ -59,7 +59,7 @@ function MemoryGame2(props:Props) {
         <div>
             <h2>Klick-Counter: {clickCounter}</h2>
             {selectedCards.length === 2 && (
-                <button onClick={checkCards}>Karten überprüfen</button>
+                <button className="card-back" onClick={checkCards}></button>
             )}
             <div className="card-container">
                 {cards.map((card) => (

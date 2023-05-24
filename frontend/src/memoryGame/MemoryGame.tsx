@@ -75,7 +75,7 @@ function MemoryGame() {
                                 <h3>{card.lastName}</h3>
                             </div>
                         ) : (
-                            <div className="card-back"><div className="text-card-back">Karte umdrehen</div></div>
+                            <div className="card-back"><div className="text-card-back"></div></div>
                         )}
                     </div>
                 ))}
