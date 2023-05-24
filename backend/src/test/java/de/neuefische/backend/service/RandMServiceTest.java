@@ -24,13 +24,13 @@ class RandMServiceTest {
         List<RandMCharacter> characters = new ArrayList<>();
         RandMCharacter character1 = new RandMCharacter();
         characters.add(character1);
-        when(randMRepo.getAllCharacters()).thenReturn(characters);
+        when(randMRepo.findAll()).thenReturn(characters);
 
         // when
         List<RandMCharacter> allCharacters = randMService.getAllCharacters();
 
         //then
-        verify(randMRepo, times(2)).getAllCharacters();
+        verify(randMRepo, times(2)).findAll();
     }
 
 }
