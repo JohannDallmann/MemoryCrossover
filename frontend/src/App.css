@@ -20,13 +20,22 @@
   background-image: url("https://i.pinimg.com/originals/64/5c/8d/645c8d877f6e2aad7fa6545140c72a52.gif");
   background-position: center;
 }
-.Dashboard {
+.header-container{
   display: flex;
-  justify-content: flex-start;
-  padding: 50px;
-  background-size: cover;
-  background-repeat: no-repeat;
+  flex-direction: row;
+}
+.neuefischeHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 350px;
+  height: 150px;
+  margin-left: -11vh;
+}
 
+.Dashboard {
+  margin-left: -8vh;
+  margin-top: 55px;
 }
 
 #background-image{
@@ -47,16 +56,17 @@
   font-size: 20px;
   font-family: "Mark Pro", Arial, sans-serif;
   margin-left: 10vh;
+  margin-top: -2vh;
 }
 
 .neuefischeLogo {
   display: flex;
   width: 250px;
   height: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 3vh;
   border-radius: 70px;
   margin-left:10vh;
-  margin-top: 25vh;
+  margin-top: 5vh;
   justify-content: flex-start;
 
 }
@@ -80,6 +90,7 @@
   border-radius: 50%;
   background-color: #000;
   margin-right: 8px;
+  margin-bottom: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,10 +113,9 @@
   transform: rotate(45deg);
 }
 
-.neuefischeHeader{
+.play-container{
+  margin-top: 10vh;
   display: flex;
-  justify-content: flex-start;
-  width: 350px;
-  height: 150px;
-  margin-left: -11vh;
+  flex-direction: column;
+
 }
