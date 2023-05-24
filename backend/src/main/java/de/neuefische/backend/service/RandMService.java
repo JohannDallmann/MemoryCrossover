@@ -71,8 +71,8 @@ public class RandMService {
 
         for (RandMCharacter character : allCharacters) {
             character.setUuid(generateUUIDService.generateUUID());
-            randMRepo.save(character);
         }
+        randMRepo.saveAll(allCharacters);
 
         return allCharacters;
     }
