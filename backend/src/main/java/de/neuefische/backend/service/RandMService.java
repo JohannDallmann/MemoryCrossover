@@ -33,10 +33,10 @@ public class RandMService {
 
     public List<RandMCharacter> getAllCharacters() {
 
-        if (randMRepo.getAllCharacters().isEmpty()) {
+        if (randMRepo.findAll().isEmpty()) {
             return fillCharactersFromApi();
         } else {
-            return randMRepo.getAllCharacters();
+            return randMRepo.findAll();
         }
 
     }
@@ -71,7 +71,7 @@ public class RandMService {
 
         for (RandMCharacter character : allCharacters) {
             character.setUuid(generateUUIDService.generateUUID());
-            randMRepo.addCharacter(character);
+            randMRepo.save(character);
         }
 
         return allCharacters;
