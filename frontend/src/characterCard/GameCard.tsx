@@ -23,7 +23,7 @@ function GameCard(props:Props) {
         <div>
             {
                 hidden === true
-                ? <button onClick={showCard}>Show Card</button>
+                ? <button className="card-back" onClick={showCard}>Show Card</button>
                 : <div className="character-card">
                     <img src={character.image}  alt={character.name}/>
                     <h3>{props.character.name}</h3>
