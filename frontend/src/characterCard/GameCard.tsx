@@ -5,7 +5,8 @@ import './CharacterCard.css';
 
 type Props={
     character:RandMCharacter,
-    increaseCounter: () => void
+    increaseCounter: () => void,
+    counter:number
 }
 
 function GameCard(props:Props) {
@@ -16,7 +17,9 @@ function GameCard(props:Props) {
 
     function showCard() {
         setHidden(false);
+        console.log(props.counter + 1);
         props.increaseCounter();
+
     }
 
     return (

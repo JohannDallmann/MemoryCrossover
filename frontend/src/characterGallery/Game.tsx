@@ -12,14 +12,14 @@ function Game(props:Props) {
 
     function increaseCounter(){
         setCounter(counter + 1);
-        console.log(counter);
+        //console.log(counter);
         if (counter%2 === 0){
             compareCardAttributes();
         }
     }
 
     function compareCardAttributes(){
-        console.log("gerade zahl")
+        //console.log("gerade zahl")
     }
 
     return (
@@ -28,7 +28,7 @@ function Game(props:Props) {
             {props.gameCharacters.map((currentCharacter:RandMCharacter)=>{
                 return <GameCard key={currentCharacter.id}
                                  character={currentCharacter}
-                                 increaseCounter={increaseCounter}></GameCard>
+                                 increaseCounter={increaseCounter} counter ={counter}></GameCard>
             })
             }
         </div>
