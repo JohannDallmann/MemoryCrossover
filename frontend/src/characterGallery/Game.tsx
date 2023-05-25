@@ -12,13 +12,6 @@ function Game(props:Props) {
     const [counter, setCounter] = useState<number>(0);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
-    useEffect(() => {
-        if (selectedCards.length === 2) {
-            compareCards();
-            setSelectedCards([]);
-        }
-    }, [selectedCards]);
-
     function increaseCounter(){
         setCounter(counter + 1);
     }
@@ -27,18 +20,30 @@ function Game(props:Props) {
         setSelectedCards([...selectedCards, currentCard]);
     }
 
+    useEffect(() => {
+        if (selectedCards.length === 2) {
+            compareCards();
+            setSelectedCards([]);
+        }
+    }, [selectedCards]);
+
     function compareCards() {
         const firstCard = selectedCards[0];
         const secondCard = selectedCards[1];
 
         if (firstCard.species === secondCard.species){
-            console.log("success");
-            //firstCard.name = "changedname";
+            firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
+            secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg"
         } else {
-            firstCard.hidden = true;
-            secondCard.hidden = true;
-            //console.log(firstCard.species + " and " + secondCard.species + " are not the same species.")
+            setTimeout(() => hideCards(firstCard,secondCard),0);
+            //setImmediate(() => hideCards(firstCard,secondCard));
+            //hideCards(firstCard,secondCard)
         }
+    }
+
+    function hideCards(firstCard:CardCharacter,secondCard:CardCharacter){
+        firstCard.hidden = true;
+        secondCard.hidden = true;
     }
 
     return (
