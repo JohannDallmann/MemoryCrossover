@@ -10,6 +10,7 @@ type Props ={
 function CharacterGallery(props:Props) {
     return (
         <div className="character-gallery">
+            <button>Testbutton</button>
             {props.characters.map((currentCharacter:RandMCharacter)=>{
                 return <CharacterCard key={currentCharacter.id} character={currentCharacter}></CharacterCard>
             })
