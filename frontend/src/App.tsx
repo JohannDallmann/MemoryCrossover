@@ -7,11 +7,7 @@ import GalleryComponent from "./components/GalleryComponent";
 
 
 function App() {
-
-
     const [character, setCharacter] = useState("");
-
-
     return (
 
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
