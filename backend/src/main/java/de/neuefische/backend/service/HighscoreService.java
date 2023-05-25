@@ -12,21 +12,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HighscoreService {
     private final HighscoreRepo highscoreRepo;
+    private final GenerateUUIDService generateUUIDService;
 
     public List<Score> addScore(Score score) {
+        score.setId(generateUUIDService.generateUUID());
         score.setTimestamp(LocalDateTime.now());
-        return highscoreRepo.addScore(score);
+        highscoreRepo.save(score);
+        return highscoreRepo.findAll();
     }
 
     public List<Score> getScoresSortedAscendent() {
-        return highscoreRepo.getScoresSortedAscendent();
+        return highscoreRepo.findAll(); // TODO sorting
     }
 
     public List<Score> getScoresSortedDescendent() {
-        return highscoreRepo.getScoresSortedDescendent();
+        return highscoreRepo.findAll(); // TODO sorting
     }
 
     public List<Score> getScoresSortedByTimestamp() {
-        return highscoreRepo.getScoresSortedByTimestamp();
+        return highscoreRepo.findAll(); // TODO find by timestamp
     }
 }
