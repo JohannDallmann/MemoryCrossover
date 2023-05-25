@@ -17,7 +17,7 @@ function App() {
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
             <div className="header-container">
                 <div className="placeholder">
-                    <Link to="https://www.neuefische.de">
+                    <Link to="https://www.neuefische.de" target="_blank">
                     <img className="neuefischeHeader" src={fische} alt="Gräte"/>
                     </Link>
                     <Link to="home" className="home">
@@ -43,12 +43,13 @@ function App() {
                             <div className="arrow"></div>
                         </div>
                             <div className="text">Jetzt verfügbar</div>
-
                     </div>
-
                 </div>
-                <GalleryComponent character={character}/>
+                <div className="character-gallery-wrapper">
+                    <GalleryComponent character={character}/>
+                </div>
             </div>
+
         </div>
 
 );
