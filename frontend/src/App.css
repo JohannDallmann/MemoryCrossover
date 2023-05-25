@@ -61,7 +61,10 @@ body {
   font-family: "Mark Pro", Arial, sans-serif;
   margin-left: 10vh;
   font-weight: bolder;
-  text-shadow: 0 0 5px black;
+  text-shadow:  1px  1px 1px black,
+  1px -1px 1px black,
+  -1px  1px 1px black,
+  -1px -1px 1px black;
   background-color: transparent;
 }
 
@@ -73,7 +76,10 @@ body {
   margin-left: 10vh;
   margin-top: -2vh;
   font-weight: bolder;
-  text-shadow: 0 0 5px black;
+  text-shadow:  1px  1px 1px black,
+  1px -1px 1px black,
+  -1px  1px 1px black,
+  -1px -1px 1px black;
   background-color: transparent;
 
 
