@@ -19,7 +19,7 @@ function GalleryComponent(props:any) {
         <div className="galllery-component">
             <>
                 <Link to="/rickandmortygallery">
-                    {props.character.length != 0 && (
+                    {props.character.length !== 0 && (
                         <>
                             <Routes>
                                 <Route
