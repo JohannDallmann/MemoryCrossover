@@ -1,13 +1,3 @@
-.App-header {
-  background-color: grey;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 .button {
   display: flex;
   padding: 10px;
@@ -22,22 +12,37 @@
 }
 .header-container{
   display: flex;
-  flex-direction: row;
+  align-self: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .neuefischeHeader {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   width: 350px;
   height: 150px;
   margin-left: -11vh;
 }
-
+.placeholder{
+  display:flex;
+}
+.home{
+  text-decoration: none;
+}
 .Dashboard {
+  align-self: center;
   margin-left: -8vh;
-  margin-top: 55px;
+  margin-top: 56px;
+  color:white;
+  text-decoration: none !important;
+  cursor: pointer;
 }
 
+.buttons-container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-top: 5.5vh;
+}
 #background-image{
   position:absolute;
 }
@@ -52,7 +57,7 @@
 
 .p1 {
   display: flex;
-  color: #f9f9f999;
+  color: aqua;
   font-size: 20px;
   font-family: "Mark Pro", Arial, sans-serif;
   margin-left: 10vh;
@@ -80,7 +85,7 @@
   height: 45px;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 16vh;
   margin-left: 10vh;
 }
 
@@ -111,6 +116,7 @@
   border-right: 2px solid #fff;
   border-top: 2px solid #fff;
   transform: rotate(45deg);
+  margin-right: 8px;
 }
 
 .play-container{
@@ -118,4 +124,8 @@
   display: flex;
   flex-direction: column;
 
+}
+
+.Frankenstein{
+  display:flex;
 }
