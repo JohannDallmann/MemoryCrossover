@@ -6,6 +6,7 @@ import './CharacterCard.css';
 type Props={
     character:RandMCharacter,
     increaseCounter: () => void,
+    putCardsInArrayToCompare: (currentCard:RandMCharacter) => void,
     counter:number
 }
 
@@ -17,9 +18,8 @@ function GameCard(props:Props) {
 
     function showCard() {
         setHidden(false);
-        console.log(props.counter + 1);
         props.increaseCounter();
-
+        props.putCardsInArrayToCompare(character);
     }
 
     return (
