@@ -43,6 +43,22 @@ function App() {
             "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
             "hidden" : true
         },
+        {
+            "uuid" : "5",
+            "id" : 5,
+            "name" : "Wizard 1",
+            "species" : "Wizard",
+            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "hidden" : true
+        },
+        {
+            "uuid" : "6",
+            "id" : 6,
+            "name" : "Wizard 2",
+            "species" : "Wizard",
+            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "hidden" : true
+        }
     ];
 
 

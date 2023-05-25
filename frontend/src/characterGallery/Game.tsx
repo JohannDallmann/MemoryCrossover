@@ -12,19 +12,19 @@ function Game(props:Props) {
     const [counter, setCounter] = useState<number>(0);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
+    useEffect(() => {
+        if (selectedCards.length === 2) {
+            compareCards();
+            setSelectedCards([]);
+        }
+    }, [selectedCards]);
+
     function increaseCounter(){
         setCounter(counter + 1);
     }
 
     function putCardsInArrayToCompare(currentCard:CardCharacter){
-        if(selectedCards.length < 2){
-            //console.log(selectedCards);
-            setSelectedCards([...selectedCards, currentCard]);
-
-        } else {
-            compareCards();
-            setSelectedCards([]);
-        }
+        setSelectedCards([...selectedCards, currentCard]);
     }
 
     function compareCards() {
@@ -32,7 +32,8 @@ function Game(props:Props) {
         const secondCard = selectedCards[1];
 
         if (firstCard.species === secondCard.species){
-            firstCard.name = "changedname";
+            console.log("success");
+            //firstCard.name = "changedname";
         } else {
             firstCard.hidden = true;
             secondCard.hidden = true;
