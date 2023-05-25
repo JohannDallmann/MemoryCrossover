@@ -26,7 +26,9 @@ function App() {
                 </div>
                 <div className="buttons-container">
                     <DropdownMenu updateCharacter = {setCharacter}/>
-                    <button className="costume-button"> Home </button>
+                    <Link to="home">
+                        <button className="costume-button"> Home </button>
+                    </Link>
                     <button className="costume-button"> Play </button>
                 </div>
             </div>
