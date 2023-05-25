@@ -60,6 +60,9 @@ body {
   font-size: 31.008px;
   font-family: "Mark Pro", Arial, sans-serif;
   margin-left: 10vh;
+  font-weight: bolder;
+  text-shadow: 0 0 5px black;
+  background-color: transparent;
 }
 
 .p1 {
@@ -69,6 +72,11 @@ body {
   font-family: "Mark Pro", Arial, sans-serif;
   margin-left: 10vh;
   margin-top: -2vh;
+  font-weight: bolder;
+  text-shadow: 0 0 5px black;
+  background-color: transparent;
+
+
 }
 
 .neuefischeLogo {
