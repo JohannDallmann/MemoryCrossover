@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
 import {RandMCharacter} from "../model/RandMCharacter";
 import './CharacterCard.css';
+import {CardCharacter} from "../model/CardCharacter";
 
 
 type Props={
-    character:RandMCharacter,
+    character:CardCharacter,
     increaseCounter: () => void,
-    putCardsInArrayToCompare: (currentCard:RandMCharacter) => void,
+    putCardsInArrayToCompare: (currentCard:CardCharacter) => void,
     counter:number
 }
 
 function GameCard(props:Props) {
 
     const {character} = props;
-    const [hidden, setHidden] = useState(true);
 
 
     function showCard() {
-        setHidden(false);
+        character.hidden = false;
         props.increaseCounter();
         props.putCardsInArrayToCompare(character);
     }
@@ -25,7 +25,7 @@ function GameCard(props:Props) {
     return (
         <div>
             {
-                hidden === true
+                character.hidden === true
                 ? <button className="card-back" onClick={showCard}></button>
                 : <div className="character-card">
                     <img src={character.image}  alt={character.name}/>

@@ -5,38 +5,43 @@ import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Link, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import {RandMCharacter} from "./model/RandMCharacter";
+import {CardCharacter} from "./model/CardCharacter";
 
 
 function App() {
     const {characters} = useLoadRandMCharacters();
-    const gameCharacters : RandMCharacter[] = [
+    const gameCharacters : CardCharacter[] = [
         {
             "uuid" : "1",
             "id" : 1,
             "name" : "Rick 1",
             "species" : "Human",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "hidden" : true
         },
         {
             "uuid" : "2",
             "id" : 2,
             "name" : "Rick 2",
             "species" : "Human",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "hidden" : true
         },
         {
             "uuid" : "3",
             "id" : 3,
             "name" : "Alien 1",
             "species" : "Alien",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "hidden" : true
         },
         {
             "uuid" : "4",
             "id" : 4,
             "name" : "Alien 2",
             "species" : "Alien",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "hidden" : true
         },
     ];
 
