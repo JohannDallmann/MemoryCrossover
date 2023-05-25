@@ -1,5 +1,5 @@
 import './App.css';
-import {Link, Route, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
 import neuefischehd from './images/neuefischehd.png';
 import fische from './images/fische.png'
 import DropdownMenu from "./dropdown/menu";

@@ -9,10 +9,6 @@ function GalleryComponent(props:any) {
 
     const [isRickDropdownOpen, setIsRickDropdownOpen] = useState(false);
 
-    const toggleRickDropdown = () => {
-        setIsRickDropdownOpen(!isRickDropdownOpen);
-    }
-
     const closeDropdown = () => {
         setIsRickDropdownOpen(false);
     }
