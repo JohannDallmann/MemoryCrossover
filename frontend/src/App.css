@@ -1,3 +1,10 @@
+body {
+  background-image: url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
 .button {
   display: flex;
   padding: 10px;

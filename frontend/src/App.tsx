@@ -18,7 +18,9 @@ function App() {
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
             <div className="header-container">
                 <div className="placeholder">
+                    <Link to="http://www.neuefische.de">
                     <img className="neuefischeHeader" src={fische} alt="Gräte"/>
+                    </Link>
                     <Link to="home" className="home">
                         <h1 className="Dashboard">Memory Crossover</h1>
                     </Link>
