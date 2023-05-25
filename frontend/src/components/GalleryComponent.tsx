@@ -7,7 +7,7 @@ function GalleryComponent(props:any) {
     console.log(props.character)
     const {characters} = useLoadRandMCharacters();
 
-    const [isRickDropdownOpen, setIsRickDropdownOpen] = useState(false);
+    const [,setIsRickDropdownOpen] = useState(false);
 
     const closeDropdown = () => {
         setIsRickDropdownOpen(false);
