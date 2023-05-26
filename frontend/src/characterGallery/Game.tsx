@@ -3,6 +3,7 @@ import {RandMCharacter} from "../model/RandMCharacter";
 import CharacterCard from "../characterCard/CharacterCard";
 import GameCard from "../characterCard/GameCard";
 import {CardCharacter} from "../model/CardCharacter";
+import './Game.css';
 
 type Props = {
     gameCharacters:CardCharacter[]
@@ -47,16 +48,24 @@ function Game(props:Props) {
     }
 
     return (
-        <div className="character-gallery">
-            <div>{"Current Counter: " + counter}</div>
-            {props.gameCharacters.map((currentCharacter:CardCharacter)=>{
-                return <GameCard key={currentCharacter.id}
-                                 character={currentCharacter}
-                                 putCardsInArrayToCompare={putCardsInArrayToCompare}
-                                 increaseCounter={increaseCounter}
-                                 counter ={counter}></GameCard>
-            })
-            }
+        <div >
+            <div className={"status-bar"}>
+                <div className={"turns-counter"}>
+                    {"Current Counter: " + counter}
+                </div>
+                <div className={"timer"}>Time left: time-test</div>
+            </div>
+
+            <div className="card-container">
+                {props.gameCharacters.map((currentCharacter:CardCharacter)=>{
+                    return <GameCard key={currentCharacter.id}
+                                     character={currentCharacter}
+                                     putCardsInArrayToCompare={putCardsInArrayToCompare}
+                                     increaseCounter={increaseCounter}
+                                     counter ={counter}></GameCard>
+                })
+                }
+            </div>
         </div>
     );
 }
