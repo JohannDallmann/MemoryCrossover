@@ -1,19 +1,34 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import {Score} from "../model/Score";
-import axios from "axios";
 
-function UseHighscore() {
-    const [scores, setScores] = useState<Score[]>([])
+const useHighscores = (): [Score[], (sortOption: string) => void] => {
+    const [highscores, setHighscores] = useState<Score[]>([]);
 
-    useEffect(loadScores,[])
+    const fetchHighscores = (sortOption: string) => {
+        let url = '';
+        if (sortOption === 'score-asc') {
+            url = '/api/randm/highscore/sorted/score/asc';
+        } else if (sortOption === 'score-desc') {
+            url = '/api/randm/highscore/sorted/score/desc';
+        } else if (sortOption === 'timestamp-asc') {
+            url = '/api/randm/highscore/sorted/timestamp/asc';
+        } else if (sortOption === 'timestamp-desc') {
+            url = '/api/randm/highscore/sorted/timestamp/desc';
+        }
 
-    function loadScores(url: string = "/api/randm/highscore/sorted/ascending") {
-        axios.get(url).then(response => {
-            setScores(response.data)
-        })
-    }
+        axios
+            .get(url)
+            .then((response) => {
+                setHighscores(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching highscores:', error);
+                setHighscores([]);
+            });
+    };
 
-    return {scores};
-}
+    return [highscores, fetchHighscores];
+};
 
-export default UseHighscore;
+export default useHighscores;

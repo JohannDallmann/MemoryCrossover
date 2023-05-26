@@ -23,22 +23,27 @@ public class HighscoreController {
 
     @GetMapping
     public List<Score> getAllHighscores() {
-        return highscoreService.getScoresSortedAscendent();
+        return highscoreService.findAll();
     }
 
-    @GetMapping("/sorted/ascending")
+    @GetMapping("/sorted/score/asc")
     public List<Score> getSortedHighscoresAscending() {
-        return highscoreService.getScoresSortedAscendent();
+        return highscoreService.findAllByOrderByScoreAsc();
     }
 
-    @GetMapping("/sorted/descending")
+    @GetMapping("/sorted/score/desc")
     public List<Score> getSortedHighscoresDescending() {
-        return highscoreService.getScoresSortedDescendent();
+        return highscoreService.findAllByOrderByScoreDesc();
     }
 
-    @GetMapping(params = "sortBy=timestamp")
-    public List<Score> getHighscoresSortedByTimestamp() {
-        return highscoreService.getScoresSortedByTimestamp();
+    @GetMapping("/sorted/timestamp/asc")
+    public List<Score> getHighscoresSortedByTimestampAscending() {
+        return highscoreService.findAllByOrderByTimestampAsc();
+    }
+
+    @GetMapping("/sorted/timestamp/desc")
+    public List<Score> getHighscoresSortedByTimestampDescending() {
+        return highscoreService.findAllByOrderByTimestampDesc();
     }
 
 
