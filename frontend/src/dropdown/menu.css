@@ -1,0 +1,29 @@
+.dropdown-rick{
+    margin-bottom: 2px;
+    border-radius: 50px;
+    background-image: url("https://i.pinimg.com/originals/64/5c/8d/645c8d877f6e2aad7fa6545140c72a52.gif");
+    background-position: center;
+    color: whitesmoke;
+    font-weight: bold;
+    width: auto;
+    align-content: center;
+
+}
+
+.dropdown-column{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+.overlay:hover {
+    transform: translateY(-5px)
+}

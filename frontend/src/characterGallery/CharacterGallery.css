@@ -1,16 +1,16 @@
 .character-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    justify-content: space-evenly;
+    gap: 1em;
+    margin-top: 1em;
 }
 
 @media screen and (max-width: 768px) {
     .character-gallery {
-        justify-content: flex-start;
-        margin-right: 0;
-        padding: 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 1em;
     }
 }

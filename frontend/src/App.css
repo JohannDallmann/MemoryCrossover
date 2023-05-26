@@ -1,12 +1,9 @@
-.App-header {
-  background-color: #282c34;
+body {
+  background-image: url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 .button {
   display: flex;
@@ -20,11 +17,150 @@
   background-image: url("https://i.pinimg.com/originals/64/5c/8d/645c8d877f6e2aad7fa6545140c72a52.gif");
   background-position: center;
 }
-.Dashboard {
+.header-container{
   display: flex;
-  justify-content: center;
-  padding: 50px;
-  background-size: cover;
-  background-repeat: no-repeat;
+  align-self: center;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.neuefischeHeader {
+  display: flex;
+  width: 350px;
+  height: 150px;
+  margin-left: -11vh;
+}
+.placeholder{
+  display:flex;
+}
+.home{
+  text-decoration: none;
+}
+.Dashboard {
+  align-self: center;
+  margin-left: -8vh;
+  margin-top: 56px;
+  color:white;
+  text-decoration: none !important;
+  cursor: pointer;
+}
 
+.buttons-container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-top: 5.5vh;
+}
+#background-image{
+  position:absolute;
+}
+
+.h2 {
+  display: flex;
+  color: #f0f0f0;
+  font-size: 31.008px;
+  font-family: "Mark Pro", Arial, sans-serif;
+  margin-left: 10vh;
+  font-weight: bolder;
+  text-shadow:  1px  1px 1px black,
+  1px -1px 1px black,
+  -1px  1px 1px black,
+  -1px -1px 1px black;
+  background-color: transparent;
+}
+
+.p1 {
+  display: flex;
+  color: aqua;
+  font-size: 20px;
+  font-family: "Mark Pro", Arial, sans-serif;
+  margin-left: 10vh;
+  margin-top: -2vh;
+  font-weight: bolder;
+  text-shadow:  1px  1px 1px black,
+  1px -1px 1px black,
+  -1px  1px 1px black,
+  -1px -1px 1px black;
+  background-color: transparent;
+
+}
+
+.neuefischeLogo {
+  display: flex;
+  width: 250px;
+  height: 100px;
+  margin-bottom: 3vh;
+  border-radius: 70px;
+  margin-left:10vh;
+  margin-top: 5vh;
+  justify-content: flex-start;
+
+}
+
+.available-button {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 16px;
+  background-color: #FF4500;
+  width: 30vh;
+  height: 4vh;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16vh;
+  margin-left: 10vh;
+
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #000;
+  margin-right: 8px;
+  margin-bottom: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  flex: 1;
+  text-align: center;
+  font-size: 29px;
+  font-family: "Mark Pro", Arial, sans-serif;
+  margin-top: 5px;
+  color:#fff;
+
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  border-right: 2px solid #fff;
+  border-top: 2px solid #fff;
+  transform: rotate(45deg);
+  margin-right: 8px;
+}
+
+.play-container{
+  margin-top: 18vh;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+  width: 35em;
+  height:15em;
+}
+
+.Frankenstein{
+  display:flex;
+  flex: 1;
+  position: absolute;
+}
+.character-gallery-wrapper{
+  margin-top: 16.5vh;
+  margin-left: 2vw;
+  flex:1;
+  background:none;
 }
