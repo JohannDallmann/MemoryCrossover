@@ -32,7 +32,7 @@ function App() {
                     </Link>
                     <button className="costume-button"> Play </button>
                     <Link to="/highscorelist">
-                        <button className="costume-button">Highscore List</button>
+                        <button className="costume-button">Highscore </button>
                     </Link>
                 </div>
             </div>
@@ -51,12 +51,13 @@ function App() {
                 </div>
                 <div className="character-gallery-wrapper">
                     <GalleryComponent character={character}/>
+                    <Routes>
+                        <Route path="/highscorelist" element=
+                            {<HighscoreList/>}/>
+                    </Routes>
                 </div>
             </div>
-            <Routes>
-                <Route path="/highscorelist" element=
-                    {<HighscoreList/>}/>
-            </Routes>
+
 
         </div>
     );
