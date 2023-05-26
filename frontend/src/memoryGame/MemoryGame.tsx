@@ -98,7 +98,7 @@ function MemoryGame(props:Props) {
     ];
 
     // const [cards, setCards] = useState<card[]>(Board.generate(4,3, props.characters));
-    const [cards, setCards] = useState<card[]>(new_array);
+    const [cards, setCards] = useState<card[]>(static_array);
 
 
     const [clickCounter, setClickCounter] = useState(0);

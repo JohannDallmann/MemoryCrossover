@@ -36,7 +36,7 @@ function App() {
             </Link>
             <Routes>
                 <Route path="/rickandmortygallery" element=
-                    {<CharacterGallery characters={randomNCharacters}/>}/>
+                    {<CharacterGallery characters={characters}/>}/>
                 <Route path="/game" element={<MemoryGame characters={randomNCharacters} />}/>
                 <Route path="/test" element={<BoardV characters={randomNCharacters} />}/>
             </Routes>
