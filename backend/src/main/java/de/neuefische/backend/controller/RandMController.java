@@ -25,5 +25,11 @@ public class RandMController {
         return randMService.fillCharactersFromApi();
     }
 
+//    TODO Change to POST Mapping
+    @GetMapping("/game/board/generate")
+    public List<RandMCharacter> generateBoardByCondition(){
+        return randMService.generateBoardByCondition(4,3);
+    }
+
 
 }

@@ -76,4 +76,8 @@ public class RandMService {
 
         return allCharacters;
     }
+
+    public List<RandMCharacter> generateBoardByCondition(int m, int n) {
+        return randMRepo.getNRandomCharacters(m*n);
+    }
 }
