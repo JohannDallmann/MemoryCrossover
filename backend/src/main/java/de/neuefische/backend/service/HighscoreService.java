@@ -21,15 +21,23 @@ public class HighscoreService {
         return highscoreRepo.findAll();
     }
 
-    public List<Score> getScoresSortedAscendent() {
-        return highscoreRepo.findAll(); // TODO sorting
+    public List<Score> findAll() {
+        return highscoreRepo.findAll();
     }
 
-    public List<Score> getScoresSortedDescendent() {
-        return highscoreRepo.findAll(); // TODO sorting
+    public List<Score> findAllByOrderByScoreAsc() {
+        return highscoreRepo.findAllByOrderByScoreAsc();
     }
 
-    public List<Score> getScoresSortedByTimestamp() {
-        return highscoreRepo.findAll(); // TODO find by timestamp
+    public List<Score> findAllByOrderByScoreDesc() {
+        return highscoreRepo.findAllByOrderByScoreDesc();
+    }
+
+    public List<Score> findAllByOrderByTimestampAsc() {
+        return highscoreRepo.findAllByOrderByTimestampAsc();
+    }
+
+    public List<Score> findAllByOrderByTimestampDesc() {
+        return highscoreRepo.findAllByOrderByTimestampDesc();
     }
 }

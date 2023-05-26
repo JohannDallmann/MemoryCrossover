@@ -3,14 +3,10 @@ import './App.css';
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Link, Routes} from "react-router-dom";
-import useHighscore from "./hooks/useHighscore";
 import HighscoreList from "./highscoreList/HighscoreList";
-
 
 function App() {
     const {characters} = useLoadRandMCharacters();
-    const {scores} = useHighscore();
-
 
     return (
         <div className="App">
@@ -27,7 +23,7 @@ function App() {
                 <Route path="/rickandmortygallery" element=
                     {<CharacterGallery characters={characters}/>}/>
                 <Route path="/highscorelist" element=
-                    {<HighscoreList scores={scores}/>}/>
+                    {<HighscoreList/>}/>
             </Routes>
 
         </div>

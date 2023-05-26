@@ -1,19 +1,36 @@
-import React from 'react';
-import {Score} from "../model/Score";
-import HighscoreListEntry from "../highscoreListEntry/HighscoreListEntry";
+import React, { useEffect, useState } from 'react';
+import { Score } from '../model/Score';
+import HighscoreListEntry from '../highscoreListEntry/HighscoreListEntry';
+import SortDropdown from '../sortDropdown/SortDropdown';
+import useHighscores from '../hooks/useHighscore';
 
-type Props = {
-    scores:Score[]
-}
+function HighscoreList() {
+    const [selectedSort, setSelectedSort] = useState('score-asc');
+    const [highscores, fetchHighscores] = useHighscores();
 
-function HighscoreList(props:Props) {
+    useEffect(() => {
+        fetchHighscores(selectedSort);
+    }, [selectedSort]);
+
+    const handleSortChange = (selectedOption: string) => {
+        setSelectedSort(selectedOption);
+    };
+
     return (
-        <div className="highscore-list">
-            {props.scores.map((currentScore:Score, index:number)=>{
-                const entryNumber = index + 1; // Fortlaufende Nummer berechnen
-                return <HighscoreListEntry key={index} score={currentScore} entryNumber={entryNumber}></HighscoreListEntry>
-            })
-            }
+        <div>
+            <SortDropdown onChange={handleSortChange} />
+            <div className="highscore-list">
+                {highscores.map((currentScore: Score, index: number) => {
+                    const entryNumber = index + 1;
+                    return (
+                        <HighscoreListEntry
+                            key={index}
+                            score={currentScore}
+                            entryNumber={entryNumber}
+                        ></HighscoreListEntry>
+                    );
+                })}
+            </div>
         </div>
     );
 }
