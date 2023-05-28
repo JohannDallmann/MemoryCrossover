@@ -1,5 +1,6 @@
 package de.neuefische.backend.service;
 
+import de.neuefische.backend.dto.GameResultDTO;
 import de.neuefische.backend.model.GameResult;
 import de.neuefische.backend.repository.HighscoreRepo;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +15,10 @@ public class HighscoreService {
     private final HighscoreRepo highscoreRepo;
     private final GenerateUUIDService generateUUIDService;
 
-    public List<GameResult> save(GameResult gameResult) {
-        gameResult.setId(generateUUIDService.generateUUID());
-        gameResult.setTimestamp(LocalDateTime.now());
-        highscoreRepo.save(gameResult);
+    public List<GameResult> save(GameResultDTO gameResult) {
+        GameResult newGameResult = new GameResult(generateUUIDService.generateUUID(),
+                gameResult.getPlayerName(), gameResult.getScore(), LocalDateTime.now());
+        highscoreRepo.save(newGameResult);
         return highscoreRepo.findAll();
     }
 

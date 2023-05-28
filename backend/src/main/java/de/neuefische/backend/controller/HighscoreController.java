@@ -1,5 +1,6 @@
 package de.neuefische.backend.controller;
 
+import de.neuefische.backend.dto.GameResultDTO;
 import de.neuefische.backend.model.GameResult;
 import de.neuefische.backend.service.HighscoreService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class HighscoreController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public List<GameResult> addScore(@RequestBody GameResult gameResult) {
+    public List<GameResult> addScore(@RequestBody GameResultDTO gameResult) {
         return highscoreService.save(gameResult);
     }
 
