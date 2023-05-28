@@ -17,9 +17,9 @@ type Props = {
     entryNumber: number
 }
 function HighscoreListEntry(props: Props) {
-    const {score, entryNumber} = props;
+    const {entryNumber} = props;
 
-    let rank = "";
+    let rank:string;
     let rankImage = null;
 
     const highscoreRanking = [

@@ -31,10 +31,10 @@ function HighscoreList() {
         <div>
             <SortDropdown onChange={handleSortChange} />
             <div className="highscore-list">
-                {highscores.map((currentScore: Score, index: number) => {
+                {highscores.map((currentScore: Score) => {
                     return (
                         <HighscoreListEntry
-                            key={index}
+                            key={currentScore.id}
                             score={currentScore}
                             entryNumber={ranks.get(currentScore.id)!}
                         ></HighscoreListEntry>

@@ -4,7 +4,6 @@ import fische from './images/fische.png'
 import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import GalleryComponent from "./components/GalleryComponent";
-import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import HighscoreList from "./highscoreList/HighscoreList";
 
 function App() {
