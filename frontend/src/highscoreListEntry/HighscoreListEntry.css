@@ -3,16 +3,14 @@
     flex-direction: row-reverse;
     align-items: flex-start;
     padding: 10px;
-    background-color: #f2f2f2;
     border-radius: 5px;
     margin-bottom: 10px;
     width: 50vh;
     height: 13vh;
     backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.3);
-
-
 }
+
 .highscore-content {
     flex:1;
 }
@@ -22,7 +20,6 @@
     align-items: center;
     justify-content: flex-end;
     flex:2;
-
 }
 
 .rank-image::after {
@@ -40,17 +37,13 @@
     max-width: 12vh;
     height: auto;
 }
-.highscore-list-entry h4 {
-    margin: 0;
-
-}
 
 .highscore-list-entry h4:not(:last-child) {
     margin-bottom: 5px;
-
 }
 
 .highscore-list-entry h4 {
+    margin: 0;
     font-size: 2vh;
     color: turquoise;
     font-weight: bolder;
@@ -59,5 +52,4 @@
     -1px  1px 1px black,
     -1px -1px 1px black;
     font-family: "Mark Pro", Arial, sans-serif;
-
 }

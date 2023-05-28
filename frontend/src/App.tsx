@@ -5,13 +5,9 @@ import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import GalleryComponent from "./components/GalleryComponent";
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
-import useHighscore from "./hooks/useHighscore";
 import HighscoreList from "./highscoreList/HighscoreList";
 
-
 function App() {
-    const {characters} = useLoadRandMCharacters();
-
     const [character, setCharacter] = useState("");
     return (
 
