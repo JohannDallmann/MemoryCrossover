@@ -1,5 +1,6 @@
 package de.neuefische.backend.service;
 
+import de.neuefische.backend.model.GroupBySpecies;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import de.neuefische.backend.model.RandMCharacter;
@@ -11,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import de.neuefische.backend.repository.RandMRepo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -77,7 +76,53 @@ public class RandMService {
         return allCharacters;
     }
 
-    public List<RandMCharacter> generateBoardByCondition(int m, int n) {
-        return randMRepo.getNRandomCharacters(m*n);
+
+    public List<RandMCharacter> getSamplePairing(int m, int n) {
+        int boardSize = m * n;
+        int numberOfPairs = boardSize/2;
+
+        ArrayList<RandMCharacter> Characters = new ArrayList<>(randMRepo.findAll());
+        Collections.shuffle(Characters);
+
+        ArrayList<RandMCharacter> randomCharacters = new ArrayList<>();
+
+        for (int i = 0; i < numberOfPairs; i++) {
+            randomCharacters.add(Characters.get(i));
+            randomCharacters.add(Characters.get(i));
+        }
+        Collections.shuffle(randomCharacters);
+
+        return randomCharacters;
     }
+
+
+    public List<RandMCharacter> getSamplePairingForUniqueSpecies() {
+        List<GroupBySpecies> allCharactersGroups;
+        allCharactersGroups = randMRepo.findRandomPairsBySpecies();
+
+        ArrayList<RandMCharacter> RandomPairsBySpecies = new ArrayList<>();
+
+
+        for (GroupBySpecies groupBySpecies : allCharactersGroups) {
+            RandMCharacter[] charactersInGroup = groupBySpecies.getCharacters();
+            List<RandMCharacter> charactersInGroupList = Arrays.asList(charactersInGroup);
+            Collections.shuffle(charactersInGroupList);
+
+            for (int j = 0; j < 2; j++) {
+                RandomPairsBySpecies.add(charactersInGroupList.get(j));
+            }
+        }
+
+        return RandomPairsBySpecies;
+    }
+
+
+    public List<RandMCharacter> generateBoardByCondition(int m, int n, int condition) {
+
+        if (condition == 1){
+            return getSamplePairingForUniqueSpecies();
+        }
+        else return getSamplePairing(m,n);
+    }
+
 }
