@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document("scores")
-public class Score {
+public class GameResult {
     @Id
     private String id;
     private String playerName;

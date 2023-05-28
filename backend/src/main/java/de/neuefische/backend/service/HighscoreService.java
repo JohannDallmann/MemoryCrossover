@@ -1,6 +1,6 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.Score;
+import de.neuefische.backend.model.GameResult;
 import de.neuefische.backend.repository.HighscoreRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,30 +14,30 @@ public class HighscoreService {
     private final HighscoreRepo highscoreRepo;
     private final GenerateUUIDService generateUUIDService;
 
-    public List<Score> addScore(Score score) {
-        score.setId(generateUUIDService.generateUUID());
-        score.setTimestamp(LocalDateTime.now());
-        highscoreRepo.save(score);
+    public List<GameResult> save(GameResult gameResult) {
+        gameResult.setId(generateUUIDService.generateUUID());
+        gameResult.setTimestamp(LocalDateTime.now());
+        highscoreRepo.save(gameResult);
         return highscoreRepo.findAll();
     }
 
-    public List<Score> findAll() {
+    public List<GameResult> findAll() {
         return highscoreRepo.findAll();
     }
 
-    public List<Score> findAllByOrderByScoreAsc() {
+    public List<GameResult> findAllByOrderByScoreAsc() {
         return highscoreRepo.findAllByOrderByScoreAsc();
     }
 
-    public List<Score> findAllByOrderByScoreDesc() {
+    public List<GameResult> findAllByOrderByScoreDesc() {
         return highscoreRepo.findAllByOrderByScoreDesc();
     }
 
-    public List<Score> findAllByOrderByTimestampAsc() {
+    public List<GameResult> findAllByOrderByTimestampAsc() {
         return highscoreRepo.findAllByOrderByTimestampAsc();
     }
 
-    public List<Score> findAllByOrderByTimestampDesc() {
+    public List<GameResult> findAllByOrderByTimestampDesc() {
         return highscoreRepo.findAllByOrderByTimestampDesc();
     }
 }

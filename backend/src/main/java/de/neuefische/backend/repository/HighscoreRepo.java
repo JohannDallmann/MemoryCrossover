@@ -1,16 +1,16 @@
 package de.neuefische.backend.repository;
 
-import de.neuefische.backend.model.Score;
+import de.neuefische.backend.model.GameResult;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface HighscoreRepo extends MongoRepository<Score, String> {
-    List<Score> findAllByOrderByScoreAsc();
+public interface HighscoreRepo extends MongoRepository<GameResult, String> {
+    List<GameResult> findAllByOrderByScoreAsc();
 
-    List<Score> findAllByOrderByScoreDesc();
+    List<GameResult> findAllByOrderByScoreDesc();
 
-    List<Score> findAllByOrderByTimestampAsc();
+    List<GameResult> findAllByOrderByTimestampAsc();
 
-    List<Score> findAllByOrderByTimestampDesc();
+    List<GameResult> findAllByOrderByTimestampDesc();
 }

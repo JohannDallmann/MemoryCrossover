@@ -1,6 +1,6 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.Score;
+import de.neuefische.backend.model.GameResult;
 import de.neuefische.backend.repository.HighscoreRepo;
 import org.junit.jupiter.api.Test;
 
@@ -18,73 +18,90 @@ class HighscoreServiceTest {
     HighscoreService highscoreService = new HighscoreService(highscoreRepo, generateUUIDService);
 
     @Test
-    void testFindAll() {
+    void testSave() {
         // given
-        List<Score> scores = new ArrayList<>();
-        when(highscoreService.findAll()).thenReturn(scores);
+        GameResult gameResult = new GameResult();
+        List<GameResult> gameResults = new ArrayList<>();
+        when(highscoreRepo.findAll()).thenReturn(gameResults);
 
         // when
-        List<Score> actual = highscoreService.findAll();
+        List<GameResult> actual = highscoreService.save(gameResult);
+
+        // then
+        verify(generateUUIDService).generateUUID();
+        verify(highscoreRepo).save(gameResult);
+        verify(highscoreRepo).findAll();
+        assertEquals(gameResults, actual);
+    }
+
+    @Test
+    void testFindAll() {
+        // given
+        List<GameResult> gameResults = new ArrayList<>();
+        when(highscoreRepo.findAll()).thenReturn(gameResults);
+
+        // when
+        List<GameResult> actual = highscoreService.findAll();
 
         // then
         verify(highscoreRepo).findAll();
-        assertEquals(scores, actual);
+        assertEquals(gameResults, actual);
     }
 
     @Test
-    void findAllByOrderByScoreAsc() {
+    void testFindAllByOrderByScoreAsc() {
         // given
-        List<Score> scores = new ArrayList<>();
-        when(highscoreService.findAllByOrderByScoreAsc()).thenReturn(scores);
+        List<GameResult> gameResults = new ArrayList<>();
+        when(highscoreRepo.findAllByOrderByScoreAsc()).thenReturn(gameResults);
 
         // when
-        List<Score> actual = highscoreService.findAllByOrderByScoreAsc();
+        List<GameResult> actual = highscoreService.findAllByOrderByScoreAsc();
 
         // then
         verify(highscoreRepo).findAllByOrderByScoreAsc();
-        assertEquals(scores, actual);
+        assertEquals(gameResults, actual);
     }
 
     @Test
-    void findAllByOrderByScoreDesc() {
+    void testFindAllByOrderByScoreDesc() {
         // given
-        List<Score> scores = new ArrayList<>();
-        when(highscoreService.findAllByOrderByScoreDesc()).thenReturn(scores);
+        List<GameResult> gameResults = new ArrayList<>();
+        when(highscoreRepo.findAllByOrderByScoreDesc()).thenReturn(gameResults);
 
         // when
-        List<Score> actual = highscoreService.findAllByOrderByScoreDesc();
+        List<GameResult> actual = highscoreService.findAllByOrderByScoreDesc();
 
         // then
         verify(highscoreRepo).findAllByOrderByScoreDesc();
-        assertEquals(scores, actual);
+        assertEquals(gameResults, actual);
     }
 
     @Test
-    void findAllByOrderByTimestampAsc() {
+    void testFindAllByOrderByTimestampAsc() {
         // given
-        List<Score> scores = new ArrayList<>();
-        when(highscoreService.findAllByOrderByTimestampAsc()).thenReturn(scores);
+        List<GameResult> gameResults = new ArrayList<>();
+        when(highscoreRepo.findAllByOrderByTimestampAsc()).thenReturn(gameResults);
 
         // when
-        List<Score> actual = highscoreService.findAllByOrderByTimestampAsc();
+        List<GameResult> actual = highscoreService.findAllByOrderByTimestampAsc();
 
         // then
         verify(highscoreRepo).findAllByOrderByTimestampAsc();
-        assertEquals(scores, actual);
+        assertEquals(gameResults, actual);
     }
 
     @Test
-    void findAllByOrderByTimestampDesc() {
+    void testFindAllByOrderByTimestampDesc() {
         /// given
-        List<Score> scores = new ArrayList<>();
-        when(highscoreService.findAllByOrderByTimestampDesc()).thenReturn(scores);
+        List<GameResult> gameResults = new ArrayList<>();
+        when(highscoreRepo.findAllByOrderByTimestampDesc()).thenReturn(gameResults);
 
         // when
-        List<Score> actual = highscoreService.findAllByOrderByTimestampDesc();
+        List<GameResult> actual = highscoreService.findAllByOrderByTimestampDesc();
 
         // then
         verify(highscoreRepo).findAllByOrderByTimestampDesc();
-        assertEquals(scores, actual);
+        assertEquals(gameResults, actual);
     }
 
 }

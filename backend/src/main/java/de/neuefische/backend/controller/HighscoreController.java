@@ -1,6 +1,6 @@
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.Score;
+import de.neuefische.backend.model.GameResult;
 import de.neuefische.backend.service.HighscoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,32 +17,32 @@ public class HighscoreController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Score> addScore(@RequestBody Score score) {
-        return highscoreService.addScore(score);
+    public List<GameResult> addScore(@RequestBody GameResult gameResult) {
+        return highscoreService.save(gameResult);
     }
 
     @GetMapping
-    public List<Score> getAllHighscores() {
+    public List<GameResult> getAllHighscores() {
         return highscoreService.findAll();
     }
 
     @GetMapping("/sorted/score/asc")
-    public List<Score> getSortedHighscoresAscending() {
+    public List<GameResult> getSortedHighscoresAscending() {
         return highscoreService.findAllByOrderByScoreAsc();
     }
 
     @GetMapping("/sorted/score/desc")
-    public List<Score> getSortedHighscoresDescending() {
+    public List<GameResult> getSortedHighscoresDescending() {
         return highscoreService.findAllByOrderByScoreDesc();
     }
 
     @GetMapping("/sorted/timestamp/asc")
-    public List<Score> getHighscoresSortedByTimestampAscending() {
+    public List<GameResult> getHighscoresSortedByTimestampAscending() {
         return highscoreService.findAllByOrderByTimestampAsc();
     }
 
     @GetMapping("/sorted/timestamp/desc")
-    public List<Score> getHighscoresSortedByTimestampDescending() {
+    public List<GameResult> getHighscoresSortedByTimestampDescending() {
         return highscoreService.findAllByOrderByTimestampDesc();
     }
 
