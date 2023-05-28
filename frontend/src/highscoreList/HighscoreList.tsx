@@ -5,7 +5,7 @@ import SortDropdown from '../sortDropdown/SortDropdown';
 import useHighscores from '../hooks/useHighscore';
 
 function HighscoreList() {
-    const [selectedSort, setSelectedSort] = useState('score-asc');
+    const [selectedSort, setSelectedSort] = useState('score-desc');
     const [highscores, fetchHighscores] = useHighscores();
     const [highscoresSorted, fetchHighscoresSorted] = useHighscores();
 
