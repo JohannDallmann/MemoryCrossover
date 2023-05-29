@@ -51,7 +51,7 @@ public class GoTService {
         for (GoTCharacter character : characters) {
             character.setUuid(generateUUIDService.generateUUID());
         }
-        goTRepo.saveAll(characters);
+        goTRepo.saveAll(Objects.requireNonNull(characters));
 
         return characters;
     }
