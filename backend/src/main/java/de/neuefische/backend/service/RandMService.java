@@ -1,10 +1,9 @@
 package de.neuefische.backend.service;
 
-import de.neuefische.backend.model.GroupBySpecies;
+import de.neuefische.backend.model.*;
+import de.neuefische.backend.repository.RandMCharacterWithNamePrefixIntersectionRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import de.neuefische.backend.model.RandMCharacter;
-import de.neuefische.backend.model.RickAndMortyCharacterCollection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -19,6 +18,7 @@ import java.util.*;
 public class RandMService {
     private final RandMRepo randMRepo;
     private final GenerateUUIDService generateUUIDService;
+    private final RandMCharacterWithNamePrefixIntersectionRepository RandMCharNamePrefixIntersectionRepo;
 
     WebClient webClient;
 
@@ -112,17 +112,44 @@ public class RandMService {
                 RandomPairsBySpecies.add(charactersInGroupList.get(j));
             }
         }
+        Collections.shuffle(RandomPairsBySpecies);
 
         return RandomPairsBySpecies;
     }
 
+    public List<RandMCharacterWithNamePrefix> getSamplePairingForSameNamePrefix(int m, int n) {
+        int boardSize = m * n;
+        int numberOfPairs = boardSize/2;
 
-    public List<RandMCharacter> generateBoardByCondition(int m, int n, int condition) {
+        List<RandMCharacterWithNamePrefixIntersection> RandomPairs;
+        RandomPairs = RandMCharNamePrefixIntersectionRepo.findAll();
+
+        ArrayList<RandMCharacterWithNamePrefix> RandomWithNamePrefix = new ArrayList<>();
+
+        Collections.shuffle(RandomPairs);
+
+
+        for (int i = 0; i < numberOfPairs; i++) {
+            RandomWithNamePrefix.add(RandomPairs.get(i).getIntersection()[0]);
+
+            RandMCharacterWithNamePrefix prefixObject = RandMCharacterWithNamePrefix.fromIntersection(RandomPairs.get(i));
+            RandomWithNamePrefix.add(prefixObject);
+        }
+
+        Collections.shuffle(RandomWithNamePrefix);
+
+        return RandomWithNamePrefix;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> generateBoardByCondition(int m, int n, int condition) {
 
         if (condition == 1){
-            return getSamplePairingForUniqueSpecies();
-        }
-        else return getSamplePairing(m,n);
+            return (List<T>) getSamplePairingForUniqueSpecies();
+        } else if (condition == 2) {
+            return (List<T>) getSamplePairingForSameNamePrefix(m,n);
+
+        } else return (List<T>) getSamplePairing(m,n);
     }
 
 }
