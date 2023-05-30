@@ -1,10 +1,10 @@
 import './App.css';
-import {Link} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import fische from './images/fische.png'
 import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import GalleryComponent from "./components/GalleryComponent";
-
+import HighscoreList from "./highscoreList/HighscoreList";
 
 function App() {
     const [character, setCharacter] = useState("");
@@ -26,6 +26,9 @@ function App() {
                         <button className="costume-button"> Home </button>
                     </Link>
                     <button className="costume-button"> Play </button>
+                    <Link to="/highscorelist">
+                        <button className="costume-button">Highscore </button>
+                    </Link>
                 </div>
             </div>
             <div className="Frankenstein">
@@ -43,11 +46,16 @@ function App() {
                 </div>
                 <div className="character-gallery-wrapper">
                     <GalleryComponent character={character}/>
+                    <Routes>
+                        <Route path="/highscorelist" element=
+                            {<HighscoreList/>}/>
+                    </Routes>
                 </div>
             </div>
 
-        </div>
 
-);
+        </div>
+    );
 }
+
 export default App;
