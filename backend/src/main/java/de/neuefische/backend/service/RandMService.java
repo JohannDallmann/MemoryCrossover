@@ -96,14 +96,22 @@ public class RandMService {
     }
 
 
-    public List<RandMCharacter> getSamplePairingForUniqueSpecies() {
+    public List<RandMCharacter> getSamplePairingForUniqueSpecies(int m, int n) {
         List<GroupBySpecies> allCharactersGroups;
         allCharactersGroups = randMRepo.findRandomPairsBySpecies();
+
+        int boardSize = m * n;
+        int numberOfPairs = boardSize/2;
+
+        if (numberOfPairs > allCharactersGroups.size()){
+            numberOfPairs = allCharactersGroups.size();
+        }
+        Collections.shuffle(allCharactersGroups);
 
         ArrayList<RandMCharacter> RandomPairsBySpecies = new ArrayList<>();
 
 
-        for (GroupBySpecies groupBySpecies : allCharactersGroups) {
+        for (GroupBySpecies groupBySpecies : allCharactersGroups.subList(0, numberOfPairs)) {
             RandMCharacter[] charactersInGroup = groupBySpecies.getCharacters();
             List<RandMCharacter> charactersInGroupList = Arrays.asList(charactersInGroup);
             Collections.shuffle(charactersInGroupList);
@@ -123,6 +131,10 @@ public class RandMService {
 
         List<RandMCharacterWithNamePrefixIntersection> RandomPairs;
         RandomPairs = RandMCharNamePrefixIntersectionRepo.findAll();
+
+        if (numberOfPairs > RandomPairs.size()){
+            numberOfPairs = RandomPairs.size();
+        }
 
         ArrayList<RandMCharacterWithNamePrefix> RandomWithNamePrefix = new ArrayList<>();
 
@@ -145,7 +157,7 @@ public class RandMService {
     public <T> List<T> generateBoardByCondition(int m, int n, int condition) {
 
         if (condition == 1){
-            return (List<T>) getSamplePairingForUniqueSpecies();
+            return (List<T>) getSamplePairingForUniqueSpecies(m,n);
         } else if (condition == 2) {
             return (List<T>) getSamplePairingForSameNamePrefix(m,n);
 

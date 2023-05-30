@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import de.neuefische.backend.model.RandMCharacter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import de.neuefische.backend.service.RandMService;
 
@@ -27,8 +28,9 @@ public class RandMController {
 
 //    TODO Change to POST Mapping
     @GetMapping("/game/board/generate")
-    public List<RandMCharacter> generateBoardByCondition(){
-        return randMService.generateBoardByCondition(5,5,2);
+
+    public List<RandMCharacter> generateBoardByCondition(@RequestParam int m, @RequestParam int n, @RequestParam int condition){
+        return randMService.generateBoardByCondition(m,n,condition);
     }
 
 }
