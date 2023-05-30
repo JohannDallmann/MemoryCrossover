@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
@@ -39,6 +40,7 @@ class RandMControllerIntegrationTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "123")
     void when_GetAllCharacters_is_called_then_return_is_ok() throws Exception {
         mockWebServer.enqueue(new MockResponse()
                 .setHeader("Content-Type", "application/json")
@@ -215,6 +217,7 @@ class RandMControllerIntegrationTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "123")
     void when_fillCharactersFromApi_is_called_then_return_is_ok() throws Exception {
         mockWebServer.enqueue(new MockResponse()
                 .setHeader("Content-Type", "application/json")
