@@ -6,9 +6,6 @@ public enum BoardGenerationCondition {
     NAME_PREFIX("NAME_PREFIX"),
     DEFAULT("DEFAULT");
 
-    private String condition;
-
     BoardGenerationCondition(String s) {
-        this.condition = s;
     }
 }
