@@ -31,9 +31,14 @@ public class RandMController {
 
     @GetMapping("/game/board/generate")
 
-    public List<RandMCharacter> generateBoardByCondition(@RequestParam int m, @RequestParam int n,
-                                                         @RequestParam(required = false) BoardGenerationCondition condition){
-        return randMService.generateBoardByCondition(m, n, Objects.requireNonNullElse(condition, BoardGenerationCondition.DEFAULT));
+    public List<RandMCharacter> generateBoardByCondition(@RequestParam(required = false) Integer m,
+                                                         @RequestParam(required = false) Integer n,
+                                                         @RequestParam(required = false) BoardGenerationCondition condition) {
+
+        return randMService.generateBoardByCondition(
+                Objects.requireNonNullElse(m, 4),
+                Objects.requireNonNullElse(n, 3),
+                Objects.requireNonNullElse(condition, BoardGenerationCondition.DEFAULT));
     }
 
 }
