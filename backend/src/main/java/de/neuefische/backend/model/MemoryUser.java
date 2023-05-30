@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("users")
-public class MongoUser {
+public class MemoryUser {
     private String id;
     private String username;
     private String password;
