@@ -154,14 +154,13 @@ public class RandMService {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> List<T> generateBoardByCondition(int m, int n, int condition) {
+    public <T> List<T> generateBoardByCondition(int m, int n, BoardGenerationCondition condition) {
 
-        if (condition == 1){
-            return (List<T>) getSamplePairingForUniqueSpecies(m,n);
-        } else if (condition == 2) {
-            return (List<T>) getSamplePairingForSameNamePrefix(m,n);
-
-        } else return (List<T>) getSamplePairing(m,n);
+        return switch (condition) {
+            case SPECIES -> (List<T>) getSamplePairingForUniqueSpecies(m, n);
+            case NAME_PREFIX -> (List<T>) getSamplePairingForSameNamePrefix(m, n);
+            default -> (List<T>) getSamplePairing(m, n);
+        };
     }
 
 }

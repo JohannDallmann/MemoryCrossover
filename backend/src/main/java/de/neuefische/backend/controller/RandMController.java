@@ -1,5 +1,6 @@
 package de.neuefische.backend.controller;
 
+import de.neuefische.backend.model.BoardGenerationCondition;
 import lombok.RequiredArgsConstructor;
 import de.neuefische.backend.model.RandMCharacter;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.neuefische.backend.service.RandMService;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/randm")
@@ -26,11 +28,12 @@ public class RandMController {
         return randMService.fillCharactersFromApi();
     }
 
-//    TODO Change to POST Mapping
+
     @GetMapping("/game/board/generate")
 
-    public List<RandMCharacter> generateBoardByCondition(@RequestParam int m, @RequestParam int n, @RequestParam int condition){
-        return randMService.generateBoardByCondition(m,n,condition);
+    public List<RandMCharacter> generateBoardByCondition(@RequestParam int m, @RequestParam int n,
+                                                         @RequestParam(required = false) BoardGenerationCondition condition){
+        return randMService.generateBoardByCondition(m, n, Objects.requireNonNullElse(condition, BoardGenerationCondition.DEFAULT));
     }
 
 }
