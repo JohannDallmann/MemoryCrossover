@@ -30,7 +30,7 @@ function useGetNRandomCards() {
         loadRandomCharacters();
     }, []);
 
-    function loadRandomCharacters(url: string = "/api/randm/game/board/generate?m=1&n=20") {
+    function loadRandomCharacters(url: string = "/api/randm/game/board/generate?condition=SPECIES") {
         axios.get(url).then(response => {
             setRandomNCharacters(response.data);
         });
