@@ -8,12 +8,14 @@ import {Route, Link, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import {CardCharacter} from "./model/CardCharacter";
 import Home from "./Home/Home";
+import useGetNRandomCards from "./hooks/useGetNRandomCards";
 
 
 function App() {
     const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
-    const gameCharacters : CardCharacter[] = [
+    const {randomNCharacters} = useGetNRandomCards();
+    /*const gameCharacters : CardCharacter[] = [
         {
             "uuid" : "1",
             "id" : 1,
@@ -64,6 +66,8 @@ function App() {
         }
     ];
 
+     */
+
 
     return (
 
@@ -90,7 +94,7 @@ function App() {
             </div>
 
             <Routes>
-                <Route path="/game" element={<Game gameCharacters={gameCharacters}/>}/>
+                <Route path="/game" element={<Game randomNCharacters={randomNCharacters}/>}/>
                 <Route path="/home" element={<Home character={character}/>}/>
                 <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters}/>}/>
             </Routes>

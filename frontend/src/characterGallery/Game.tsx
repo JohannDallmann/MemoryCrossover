@@ -6,12 +6,16 @@ import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
 
 type Props = {
-    gameCharacters:CardCharacter[]
+    randomNCharacters:RandMCharacter[]
 }
 
 function Game(props:Props) {
     const [counter, setCounter] = useState<number>(0);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
+
+    const [cards, setCards] = useState<CardCharacter[]>(() =>
+        props.randomNCharacters.map((card) => ({ ...card, hidden: true }))
+    );
 
     function increaseCounter(){
         setCounter(counter + 1);
@@ -57,7 +61,7 @@ function Game(props:Props) {
             </div>
 
             <div className="card-container">
-                {props.gameCharacters.map((currentCharacter:CardCharacter)=>{
+                {cards.map((currentCharacter:CardCharacter)=>{
                     return <GameCard key={currentCharacter.id}
                                      character={currentCharacter}
                                      putCardsInArrayToCompare={putCardsInArrayToCompare}

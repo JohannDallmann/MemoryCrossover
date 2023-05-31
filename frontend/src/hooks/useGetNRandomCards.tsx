@@ -24,15 +24,15 @@ import { RandMCharacter } from "../model/RandMCharacter";
 import axios from "axios";
 
 function useGetNRandomCards() {
-    const [randomNCharacters, setCharacters] = useState<RandMCharacter[]>([]);
+    const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
 
     useEffect(() => {
         loadRandomCharacters();
     }, []);
 
-    function loadRandomCharacters(url: string = "/api/randm/game/board/generate") {
+    function loadRandomCharacters(url: string = "/api/randm/game/board/generate?m=1&n=20") {
         axios.get(url).then(response => {
-            setCharacters(response.data);
+            setRandomNCharacters(response.data);
         });
     }
 
