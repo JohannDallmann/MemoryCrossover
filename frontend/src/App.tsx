@@ -15,58 +15,6 @@ function App() {
     const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
     const {randomNCharacters} = useGetNRandomCards();
-    /*const gameCharacters : CardCharacter[] = [
-        {
-            "uuid" : "1",
-            "id" : 1,
-            "name" : "Rick 1",
-            "species" : "Human",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            "hidden" : true
-        },
-        {
-            "uuid" : "2",
-            "id" : 2,
-            "name" : "Rick 2",
-            "species" : "Human",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            "hidden" : true
-        },
-        {
-            "uuid" : "3",
-            "id" : 3,
-            "name" : "Alien 1",
-            "species" : "Alien",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            "hidden" : true
-        },
-        {
-            "uuid" : "4",
-            "id" : 4,
-            "name" : "Alien 2",
-            "species" : "Alien",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            "hidden" : true
-        },
-        {
-            "uuid" : "5",
-            "id" : 5,
-            "name" : "Wizard 1",
-            "species" : "Wizard",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            "hidden" : true
-        },
-        {
-            "uuid" : "6",
-            "id" : 6,
-            "name" : "Wizard 2",
-            "species" : "Wizard",
-            "image" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-            "hidden" : true
-        }
-    ];
-
-     */
 
 
     return (

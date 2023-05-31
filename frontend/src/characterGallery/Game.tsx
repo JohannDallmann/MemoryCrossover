@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {RandMCharacter} from "../model/RandMCharacter";
-import CharacterCard from "../characterCard/CharacterCard";
 import GameCard from "../characterCard/GameCard";
 import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
