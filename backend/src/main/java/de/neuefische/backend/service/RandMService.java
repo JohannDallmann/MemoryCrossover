@@ -1,26 +1,39 @@
 package de.neuefische.backend.service;
 
+import de.neuefische.backend.model.*;
+import de.neuefische.backend.repository.RandMCharacterWithNamePrefixIntersectionRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import de.neuefische.backend.model.RandMCharacter;
-import de.neuefische.backend.model.RickAndMortyCharacterCollection;
+import org.bson.Document;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.*;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import de.neuefische.backend.repository.RandMRepo;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class RandMService {
     private final RandMRepo randMRepo;
     private final GenerateUUIDService generateUUIDService;
+    private final RandMCharacterWithNamePrefixIntersectionRepository RandMCharNamePrefixIntersectionRepo;
+    private final MongoTemplate mt;
 
+    String ASCII_LOGO = "___  ___                                       _____                                                  \n" +
+            "|  \\/  |                                      /  __ \\                                                 \n" +
+            "| .  . |  ___  _ __ ___    ___   _ __  _   _  | /  \\/ _ __   ___   ___  ___   ___  __   __  ___  _ __ \n" +
+            "| |\\/| | / _ \\| '_ ` _ \\  / _ \\ | '__|| | | | | |    | '__| / _ \\ / __|/ __| / _ \\ \\ \\ / / / _ \\| '__|\n" +
+            "| |  | ||  __/| | | | | || (_) || |   | |_| | | \\__/\\| |   | (_) |\\__ \\\\__ \\| (_) | \\ V / |  __/| |   \n" +
+            "\\_|  |_/ \\___||_| |_| |_| \\___/ |_|    \\__, |  \\____/|_|    \\___/ |___/|___/ \\___/   \\_/   \\___||_|   \n" +
+            "                                        __/ |                                                         \n" +
+            "                                       |___/          ";
     WebClient webClient;
 
     @Value("${rickandmorty.url}")
@@ -34,7 +47,18 @@ public class RandMService {
     public List<RandMCharacter> getAllCharacters() {
 
         if (randMRepo.findAll().isEmpty()) {
-            return fillCharactersFromApi();
+            System.out.println(ASCII_LOGO);
+            System.out.println("Loading characters into the database using the Rick and Morty API");
+            List<RandMCharacter> charactersFromApi = fillCharactersFromApi();
+
+            System.out.println("Creating the necessary service data");
+            runAggregationStep1("Morty");
+            runAggregationStep1("Rick");
+            runAggregationStep2();
+            System.out.println("Initialization completed");
+
+            return charactersFromApi;
+
         } else {
             return randMRepo.findAll();
         }
@@ -76,4 +100,151 @@ public class RandMService {
 
         return allCharacters;
     }
+
+
+    public void runAggregationStep1(String matchRegex) {
+        AggregationOperation matchStage = Aggregation.match(Criteria.where("name").regex(matchRegex, "i"));
+
+        AddFieldsOperation addFieldsStage1 = Aggregation.addFields()
+                .addFieldWithValue("name_prefix",
+                        new Document("$replaceAll", new Document("input", "$name")
+                                .append("find", matchRegex)
+                                .append("replacement", "")))
+                .build();
+
+        AddFieldsOperation addFieldsStage2 = Aggregation.addFields()
+                .addFieldWithValue("_class",
+                        new Document("$replaceAll", new Document("input", "$_class")
+                                .append("find", ".RandMCharacter")
+                                .append("replacement", ".RandMCharacterWithNamePrefix")))
+                .build();
+
+        OutOperation outStage = Aggregation.out(matchRegex.toLowerCase() + "Set");
+
+        Aggregation aggregation = Aggregation.newAggregation(matchStage, addFieldsStage1, addFieldsStage2, outStage);
+
+        mt.aggregate(aggregation, "rickAndMortyCharacters", Object.class)
+                .forEach(result -> {
+                    // Process aggregation results
+                    // ...
+                });
+    }
+
+    public void runAggregationStep2() {
+        LookupOperation lookupStage = LookupOperation.newLookup()
+                .from("mortySet")
+                .localField("name_prefix")
+                .foreignField("name_prefix")
+                .as("intersection");
+
+        AggregationOperation matchStage = Aggregation.match(Criteria.where("intersection")
+                .not()
+                .size(0));
+
+        AddFieldsOperation addFieldsStage = Aggregation.addFields()
+                .addFieldWithValue("_class",
+                        new Document("$replaceAll", new Document("input", "$_class")
+                                .append("find", ".RandMCharacterWithNamePrefix")
+                                .append("replacement", ".RandMCharacterWithNamePrefixIntersection")))
+                .build();
+
+        OutOperation outStage = Aggregation.out( "rickAndMortyIntersection");
+
+
+        Aggregation aggregation = Aggregation.newAggregation(lookupStage, matchStage, addFieldsStage, outStage);
+
+        mt.aggregate(aggregation,"rickSet",  Object.class)
+                .forEach(result -> {
+                    // Process aggregation results
+                    // ...
+                });
+    }
+
+
+    public List<RandMCharacter> getSamplePairing(int m, int n) {
+        int boardSize = m * n;
+        int numberOfPairs = boardSize/2;
+
+        ArrayList<RandMCharacter> Characters = new ArrayList<>(randMRepo.findAll());
+        Collections.shuffle(Characters);
+
+        ArrayList<RandMCharacter> randomCharacters = new ArrayList<>();
+
+        for (int i = 0; i < numberOfPairs; i++) {
+            randomCharacters.add(Characters.get(i));
+            randomCharacters.add(Characters.get(i));
+        }
+        Collections.shuffle(randomCharacters);
+
+        return randomCharacters;
+    }
+
+
+    public List<RandMCharacter> getSamplePairingForUniqueSpecies(int m, int n) {
+        List<GroupBySpecies> allCharactersGroups;
+        allCharactersGroups = randMRepo.findRandomPairsBySpecies();
+
+        int boardSize = m * n;
+        int numberOfPairs = boardSize/2;
+
+        if (numberOfPairs > allCharactersGroups.size()){
+            numberOfPairs = allCharactersGroups.size();
+        }
+        Collections.shuffle(allCharactersGroups);
+
+        ArrayList<RandMCharacter> RandomPairsBySpecies = new ArrayList<>();
+
+
+        for (GroupBySpecies groupBySpecies : allCharactersGroups.subList(0, numberOfPairs)) {
+            RandMCharacter[] charactersInGroup = groupBySpecies.getCharacters();
+            List<RandMCharacter> charactersInGroupList = Arrays.asList(charactersInGroup);
+            Collections.shuffle(charactersInGroupList);
+
+            for (int j = 0; j < 2; j++) {
+                RandomPairsBySpecies.add(charactersInGroupList.get(j));
+            }
+        }
+        Collections.shuffle(RandomPairsBySpecies);
+
+        return RandomPairsBySpecies;
+    }
+
+    public List<RandMCharacterWithNamePrefix> getSamplePairingForSameNamePrefix(int m, int n) {
+        int boardSize = m * n;
+        int numberOfPairs = boardSize/2;
+
+        List<RandMCharacterWithNamePrefixIntersection> RandomPairs;
+        RandomPairs = RandMCharNamePrefixIntersectionRepo.findAll();
+
+        if (numberOfPairs > RandomPairs.size()){
+            numberOfPairs = RandomPairs.size();
+        }
+
+        ArrayList<RandMCharacterWithNamePrefix> RandomWithNamePrefix = new ArrayList<>();
+
+        Collections.shuffle(RandomPairs);
+
+
+        for (int i = 0; i < numberOfPairs; i++) {
+            RandomWithNamePrefix.add(RandomPairs.get(i).getIntersection()[0]);
+
+            RandMCharacterWithNamePrefix prefixObject = RandMCharacterWithNamePrefix.fromIntersection(RandomPairs.get(i));
+            RandomWithNamePrefix.add(prefixObject);
+        }
+
+        Collections.shuffle(RandomWithNamePrefix);
+
+        return RandomWithNamePrefix;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> List<T> generateBoardByCondition(int m, int n, BoardGenerationCondition condition) {
+
+        return switch (condition) {
+            case SPECIES -> (List<T>) getSamplePairingForUniqueSpecies(m, n);
+            case NAME_PREFIX -> (List<T>) getSamplePairingForSameNamePrefix(m, n);
+            default -> (List<T>) getSamplePairing(m, n);
+        };
+    }
+
 }
