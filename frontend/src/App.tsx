@@ -5,9 +5,14 @@ import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import GalleryComponent from "./components/GalleryComponent";
 import HighscoreList from "./highscoreList/HighscoreList";
+import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
+import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
+
 
 function App() {
     const [character, setCharacter] = useState("");
+    const {gameOfThronesCharacters} = useLoadGoTCharacters();
+
     return (
 
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
@@ -52,6 +57,10 @@ function App() {
                     </Routes>
                 </div>
             </div>
+            <Routes>
+                <Route path="/gameofthronesgallery" element=
+                    {<CharacterGalleryGoT characters={gameOfThronesCharacters}/>}/>
+            </Routes>
 
 
         </div>

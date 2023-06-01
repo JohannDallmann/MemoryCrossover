@@ -10,6 +10,7 @@ Memory Crossover is a memory game with cards from different TV series
 
 The following APIs are used:
 - The Rick and Morty API (https://rickandmortyapi.com/)
+- Game of Thrones Character Api (https://thronesapi.com/)
 
 Do the following steps to setup the project:
 
