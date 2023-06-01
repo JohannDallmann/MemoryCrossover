@@ -19,9 +19,10 @@
     width: 100%;
     max-width: 960px;
     display: block;
-    background-color: #eee;
     margin-left: auto;
     margin-right: auto;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .turns-counter, .timer {
@@ -33,4 +34,12 @@
 
 .timer {
     float: right;
+}
+
+.gameBoard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
 }

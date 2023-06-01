@@ -128,8 +128,6 @@ body {
     flex-direction: column;
     backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.3);
-    position: relative;
-    z-index: 1;
     width: 35em;
     height:15em;
 }
