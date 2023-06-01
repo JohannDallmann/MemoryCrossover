@@ -29,7 +29,7 @@ function HighscoreList() {
 
 
     return (
-        <div>
+        <div className="highscore-box">
             <SortDropdown onChange={handleSortChange} />
             <div className="highscore-list">
                 {highscores.map((currentScore: Score) => {

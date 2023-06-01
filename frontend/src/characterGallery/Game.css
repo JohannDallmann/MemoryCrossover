@@ -1,14 +1,12 @@
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: 1fr 1fr 1fr;
-    width: 100%;
-    max-width: 960px;
-    height: 400px;
-    gap: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    gap: 0.5vh;
     align-items: center;
     margin: auto;
-    padding: 10px;
+    padding: 1vh;
 }
 
 .status-bar {
@@ -34,12 +32,4 @@
 
 .timer {
     float: right;
-}
-
-.gameBoard{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-
 }
