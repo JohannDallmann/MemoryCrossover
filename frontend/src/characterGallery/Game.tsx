@@ -1,20 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {RandMCharacter} from "../model/RandMCharacter";
 import GameCard from "../characterCard/GameCard";
 import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
 
 type Props = {
-    randomNCharacters:RandMCharacter[]
+    cards:CardCharacter[]
 }
 
 function Game(props:Props) {
     const [counter, setCounter] = useState<number>(0);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
-    const [cards, setCards] = useState<CardCharacter[]>(() =>
-        props.randomNCharacters.map((card) => ({ ...card, hidden: true , comparison: card.species}))
-    );
+
 
     function increaseCounter(){
         setCounter(counter + 1);
@@ -40,8 +37,6 @@ function Game(props:Props) {
             secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg"
         } else {
             setTimeout(() => hideCards(firstCard,secondCard),0);
-            //setImmediate(() => hideCards(firstCard,secondCard));
-            //hideCards(firstCard,secondCard)
         }
     }
 
@@ -60,7 +55,7 @@ function Game(props:Props) {
             </div>
 
             <div className="card-container">
-                {cards.map((currentCharacter:CardCharacter)=>{
+                {props.cards.map((currentCharacter:CardCharacter)=>{
                     return <GameCard key={currentCharacter.id}
                                      character={currentCharacter}
                                      putCardsInArrayToCompare={putCardsInArrayToCompare}

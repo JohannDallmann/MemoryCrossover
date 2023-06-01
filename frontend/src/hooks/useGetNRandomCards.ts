@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { RandMCharacter } from "../model/RandMCharacter";
 import axios from "axios";
+import {CardCharacter} from "../model/CardCharacter";
 
 function useGetNRandomCards() {
     const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
+    const [cards, setCards] = useState<CardCharacter[]>([]);
 
     useEffect(() => {
         loadRandomCharacters();
@@ -15,8 +17,14 @@ function useGetNRandomCards() {
         });
     }
 
+    useEffect(() => {
+        setCards(randomNCharacters.map((card) => (
+            { ...card, hidden: true, comparison: card.species }
+        )));
+    }, [randomNCharacters]);
 
-    return { randomNCharacters };
+
+    return { cards };
 }
 
 export default useGetNRandomCards;

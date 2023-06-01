@@ -6,7 +6,6 @@ import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Link, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
-import {CardCharacter} from "./model/CardCharacter";
 import Home from "./Home/Home";
 import useGetNRandomCards from "./hooks/useGetNRandomCards";
 
@@ -14,7 +13,7 @@ import useGetNRandomCards from "./hooks/useGetNRandomCards";
 function App() {
     const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
-    const {randomNCharacters} = useGetNRandomCards();
+    const {cards} = useGetNRandomCards();
 
 
     return (
@@ -42,7 +41,7 @@ function App() {
             </div>
 
             <Routes>
-                <Route path="/game" element={<Game randomNCharacters={randomNCharacters}/>}/>
+                <Route path="/game" element={<Game cards={cards}/>}/>
                 <Route path="/home" element={<Home character={character}/>}/>
                 <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters}/>}/>
             </Routes>
