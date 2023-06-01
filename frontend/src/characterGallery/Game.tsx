@@ -18,7 +18,7 @@ export enum Status {
 // It looks like the cards update along with the timer every second.
 // Probably the problem will be solved by separating these entities into components.
 export type State = {
-    // TODO
+    // TODO move the 'counter' variable from props to 'type State'
     // I assume the counter should be used at this point.
     // It refers to the state of the game.
     // Further, parameters such as counter and secondsLeft
