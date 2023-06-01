@@ -10,7 +10,6 @@ function useGetNRandomCards() {
 
     useEffect(loadRandomCharacters, []);
 
-
     function loadRandomCharacters() {
         axios.get(url).then(response => {
             setRandomNCharacters(response.data);

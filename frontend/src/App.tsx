@@ -14,7 +14,12 @@ function App() {
     const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
     const {cards, loadRandomCharacters} = useGetNRandomCards();
+    const [counter, setCounter] = useState<number>(0);
 
+    function playButtonHandler(){
+        loadRandomCharacters();
+        setCounter(0);
+    }
 
     return (
 
@@ -35,13 +40,13 @@ function App() {
                         <button className="costume-button"> Home </button>
                     </Link>
                     <Link to={"/game"}>
-                        <button className="costume-button" onClick={loadRandomCharacters} > Play </button>
+                        <button className="costume-button" onClick={playButtonHandler} > Play </button>
                     </Link>
                 </div>
             </div>
 
             <Routes>
-                <Route path="/game" element={<Game cards={cards}/>}/>
+                <Route path="/game" element={<Game cards={cards} counter={counter} setCounter={setCounter} />}/>
                 <Route path="/home" element={<Home character={character}/>}/>
                 <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters}/>}/>
             </Routes>

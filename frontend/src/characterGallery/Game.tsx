@@ -4,17 +4,16 @@ import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
 
 type Props = {
-    cards:CardCharacter[]
+    cards:CardCharacter[];
+    counter:number;
+    setCounter: (counter: number) => void;
 }
 
 function Game(props:Props) {
-    const [counter, setCounter] = useState<number>(0);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
-
-
     function increaseCounter(){
-        setCounter(counter + 1);
+        props.setCounter(props.counter + 1);
     }
 
     function putCardsInArrayToCompare(currentCard:CardCharacter){
@@ -49,7 +48,7 @@ function Game(props:Props) {
         <div >
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
-                    {"Current Counter: " + counter}
+                    {"Current Counter: " + props.counter}
                 </div>
                 <div className={"timer"}>Time left: time-test</div>
             </div>
@@ -60,7 +59,7 @@ function Game(props:Props) {
                                      character={currentCharacter}
                                      putCardsInArrayToCompare={putCardsInArrayToCompare}
                                      increaseCounter={increaseCounter}
-                                     counter ={counter}></GameCard>
+                                     counter ={props.counter}></GameCard>
                 })
                 }
             </div>
