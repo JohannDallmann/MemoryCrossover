@@ -2,7 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import fische from '../images/fische.png';
 import DropdownMenu from '../dropdown/menu';
-function Header() {
+
+type Props = {
+    playButtonHandler: () => void;
+}
+
+function Header(props:Props) {
 
     return (
         <div className="header-container">
@@ -21,7 +26,7 @@ function Header() {
                     <button className="costume-button"> Home </button>
                 </Link>
                 <Link to="/play">
-                    <button className="costume-button"> Play </button>
+                    <button className="costume-button" onClick={props.playButtonHandler}> Play </button>
                 </Link>
                 <Link to="/highscorelist">
                     <button className="costume-button">Highscore </button>

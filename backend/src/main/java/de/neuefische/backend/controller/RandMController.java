@@ -30,7 +30,6 @@ public class RandMController {
 
 
     @GetMapping("/game/board/generate")
-
     public List<RandMCharacter> generateBoardByCondition(@RequestParam(required = false) Integer m,
                                                          @RequestParam(required = false) Integer n,
                                                          @RequestParam(required = false) BoardGenerationCondition condition) {

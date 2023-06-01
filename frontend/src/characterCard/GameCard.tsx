@@ -30,7 +30,7 @@ function GameCard(props:Props) {
                 : <div className="character-card">
                     <img src={character.image}  alt={character.name}/>
                     <h3>{props.character.name}</h3>
-                    <h4>{props.character.species}</h4>
+                    <h4>{props.character.comparison}</h4>
                 </div>
             }
 

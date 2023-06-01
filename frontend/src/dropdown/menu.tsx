@@ -5,8 +5,6 @@ import '../characterGallery/CharacterGallery.css';
 
 function DropdownMenu(props: any) {
     const [isCharacterGalleryOpen, setIsCharacterGalleryOpen] = useState(false);
-    const [isRickDropdownOpen, setIsRickDropdownOpen] = useState(false);
-    const [isGotDropDownOpen , setIsGotDropDownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
     const toggleCharacterGallery = (character: string) => {
@@ -14,21 +12,9 @@ function DropdownMenu(props: any) {
         setIsCharacterGalleryOpen(!isCharacterGalleryOpen);
     };
 
-    const toggleRickDropdown = () => {
-        setIsRickDropdownOpen(!isRickDropdownOpen);
-        setIsCharacterGalleryOpen(false);
-    };
-
-    const toggleGotDropdown = () => {
-        setIsGotDropDownOpen(!isGotDropDownOpen);
-        setIsCharacterGalleryOpen(false);
-    }
-
     const handleOutsideClick = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
             setIsCharacterGalleryOpen(false);
-            setIsRickDropdownOpen(false);
-            setIsGotDropDownOpen(false);
         }
     };
 
@@ -41,21 +27,29 @@ function DropdownMenu(props: any) {
 
     return (
         <div className="dropdown-column" ref={dropdownRef}>
-            <button className="costume-button" onClick={toggleRickDropdown}>
+            <button className="costume-button" onClick={() => setIsCharacterGalleryOpen(!isCharacterGalleryOpen)}>
                 Gallery
             </button>
-            {isRickDropdownOpen && (
-                <Link to="/rickandmortygallery">
-                    <button className="dropdown-rick" onClick={() => toggleCharacterGallery('Rick and morty')}>
-                        Rick and Morty
-                    </button>
-                </Link>
-
+            {isCharacterGalleryOpen && (
+                <div className="dropdown-menu">
+                    <Link to="/rickandmortygallery">
+                        <button className="dropdown-rick" onClick={() => toggleCharacterGallery('Rick and morty')}>
+                            Rick and Morty
+                        </button>
+                    </Link>
+                    <Link to="/gameofthronesgallery">
+                        <button className="dropdown-got" onClick={() => toggleCharacterGallery('Game of Thrones')}>
+                            Game of Thrones
+                        </button>
+                    </Link>
+                </div>
             )}
-            {isCharacterGalleryOpen}
         </div>
     );
 }
 
 export default DropdownMenu;
+
+
+
 
