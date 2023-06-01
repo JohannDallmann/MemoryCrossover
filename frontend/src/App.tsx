@@ -5,7 +5,6 @@ import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
-import {Route, Link, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import {CardCharacter} from "./model/CardCharacter";
 import Home from "./Home/Home";
