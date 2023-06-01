@@ -13,7 +13,7 @@ import useGetNRandomCards from "./hooks/useGetNRandomCards";
 function App() {
     const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
-    const {cards, loadNewOnPlayButton} = useGetNRandomCards();
+    const {cards, loadRandomCharacters} = useGetNRandomCards();
 
 
     return (
@@ -35,7 +35,7 @@ function App() {
                         <button className="costume-button"> Home </button>
                     </Link>
                     <Link to={"/game"}>
-                        <button className="costume-button" onClick={loadNewOnPlayButton} > Play </button>
+                        <button className="costume-button" onClick={loadRandomCharacters} > Play </button>
                     </Link>
                 </div>
             </div>

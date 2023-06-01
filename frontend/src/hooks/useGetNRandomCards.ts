@@ -6,14 +6,12 @@ import {CardCharacter} from "../model/CardCharacter";
 function useGetNRandomCards() {
     const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
     const [cards, setCards] = useState<CardCharacter[]>([]);
+    const url: string = "/api/randm/game/board/generate?condition=SPECIES";
 
-    useEffect(loadNewOnPlayButton, []);
+    useEffect(loadRandomCharacters, []);
 
-    function loadNewOnPlayButton(){
-        loadRandomCharacters();
-    }
 
-    function loadRandomCharacters(url: string = "/api/randm/game/board/generate?condition=SPECIES") {
+    function loadRandomCharacters() {
         axios.get(url).then(response => {
             setRandomNCharacters(response.data);
         });
@@ -26,7 +24,7 @@ function useGetNRandomCards() {
     }, [randomNCharacters]);
 
 
-    return { cards, loadNewOnPlayButton };
+    return { cards, loadRandomCharacters };
 }
 
 export default useGetNRandomCards;
