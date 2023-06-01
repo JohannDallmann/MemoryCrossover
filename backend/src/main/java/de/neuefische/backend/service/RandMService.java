@@ -47,7 +47,7 @@ public class RandMService {
     public List<RandMCharacter> getAllCharacters() {
 
         if (randMRepo.findAll().isEmpty()) {
-            System.out.println(asciiLogo);
+            System.out.print(asciiLogo);
             System.out.println("Loading characters into the database using the Rick and Morty API");
             List<RandMCharacter> charactersFromApi = fillCharactersFromApi();
 
