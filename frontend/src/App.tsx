@@ -13,7 +13,7 @@ import useGetNRandomCards from "./hooks/useGetNRandomCards";
 function App() {
     const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
-    const {cards} = useGetNRandomCards();
+    const {cards, loadNewOnPlayButton} = useGetNRandomCards();
 
 
     return (
@@ -35,7 +35,7 @@ function App() {
                         <button className="costume-button"> Home </button>
                     </Link>
                     <Link to={"/game"}>
-                        <button className="costume-button" > Play </button>
+                        <button className="costume-button" onClick={loadNewOnPlayButton} > Play </button>
                     </Link>
                 </div>
             </div>
