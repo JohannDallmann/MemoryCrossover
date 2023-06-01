@@ -13,6 +13,7 @@ function HighscoreList() {
     useEffect(() => {
         fetchHighscores(selectedSort)
         fetchHighscoresSorted('score-desc')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedSort]);
 
     const ranks = useMemo(() => {
