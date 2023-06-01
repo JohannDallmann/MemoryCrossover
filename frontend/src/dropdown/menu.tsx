@@ -6,6 +6,7 @@ import '../characterGallery/CharacterGallery.css';
 function DropdownMenu(props: any) {
     const [isCharacterGalleryOpen, setIsCharacterGalleryOpen] = useState(false);
     const [isRickDropdownOpen, setIsRickDropdownOpen] = useState(false);
+    const [isGotDropDownOpen , setIsGotDropDownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
     const toggleCharacterGallery = (character: string) => {
@@ -18,10 +19,16 @@ function DropdownMenu(props: any) {
         setIsCharacterGalleryOpen(false);
     };
 
+    const toggleGotDropdown = () => {
+        setIsGotDropDownOpen(!isGotDropDownOpen);
+        setIsCharacterGalleryOpen(false);
+    }
+
     const handleOutsideClick = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
             setIsCharacterGalleryOpen(false);
             setIsRickDropdownOpen(false);
+            setIsGotDropDownOpen(false);
         }
     };
 
@@ -43,6 +50,7 @@ function DropdownMenu(props: any) {
                         Rick and Morty
                     </button>
                 </Link>
+
             )}
             {isCharacterGalleryOpen}
         </div>

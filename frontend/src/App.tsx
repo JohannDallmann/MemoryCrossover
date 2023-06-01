@@ -8,14 +8,8 @@ import useLoadRandMCharacters from './hooks/useLoadRandMCharacters';
 import useGetNRandomCards from './hooks/useGetNRandomCards';
 import Header from './components/Header'
 import './App.css';
-import {Link, Route, Routes} from "react-router-dom";
-import fische from './images/fische.png'
-import DropdownMenu from "./dropdown/menu";
-import React, {useState} from "react";
-import GalleryComponent from "./components/GalleryComponent";
-import HighscoreList from "./highscoreList/HighscoreList";
-import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
 import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
+import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
 
 
 function App() {
@@ -23,7 +17,7 @@ function App() {
     const { characters } = useLoadRandMCharacters();
     const { randomNCharacters } = useGetNRandomCards();
 
-    const [character, setCharacter] = useState("");
+    const [gotCharacter, setCharacter] = useState("");
     const {gameOfThronesCharacters} = useLoadGoTCharacters();
 
     return (
@@ -42,7 +36,7 @@ function App() {
                     <Route path="/highscorelist" element={<HighscoreList />} />
                     <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters} />} />
                     <Route path="/gameofthronesgallery" element=
-                        {<CharacterGalleryGoT characters={gameOfThronesCharacters}/>}/>
+                        {<CharacterGalleryGoT gotCharacter={gameOfThronesCharacters}/>}/>
                 </Routes>
         </div>
     );
