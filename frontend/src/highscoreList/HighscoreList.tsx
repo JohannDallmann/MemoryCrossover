@@ -6,7 +6,7 @@ import useHighscores from '../hooks/useHighscore';
 import './HighscoreList.css'
 
 function HighscoreList() {
-    const [selectedSort, setSelectedSort] = useState('score-desc');
+    const [selectedSort, setSelectedSort] = useState('score-asc');
     const [highscores, fetchHighscores] = useHighscores();
     const [highscoresSorted, fetchHighscoresSorted] = useHighscores();
 

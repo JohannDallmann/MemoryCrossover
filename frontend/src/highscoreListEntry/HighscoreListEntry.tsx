@@ -53,9 +53,9 @@ function HighscoreListEntry(props: Props) {
             )}
             <div className="highscore-content">
                 <h4>{rank}</h4>
-                <h4>{moment(props.score.timestamp).format('DD.MM.YYYY HH:mm:ss [Uhr]')}</h4>
                 <h4>{props.score.playerName}</h4>
-                <h4>{props.score.score}</h4>
+                <h4>{"Score :" + " "+ props.score.score}</h4>
+                <h5>{moment(props.score.timestamp).format('DD.MM.YYYY HH:mm:ss [Uhr]')}</h5>
             </div>
         </div>
     );
