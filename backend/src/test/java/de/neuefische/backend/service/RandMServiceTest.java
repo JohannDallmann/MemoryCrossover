@@ -2,6 +2,8 @@ package de.neuefische.backend.service;
 
 import de.neuefische.backend.model.GroupBySpecies;
 import de.neuefische.backend.model.RandMCharacter;
+import de.neuefische.backend.model.RandMCharacterWithNamePrefix;
+import de.neuefische.backend.model.RandMCharacterWithNamePrefixIntersection;
 import de.neuefische.backend.repository.RandMCharacterWithNamePrefixIntersectionRepository;
 import de.neuefische.backend.repository.RandMRepo;
 import org.junit.jupiter.api.Test;
@@ -139,6 +141,48 @@ class RandMServiceTest {
 
             testData.add(group);
         }
+        return testData;
+    }
+
+    @Test
+    void testGetSamplePairingForSameNamePrefix() {
+
+        int m = 4;
+        int n = 4;
+        int datasetSize = m * n;
+
+        List<RandMCharacterWithNamePrefixIntersection> testData = createTestDatasetWithSameNamePrefix(datasetSize);
+
+        when(RandMCharNamePrefixIntersectionRepo.findAll()).thenReturn(testData);
+
+        List<RandMCharacterWithNamePrefix> result = randMService.getSamplePairingForSameNamePrefix(m, n);
+
+        assertEquals(datasetSize, result.size());
+
+    }
+
+    private List<RandMCharacterWithNamePrefixIntersection> createTestDatasetWithSameNamePrefix(int datasetSize) {
+
+        List<RandMCharacterWithNamePrefixIntersection> testData = new ArrayList<>();
+
+        for (int i = 0; i < datasetSize; i++) {
+
+            RandMCharacterWithNamePrefixIntersection intersection = new RandMCharacterWithNamePrefixIntersection();
+            intersection.setName("Rick" + i);
+            intersection.setName_prefix(Integer.toString(i));
+
+            RandMCharacterWithNamePrefix intersectionAttachment = new RandMCharacterWithNamePrefix();
+            intersectionAttachment.setName("Morty" + i);
+            intersectionAttachment.setName_prefix(Integer.toString(i));
+
+            RandMCharacterWithNamePrefix[] intersectionAttachmentArray = new RandMCharacterWithNamePrefix[1];
+            intersectionAttachmentArray[0] = intersectionAttachment;
+
+            intersection.setIntersection(intersectionAttachmentArray);
+
+            testData.add(intersection);
+        }
+
         return testData;
     }
 }
