@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class GoTServiceTest {
@@ -31,5 +32,6 @@ class GoTServiceTest {
 
         // then
         verify(goTRepo, times(2)).findAll();
+        assertEquals(characters, actual);
     }
 }
