@@ -1,4 +1,5 @@
 import './App.css';
+import {Link, Route, Routes} from "react-router-dom";
 import fische from './images/fische.png'
 import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
@@ -10,6 +11,8 @@ import {CardCharacter} from "./model/CardCharacter";
 import Home from "./Home/Home";
 import useGetNRandomCards from "./hooks/useGetNRandomCards";
 
+import GalleryComponent from "./components/GalleryComponent";
+import HighscoreList from "./highscoreList/HighscoreList";
 
 function App() {
     const [character, setCharacter] = useState("");
@@ -35,20 +38,36 @@ function App() {
                     <Link to="/home">
                         <button className="costume-button"> Home </button>
                     </Link>
-                    <Link to={"/game"}>
-                        <button className="costume-button" > Play </button>
+                    <button className="costume-button"> Play </button>
+                    <Link to="/highscorelist">
+                        <button className="costume-button">Highscore </button>
                     </Link>
                 </div>
             </div>
+            <div className="Frankenstein">
+                <div className="play-container">
+                    <h2 className="h2"> Java-Bo-23-1 </h2>
+                    <p className="p1"> Die zeit ist gekommen dich zu beweisen.
+                            <br/>
+                            Bereite dich auf das Ultimative Memory vor. </p>
+                    <div className="available-button">
+                        <div className="circle">
+                            <div className="arrow"></div>
+                        </div>
+                            <div className="text">Jetzt verfügbar</div>
+                    </div>
+                </div>
+                <div className="character-gallery-wrapper">
+                    <GalleryComponent character={character}/>
+                    <Routes>
+                        <Route path="/highscorelist" element=
+                            {<HighscoreList/>}/>
+                    </Routes>
+                </div>
+            </div>
 
-            <Routes>
-                <Route path="/game" element={<Game randomNCharacters={randomNCharacters}/>}/>
-                <Route path="/home" element={<Home character={character}/>}/>
-                <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters}/>}/>
-            </Routes>
+
         </div>
-
-);
+    );
 }
-
 export default App;
