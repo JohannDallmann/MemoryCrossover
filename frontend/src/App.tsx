@@ -8,48 +8,42 @@ import {Route, Link, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import Home from "./Home/Home";
 import useGetNRandomCards from "./hooks/useGetNRandomCards";
+import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
+import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
 
 
 function App() {
-    const [character, setCharacter] = useState("");
     const {characters} = useLoadRandMCharacters();
     const {cards, loadRandomCharacters} = useGetNRandomCards();
     const [counter, setCounter] = useState<number>(0);
+    const [character] = useState('');
+    const [gotCharacter, setCharacter] = useState("");
+    const {gameOfThronesCharacters} = useLoadGoTCharacters();
 
     function playButtonHandler(){
         loadRandomCharacters();
         setCounter(0);
     }
 
+
     return (
 
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
-            <div className="header-container">
-                <div className="placeholder">
-                    <Link to="https://www.neuefische.de" target="_blank">
-                    <img className="neuefischeHeader" src={fische} alt="Gräte"/>
-                    </Link>
-                    <Link to="/home" className="home">
-                        <h1 className="Dashboard">Memory Crossover</h1>
-                    </Link>
-                </div>
-
-                <div className="buttons-container">
-                    <DropdownMenu updateCharacter = {setCharacter}/>
-                    <Link to="/home">
-                        <button className="costume-button"> Home </button>
-                    </Link>
-                    <Link to={"/game"}>
-                        <button className="costume-button" onClick={playButtonHandler} > Play </button>
-                    </Link>
-                </div>
-            </div>
-
-            <Routes>
-                <Route path="/game" element={<Game cards={cards} counter={counter} setCounter={setCounter} />}/>
-                <Route path="/home" element={<Home character={character}/>}/>
-                <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters}/>}/>
-            </Routes>
+            <header>
+            <Header />
+            </header>
+                <Routes>
+                    <Route path="/" element={<Home character={character}/>} />
+                    <Route path="/play" element={
+                        <div className="gameBoard">
+                            <Game cards={cards} counter={counter} setCounter={setCounter} />
+                        </div>}
+                    />
+                    <Route path="/highscorelist" element={<HighscoreList />} />
+                    <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters} />} />
+                    <Route path="/gameofthronesgallery" element=
+                        {<CharacterGalleryGoT gotCharacter={gameOfThronesCharacters}/>}/>
+                </Routes>
         </div>
 
 );

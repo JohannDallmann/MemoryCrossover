@@ -23,10 +23,10 @@ import java.util.*;
 public class RandMService {
     private final RandMRepo randMRepo;
     private final GenerateUUIDService generateUUIDService;
-    private final RandMCharacterWithNamePrefixIntersectionRepository RandMCharNamePrefixIntersectionRepo;
+    private final RandMCharacterWithNamePrefixIntersectionRepository randMCharNamePrefixIntersectionRepo;
     private final MongoTemplate mt;
 
-    String ASCII_LOGO = "___  ___                                       _____                                                  \n" +
+    String asciiLogo = "___  ___                                       _____                                                  \n" +
             "|  \\/  |                                      /  __ \\                                                 \n" +
             "| .  . |  ___  _ __ ___    ___   _ __  _   _  | /  \\/ _ __   ___   ___  ___   ___  __   __  ___  _ __ \n" +
             "| |\\/| | / _ \\| '_ ` _ \\  / _ \\ | '__|| | | | | |    | '__| / _ \\ / __|/ __| / _ \\ \\ \\ / / / _ \\| '__|\n" +
@@ -47,7 +47,7 @@ public class RandMService {
     public List<RandMCharacter> getAllCharacters() {
 
         if (randMRepo.findAll().isEmpty()) {
-            System.out.println(ASCII_LOGO);
+            System.out.print(asciiLogo);
             System.out.println("Loading characters into the database using the Rick and Morty API");
             List<RandMCharacter> charactersFromApi = fillCharactersFromApi();
 
@@ -165,14 +165,14 @@ public class RandMService {
         int boardSize = m * n;
         int numberOfPairs = boardSize/2;
 
-        ArrayList<RandMCharacter> Characters = new ArrayList<>(randMRepo.findAll());
-        Collections.shuffle(Characters);
+        ArrayList<RandMCharacter> characters = new ArrayList<>(randMRepo.findAll());
+        Collections.shuffle(characters);
 
         ArrayList<RandMCharacter> randomCharacters = new ArrayList<>();
 
         for (int i = 0; i < numberOfPairs; i++) {
-            randomCharacters.add(Characters.get(i));
-            randomCharacters.add(Characters.get(i));
+            randomCharacters.add(characters.get(i));
+            randomCharacters.add(characters.get(i));
         }
         Collections.shuffle(randomCharacters);
 
@@ -192,7 +192,7 @@ public class RandMService {
         }
         Collections.shuffle(allCharactersGroups);
 
-        ArrayList<RandMCharacter> RandomPairsBySpecies = new ArrayList<>();
+        ArrayList<RandMCharacter> randomPairsBySpecies = new ArrayList<>();
 
 
         for (GroupBySpecies groupBySpecies : allCharactersGroups.subList(0, numberOfPairs)) {
@@ -201,40 +201,40 @@ public class RandMService {
             Collections.shuffle(charactersInGroupList);
 
             for (int j = 0; j < 2; j++) {
-                RandomPairsBySpecies.add(charactersInGroupList.get(j));
+                randomPairsBySpecies.add(charactersInGroupList.get(j));
             }
         }
-        Collections.shuffle(RandomPairsBySpecies);
+        Collections.shuffle(randomPairsBySpecies);
 
-        return RandomPairsBySpecies;
+        return randomPairsBySpecies;
     }
 
     public List<RandMCharacterWithNamePrefix> getSamplePairingForSameNamePrefix(int m, int n) {
         int boardSize = m * n;
         int numberOfPairs = boardSize/2;
 
-        List<RandMCharacterWithNamePrefixIntersection> RandomPairs;
-        RandomPairs = RandMCharNamePrefixIntersectionRepo.findAll();
+        List<RandMCharacterWithNamePrefixIntersection> randomPairs;
+        randomPairs = randMCharNamePrefixIntersectionRepo.findAll();
 
-        if (numberOfPairs > RandomPairs.size()){
-            numberOfPairs = RandomPairs.size();
+        if (numberOfPairs > randomPairs.size()){
+            numberOfPairs = randomPairs.size();
         }
 
-        ArrayList<RandMCharacterWithNamePrefix> RandomWithNamePrefix = new ArrayList<>();
+        ArrayList<RandMCharacterWithNamePrefix> randomWithNamePrefix = new ArrayList<>();
 
-        Collections.shuffle(RandomPairs);
+        Collections.shuffle(randomPairs);
 
 
         for (int i = 0; i < numberOfPairs; i++) {
-            RandomWithNamePrefix.add(RandomPairs.get(i).getIntersection()[0]);
+            randomWithNamePrefix.add(randomPairs.get(i).getIntersection()[0]);
 
-            RandMCharacterWithNamePrefix prefixObject = RandMCharacterWithNamePrefix.fromIntersection(RandomPairs.get(i));
-            RandomWithNamePrefix.add(prefixObject);
+            RandMCharacterWithNamePrefix prefixObject = RandMCharacterWithNamePrefix.fromIntersection(randomPairs.get(i));
+            randomWithNamePrefix.add(prefixObject);
         }
 
-        Collections.shuffle(RandomWithNamePrefix);
+        Collections.shuffle(randomWithNamePrefix);
 
-        return RandomWithNamePrefix;
+        return randomWithNamePrefix;
     }
 
     @SuppressWarnings("unchecked")

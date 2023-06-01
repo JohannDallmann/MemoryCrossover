@@ -11,6 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .costume-button{
   display: flex;
   align-content: flex-end;
@@ -27,6 +28,7 @@ code {
   justify-content: center;
   margin:0 1em;
 }
+
 Link{
   text-decoration: none !important;
 }
