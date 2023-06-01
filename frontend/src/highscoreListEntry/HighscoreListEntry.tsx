@@ -1,52 +1,54 @@
 import React from 'react';
-import {Score} from "../model/Score";
-import moment from "moment";
-import "./HighscoreListEntry.css"
-import challengerRank from "../images/challengerRank.png"
-import grandmasterRank from "../images/grandmasterRank.png"
-import masterRank from "../images/masterRank.png"
-import diamondRank from "../images/diamondRank.png"
-import platinumRank from "../images/platinumRank.png"
-import goldRank from "../images/goldRank.png"
-import silverRank from "../images/silverRank.png"
-import bronzeRank from "../images/bronzeRank.png"
-import ironRank from "../images/ironRank.png"
+import { Score } from '../model/Score';
+import moment from 'moment';
+import './HighscoreListEntry.css';
+import challengerRank from '../images/challengerRank.png';
+import grandmasterRank from '../images/grandmasterRank.png';
+import masterRank from '../images/masterRank.png';
+import diamondRank from '../images/diamondRank.png';
+import platinumRank from '../images/platinumRank.png';
+import goldRank from '../images/goldRank.png';
+import silverRank from '../images/silverRank.png';
+import bronzeRank from '../images/bronzeRank.png';
+import ironRank from '../images/ironRank.png';
 
 type Props = {
-    score:Score,
-    entryNumber: number
-}
-function HighscoreListEntry(props: Props) {
-    const {entryNumber} = props;
+    score: Score;
+    entryNumber: number;
+};
 
-    let rank:string;
+function HighscoreListEntry(props: Props) {
+    const { entryNumber } = props;
+
+    let rank: string;
     let rankImage = null;
 
     const highscoreRanking = [
-        {rank: "Challenger", rankImage: challengerRank},
-        {rank: "Grandmaster", rankImage: grandmasterRank},
-        {rank: "Master", rankImage: masterRank},
-        {rank: "Diamond", rankImage: diamondRank},
-        {rank: "Platinum", rankImage: platinumRank},
-        {rank: "Gold", rankImage: goldRank},
-        {rank : "Silver", rankImage: silverRank},
-        {rank: "Bronze", rankImage: bronzeRank},
-        {rank: "Iron", rankImage: ironRank},
+        { rank: 'Iron', rankImage: ironRank },
+        { rank: 'Bronze', rankImage: bronzeRank },
+        { rank: 'Silver', rankImage: silverRank },
+        { rank: 'Gold', rankImage: goldRank },
+        { rank: 'Platinum', rankImage: platinumRank },
+        { rank: 'Diamond', rankImage: diamondRank },
+        { rank: 'Master', rankImage: masterRank },
+        { rank: 'Grandmaster', rankImage: grandmasterRank },
+        { rank: 'Challenger', rankImage: challengerRank },
     ];
 
+
     if (entryNumber < highscoreRanking.length) {
-        const rankEntry = highscoreRanking[entryNumber];
+        const rankEntry = highscoreRanking[highscoreRanking.length -  entryNumber -1 ];
         rank = rankEntry.rank;
         rankImage = rankEntry.rankImage;
     } else {
-        rank = `Rank #${entryNumber+1}`;
+        rank = `Rank #${entryNumber + 1}`;
     }
 
     return (
         <div className="highscore-list-entry">
             {rankImage && (
                 <div className="rank-image">
-                    <img src={rankImage} alt="Rank"/>
+                    <img src={rankImage} alt="Rank" />
                 </div>
             )}
             <div className="highscore-content">
@@ -57,6 +59,6 @@ function HighscoreListEntry(props: Props) {
             </div>
         </div>
     );
-
 }
- export default HighscoreListEntry;
+
+export default HighscoreListEntry;
