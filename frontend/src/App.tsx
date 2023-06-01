@@ -19,10 +19,10 @@ function App() {
             <Header />
             </header>
                 <Routes>
-                    <Route path="/home" element={<Home character={character} />} />
+                    <Route path="/" element={<Home character={character}/>} />
                     <Route path="/play" element={
                         <div className="gameBoard">
-                        <Game randomNCharacters={randomNCharacters} />
+                            <Game randomNCharacters={randomNCharacters} />
                         </div>}
                     />
                     <Route path="/highscorelist" element={<HighscoreList />} />
