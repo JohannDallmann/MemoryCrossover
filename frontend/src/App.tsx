@@ -10,6 +10,8 @@ import Home from "./Home/Home";
 import useGetNRandomCards from "./hooks/useGetNRandomCards";
 import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
 import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
+import Header from "./components/Header";
+import HighscoreList from "./highscoreList/HighscoreList";
 
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
 
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
             <header>
-            <Header />
+            <Header playButtonHandler={playButtonHandler}/>
             </header>
                 <Routes>
                     <Route path="/" element={<Home character={character}/>} />
