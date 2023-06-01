@@ -26,7 +26,7 @@
 }
 .turns-counter, .timer {
     display: inline-block;
-    color: green;
+    color: white;
     margin: 10px 20px;
     font-size: 25px;
     font-family: "Mark Pro", Arial, sans-serif;
@@ -34,4 +34,11 @@
 .timer {
     float: right;
     font-family: "Mark Pro", Arial, sans-serif;
+}
+
+.won-text{
+    color: aqua;
+}
+.lost-text {
+    color: red;
 }

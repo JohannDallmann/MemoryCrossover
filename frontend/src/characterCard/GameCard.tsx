@@ -25,7 +25,7 @@ function GameCard(props:Props) {
     return (
         <div>
             {
-                character.hidden === true
+                character.hidden
                 ? <button className="card-back" onClick={showCard}></button>
                 : <div className="character-card">
                     <img src={character.image}  alt={character.name}/>
