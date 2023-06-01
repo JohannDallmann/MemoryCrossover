@@ -12,7 +12,7 @@ function Game(props:Props) {
     const [counter, setCounter] = useState<number>(0);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
-    const [cards, setCards] = useState<CardCharacter[]>(() =>
+    const [cards] = useState<CardCharacter[]>(() =>
         props.randomNCharacters.map((card) => ({ ...card, hidden: true }))
     );
 
@@ -51,7 +51,7 @@ function Game(props:Props) {
     }
 
     return (
-        <div >
+        <div className = "gameBoard">
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
                     {"Current Counter: " + counter}

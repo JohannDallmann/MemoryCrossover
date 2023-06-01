@@ -1,0 +1,55 @@
+.highscore-list-entry {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 50vh;
+    height: 13vh;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.highscore-content {
+    flex:1;
+}
+
+.rank-image{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex:2;
+}
+
+.rank-image::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    height: 50%;
+    pointer-events: none;
+}
+
+.rank-image img {
+    max-width: 12vh;
+    height: auto;
+}
+
+.highscore-list-entry h4:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.highscore-list-entry h4 {
+    margin: 0;
+    font-size: 2vh;
+    color: turquoise;
+    font-weight: bolder;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
+    font-family: "Mark Pro", Arial, sans-serif;
+}
