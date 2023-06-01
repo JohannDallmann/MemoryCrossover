@@ -15,6 +15,7 @@ function useGetNRandomCards() {
         });
     }
 
+
     return { randomNCharacters };
 }
 

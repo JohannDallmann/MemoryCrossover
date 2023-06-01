@@ -13,7 +13,7 @@ function Game(props:Props) {
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
     const [cards, setCards] = useState<CardCharacter[]>(() =>
-        props.randomNCharacters.map((card) => ({ ...card, hidden: true }))
+        props.randomNCharacters.map((card) => ({ ...card, hidden: true , comparison: card.species}))
     );
 
     function increaseCounter(){
@@ -35,7 +35,7 @@ function Game(props:Props) {
         const firstCard = selectedCards[0];
         const secondCard = selectedCards[1];
 
-        if (firstCard.species === secondCard.species){
+        if (firstCard.comparison === secondCard.comparison){
             firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
             secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg"
         } else {
