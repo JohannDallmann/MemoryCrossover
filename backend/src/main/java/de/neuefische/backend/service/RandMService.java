@@ -69,10 +69,11 @@ public class RandMService {
 
     }
 
-    final String REPLACEALL = "$replaceAll";
-    final String INPUT = "input";
+    final static String REPLACEALL = "$replaceAll";
+    final static String INPUT = "input";
 
-    final String REPLACEMENT = "replacement";
+    final static String REPLACEMENT = "replacement";
+    final static String NAMEPREFIX = "name_prefix";
 
     public List<RandMCharacter> fillCharactersFromApi() {
         List<RandMCharacter> allCharacters = new ArrayList<>();
@@ -114,8 +115,7 @@ public class RandMService {
         AggregationOperation matchStage = Aggregation.match(Criteria.where("name").regex(matchRegex, "i"));
 
         AddFieldsOperation addFieldsStage1 = Aggregation.addFields()
-                // eslint-disable-next-line react-hooks/exhaustive-deps
-                .addFieldWithValue("name_prefix",
+                .addFieldWithValue(NAMEPREFIX,
                         new Document(REPLACEALL, new Document(INPUT, "$name")
                                 .append("find", matchRegex)
                                 .append(REPLACEMENT, "")))
@@ -143,9 +143,9 @@ public class RandMService {
         LookupOperation lookupStage = LookupOperation.newLookup()
                 .from("mortySet")
                 // eslint-disable-next-line react-hooks/exhaustive-deps
-                .localField("name_prefix")
+                .localField(NAMEPREFIX)
                 // eslint-disable-next-line react-hooks/exhaustive-deps
-                .foreignField("name_prefix")
+                .foreignField(NAMEPREFIX)
                 .as("intersection");
 
         AggregationOperation matchStage = Aggregation.match(Criteria.where("intersection")
