@@ -13,6 +13,7 @@ import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
 import Header from "./components/Header";
 import HighscoreList from "./highscoreList/HighscoreList";
 import {CardCharacter} from "./model/CardCharacter";
+import useGetGotCards from "./hooks/useGetGotCards";
 
 
 function App() {
@@ -22,25 +23,9 @@ function App() {
     const [character] = useState('');
     const [gotCharacter, setCharacter] = useState("");
     const {gameOfThronesCharacters} = useLoadGoTCharacters();
-    const gotCards:CardCharacter[] =
-        [
-            {
-                "uuid": "0",
-                "id": 0,
-                "name": "Daenerys Targaryen",
-                "image": "https://thronesapi.com/assets/images/daenerys.jpg",
-                "hidden": true,
-                "comparison": "House Targaryen"
-            },
-            {
-                "uuid": "1",
-                "id": 1,
-                "name": "Targaryen2",
-                "image": "https://thronesapi.com/assets/images/daenerys.jpg",
-                "hidden": true,
-                "comparison": "House Targaryen"
-            }
-        ];
+    const {gotCards} = useGetGotCards();
+
+
     const mixedCardSet = [...cards, ...gotCards];
 
 
