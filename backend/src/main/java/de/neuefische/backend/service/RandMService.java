@@ -132,11 +132,7 @@ public class RandMService {
 
         Aggregation aggregation = Aggregation.newAggregation(matchStage, addFieldsStage1, addFieldsStage2, outStage);
 
-        mt.aggregate(aggregation, "rickAndMortyCharacters", Object.class)
-                .forEach(result -> {
-                    // Process aggregation results
-                    // ...
-                });
+        mt.aggregate(aggregation, "rickAndMortyCharacters", Object.class);
     }
 
     public void runAggregationStep2() {
@@ -164,11 +160,7 @@ public class RandMService {
 
         Aggregation aggregation = Aggregation.newAggregation(lookupStage, matchStage, addFieldsStage, outStage);
 
-        mt.aggregate(aggregation,"rickSet",  Object.class)
-                .forEach(result -> {
-                    // Process aggregation results
-                    // ...
-                });
+        mt.aggregate(aggregation,"rickSet",  Object.class);
     }
 
 
