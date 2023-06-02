@@ -10,8 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -54,6 +54,32 @@ public class GoTService {
         goTRepo.saveAll(Objects.requireNonNull(characters));
 
         return characters;
+    }
+
+    public List<GoTCharacter> getRandomCharacters(Integer numberOfCharacterPairs) {
+        List<GoTCharacter> allCharacters = goTRepo.findAll();
+
+        Map<String, List<GoTCharacter>> charactersByFamily = allCharacters.stream()
+                .collect(Collectors.groupingBy(GoTCharacter::getFamily));
+
+        List<GoTCharacter> randomCharacters = new ArrayList<>();
+        int pairsCount = 0;
+
+        for (List<GoTCharacter> characters : charactersByFamily.values()) {
+            Collections.shuffle(characters);
+            int pairSize = Math.min(1, characters.size() / 2);
+
+            for (int i = 0; i < pairSize * 2 && pairsCount < numberOfCharacterPairs * 2; i++) {
+                randomCharacters.add(characters.get(i));
+                pairsCount++;
+            }
+
+            if (pairsCount >= numberOfCharacterPairs * 2) {
+                break;
+            }
+        }
+
+        return randomCharacters;
     }
 
 }
