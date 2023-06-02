@@ -12,6 +12,7 @@ type Props = {
 function Game(props:Props) {
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
 
+
     function increaseCounter(){
         props.setCounter(props.counter + 1);
     }

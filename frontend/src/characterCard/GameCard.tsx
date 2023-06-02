@@ -15,11 +15,11 @@ function GameCard(props:Props) {
 
     const {character} = props;
 
-
     function showCard() {
         character.hidden = false;
         props.increaseCounter();
         props.putCardsInArrayToCompare(character);
+
     }
 
     return (
