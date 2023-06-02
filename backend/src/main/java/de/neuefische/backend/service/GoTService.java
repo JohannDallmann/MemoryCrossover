@@ -63,18 +63,18 @@ public class GoTService {
                 .collect(Collectors.groupingBy(GoTCharacter::getFamily));
 
         List<GoTCharacter> randomCharacters = new ArrayList<>();
-        int pairsCount = 0;
 
         for (List<GoTCharacter> characters : charactersByFamily.values()) {
             Collections.shuffle(characters);
-            int pairSize = Math.min(1, characters.size() / 2);
 
-            for (int i = 0; i < pairSize * 2 && pairsCount < numberOfCharacterPairs * 2; i++) {
+            if(characters.size() < 2)
+                continue;
+
+            for (int i = 0; i < 2 ; i++) {
                 randomCharacters.add(characters.get(i));
-                pairsCount++;
             }
 
-            if (pairsCount >= numberOfCharacterPairs * 2) {
+            if (randomCharacters.size() >= numberOfCharacterPairs * 2) {
                 break;
             }
         }
