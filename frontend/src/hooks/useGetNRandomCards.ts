@@ -6,7 +6,7 @@ import {CardCharacter} from "../model/CardCharacter";
 function useGetNRandomCards() {
     const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
     const [cards, setCards] = useState<CardCharacter[]>([]);
-    const url: string = "/api/randm/game/board/generate?condition=SPECIES";
+    const url: string = "/api/randm/game/board/generate?m=4&n=1&condition=SPECIES";
 
     useEffect(loadRandomCharacters, []);
 

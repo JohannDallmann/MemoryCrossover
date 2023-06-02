@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import GameCard from "../characterCard/GameCard";
 import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
+import WinDisplay from "../components/WinDisplay";
 
 type Props = {
     cards:CardCharacter[];
@@ -45,8 +46,21 @@ const startGame = () : State => ({
     dumbWinCondition: 0,
 })
 
+
+// TODO Just an example. Detailed implementation will come later
+const calculateScore = (remainingTime: number, steps: number) : number => {
+
+    const timeWeight = 0.7;
+    const stepsWeight = 0.3;
+
+    const stepsScore = -steps * stepsWeight;
+    const timeScore = remainingTime * timeWeight;
+
+    return parseFloat((timeScore + stepsScore).toFixed(2));
+}
+
 const hasWinningCondition = (state : State) : boolean => {
-    return state.dumbWinCondition === 6;
+    return state.dumbWinCondition === 2;
 }
 
 const hasLosingCondition = (state : State) : boolean => {
@@ -79,6 +93,8 @@ function Game(props:Props) {
 
         if (firstCard.comparison === secondCard.comparison){
 
+            console.log(props.cards);
+
             gameState.dumbWinCondition = gameState.dumbWinCondition + 1;
 
             firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
@@ -87,7 +103,7 @@ function Game(props:Props) {
             setTimeout(() => hideCards(firstCard,secondCard),0);
         }
 
-        if (gameState.dumbWinCondition === 6) {
+        if (gameState.dumbWinCondition === 2) {
             setGameState((prevState) => ({ ...prevState, status: Status.Won }));
         }
     }
@@ -121,6 +137,7 @@ function Game(props:Props) {
 
     return (
         <div >
+            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, props.counter)}/>}
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
                     {"Current Counter: " + props.counter}
