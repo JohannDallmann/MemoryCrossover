@@ -41,7 +41,7 @@ function App() {
                     <Route path="/" element={<Home character={character}/>} />
                     <Route path="/play" element={
                         <div className="gameBoard">
-                            <Game cards={rmCards} counter={counter} setCounter={setCounter} />
+                            <Game cards={mixedCardSet} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
                     <Route path="/highscorelist" element={<HighscoreList />} />

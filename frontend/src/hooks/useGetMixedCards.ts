@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import {CardCharacter} from "../model/CardCharacter";
+import {log} from "util";
 
 function useGetMixedCards(url:string) {
     const [randomNCharacters, setRandomNCharacters] = useState<CardCharacter[]>([]);
@@ -11,27 +12,15 @@ function useGetMixedCards(url:string) {
     function loadRandomCharacters() {
         axios.get(url).then(response => {
             setRandomNCharacters(response.data);
-            console.log(response.data)
-            console.log(randomNCharacters)
         });
-
     }
 
     useEffect(() => {
         console.log(randomNCharacters)
         setCards(randomNCharacters.map((card) => {
-
             return {...card, hidden: true}
-
-
-
         } ));
-
-
     }, [randomNCharacters]);
-
-
-
 
     return { cards, loadRandomCharacters };
 }
