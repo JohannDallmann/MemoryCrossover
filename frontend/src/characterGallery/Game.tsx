@@ -29,10 +29,10 @@ function Game(props: Props) {
 
     useEffect(() => {
         if (selectedCards.length === 2) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
             compareCards();
             setSelectedCards([]);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCards]);
 
     function compareCards() {

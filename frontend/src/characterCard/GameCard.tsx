@@ -11,7 +11,7 @@ type Props = {
 };
 
 function GameCard(props: Props) {
-    const { character, increaseCounter, putCardsInArrayToCompare, counter, selectedCardImage } = props;
+    const { character, increaseCounter, putCardsInArrayToCompare, selectedCardImage } = props;
 
     function showCard() {
         character.hidden = false;
