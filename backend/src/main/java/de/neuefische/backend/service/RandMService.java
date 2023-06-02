@@ -69,11 +69,11 @@ public class RandMService {
 
     }
 
-    final static String REPLACEALL = "$replaceAll";
-    final static String INPUT = "input";
+    static final String REPLACEALL = "$replaceAll";
+    static final String INPUT = "input";
 
-    final static String REPLACEMENT = "replacement";
-    final static String NAMEPREFIX = "name_prefix";
+    static final String REPLACEMENT = "replacement";
+    static final String NAMEPREFIX = "name_prefix";
 
     public List<RandMCharacter> fillCharactersFromApi() {
         List<RandMCharacter> allCharacters = new ArrayList<>();
