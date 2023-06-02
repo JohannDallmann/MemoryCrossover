@@ -1,36 +1,29 @@
 import { useEffect, useState } from 'react';
+import { RandMCharacter } from "../model/RandMCharacter";
+import axios from "axios";
 import {CardCharacter} from "../model/CardCharacter";
+import {GoTCharacter} from "../got/model/GoTCharacter";
 
-function useGetGotCards() {
-    const gotTestCharacters =
-        [
-            {
-                "uuid": "0",
-                "id": 0,
-                "name": "Daenerys Targaryen",
-                "image": "https://thronesapi.com/assets/images/daenerys.jpg",
-                "comparison": "House Targaryen"
-            },
-            {
-                "uuid": "1",
-                "id": 1,
-                "name": "Targaryen2",
-                "image": "https://thronesapi.com/assets/images/daenerys.jpg",
-                "comparison": "House Targaryen"
-            }
-        ];
-    const [gotCards, setGotCards] = useState<CardCharacter[]>([]);
+function useGetGotCards(url:string) {
+    const [randomNCharacters, setRandomNCharacters] = useState<GoTCharacter[]>([]);
+    const [cards, setCards] = useState<CardCharacter[]>([]);
 
+    useEffect(loadRandomCharacters, []);
 
+    function loadRandomCharacters() {
+        axios.get(url).then(response => {
+            setRandomNCharacters(response.data);
+        });
+    }
 
     useEffect(() => {
-        setGotCards(gotTestCharacters.map((gotCards) => (
-            { ...gotCards, hidden: true }
+        setCards(randomNCharacters.map((card) => (
+            { ...card, hidden: true, comparison: card.family, name: card.fullName, image: card.imageUrl }
         )));
-    }, []);
+    }, [randomNCharacters]);
 
 
-    return { gotCards };
+    return { cards, loadRandomCharacters };
 }
 
 export default useGetGotCards;

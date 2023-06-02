@@ -14,26 +14,21 @@ import Header from "./components/Header";
 import HighscoreList from "./highscoreList/HighscoreList";
 import {CardCharacter} from "./model/CardCharacter";
 import useGetGotCards from "./hooks/useGetGotCards";
+import useGetCardSet from "./hooks/useGetCardSet";
 
 
 function App() {
     const {characters} = useLoadRandMCharacters();
-    const {cards, loadRandomCharacters} = useGetNRandomCards();
+    const {gameOfThronesCharacters} = useLoadGoTCharacters();
     const [counter, setCounter] = useState<number>(0);
     const [character] = useState('');
-    const [gotCharacter, setCharacter] = useState("");
-    const {gameOfThronesCharacters} = useLoadGoTCharacters();
-    const {gotCards} = useGetGotCards();
-
-
-    const mixedCardSet = [...cards, ...gotCards];
-
+    const {mixedCardSet, loadRandomCharactersRM, loadRandomCharactersGOT} = useGetCardSet();
 
     function playButtonHandler(){
-        loadRandomCharacters();
+        loadRandomCharactersRM();
+        loadRandomCharactersGOT();
         setCounter(0);
     }
-
 
     return (
 

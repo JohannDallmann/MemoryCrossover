@@ -3,10 +3,9 @@ import { RandMCharacter } from "../model/RandMCharacter";
 import axios from "axios";
 import {CardCharacter} from "../model/CardCharacter";
 
-function useGetNRandomCards() {
+function useGetNRandomCards(url:string) {
     const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
     const [cards, setCards] = useState<CardCharacter[]>([]);
-    const url: string = "/api/randm/game/board/generate?condition=SPECIES";
 
     useEffect(loadRandomCharacters, []);
 
