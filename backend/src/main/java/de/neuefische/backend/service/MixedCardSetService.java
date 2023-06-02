@@ -30,6 +30,7 @@ public class MixedCardSetService {
             cardDTO.setId(randMCharacter.getId());
             cardDTO.setName(randMCharacter.getName());
             cardDTO.setImage(randMCharacter.getImage());
+            cardDTO.setSpecies(randMCharacter.getSpecies());
             //cardDTO.setHidden(false);
             //cardDTO.setComparison(randMCharacter.getSpecies());
             cardDTOList.add(cardDTO);
@@ -42,6 +43,7 @@ public class MixedCardSetService {
             cardDTO.setId(goTCharacter.getId());
             cardDTO.setName(goTCharacter.getFullName());
             cardDTO.setImage(goTCharacter.getImageUrl());
+            cardDTO.setSpecies(goTCharacter.getFamily());
             //cardDTO.setHidden(false);
             //cardDTO.setComparison(goTCharacter.getFamily());
             cardDTOList.add(cardDTO);
