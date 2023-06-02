@@ -40,3 +40,7 @@
     font-weight: bold;
     align-content: center;
 }
+.card-dropdown{
+    display:flex;
+    flex-direction: column;
+}
