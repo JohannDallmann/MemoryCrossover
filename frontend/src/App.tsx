@@ -7,7 +7,7 @@ import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Link, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import Home from "./Home/Home";
-import useGetNRandomCards from "./hooks/useGetNRandomCards";
+import useGetRmCards from "./hooks/useGetRmCards";
 import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
 import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
 import Header from "./components/Header";
@@ -22,11 +22,12 @@ function App() {
     const {gameOfThronesCharacters} = useLoadGoTCharacters();
     const [counter, setCounter] = useState<number>(0);
     const [character] = useState('');
-    const {mixedCardSet, loadRandomCharactersRM, loadRandomCharactersGOT} = useGetCardSet();
+    const {rmCards, gotCards, mixedCardSet, loadRandomCharactersRM, loadRandomCharactersGOT, loadRandomCharactersMixed} = useGetCardSet();
 
     function playButtonHandler(){
         loadRandomCharactersRM();
         loadRandomCharactersGOT();
+        loadRandomCharactersMixed();
         setCounter(0);
     }
 
@@ -40,7 +41,7 @@ function App() {
                     <Route path="/" element={<Home character={character}/>} />
                     <Route path="/play" element={
                         <div className="gameBoard">
-                            <Game cards={mixedCardSet} counter={counter} setCounter={setCounter} />
+                            <Game cards={rmCards} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
                     <Route path="/highscorelist" element={<HighscoreList />} />
