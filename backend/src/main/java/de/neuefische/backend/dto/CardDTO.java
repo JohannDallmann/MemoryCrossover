@@ -13,5 +13,5 @@ public class CardDTO {
     private String name;
     private String image;
     //private boolean hidden;
-    private String comparison;
+    //private String comparison;
 }
