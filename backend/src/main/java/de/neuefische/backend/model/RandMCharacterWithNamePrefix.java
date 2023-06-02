@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RandMCharacterWithNamePrefix extends RandMCharacter {
+    @SuppressWarnings("squid:S116")
     private String name_prefix;
 
     public static RandMCharacterWithNamePrefix fromIntersection(RandMCharacterWithNamePrefixIntersection object) {

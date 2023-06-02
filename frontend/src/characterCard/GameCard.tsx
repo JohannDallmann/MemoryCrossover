@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {RandMCharacter} from "../model/RandMCharacter";
+import React from 'react';
 import './CharacterCard.css';
 import {CardCharacter} from "../model/CardCharacter";
 
@@ -25,7 +24,7 @@ function GameCard(props:Props) {
     return (
         <div>
             {
-                character.hidden === true
+                character.hidden
                 ? <button className="card-back" onClick={showCard}></button>
                 : <div className="character-card">
                     <img src={character.image}  alt={character.name}/>

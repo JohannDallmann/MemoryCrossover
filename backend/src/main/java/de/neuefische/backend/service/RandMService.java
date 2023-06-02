@@ -69,6 +69,11 @@ public class RandMService {
 
     }
 
+    static final String REPLACEALL = "$replaceAll";
+    static final String INPUT = "input";
+
+    static final String REPLACEMENT = "replacement";
+    static final String NAMEPREFIX = "name_prefix";
 
     public List<RandMCharacter> fillCharactersFromApi() {
         List<RandMCharacter> allCharacters = new ArrayList<>();
@@ -110,17 +115,17 @@ public class RandMService {
         AggregationOperation matchStage = Aggregation.match(Criteria.where("name").regex(matchRegex, "i"));
 
         AddFieldsOperation addFieldsStage1 = Aggregation.addFields()
-                .addFieldWithValue("name_prefix",
-                        new Document("$replaceAll", new Document("input", "$name")
+                .addFieldWithValue(NAMEPREFIX,
+                        new Document(REPLACEALL, new Document(INPUT, "$name")
                                 .append("find", matchRegex)
-                                .append("replacement", "")))
+                                .append(REPLACEMENT, "")))
                 .build();
 
         AddFieldsOperation addFieldsStage2 = Aggregation.addFields()
                 .addFieldWithValue("_class",
-                        new Document("$replaceAll", new Document("input", "$_class")
+                        new Document(REPLACEALL, new Document(INPUT, "$_class")
                                 .append("find", ".RandMCharacter")
-                                .append("replacement", ".RandMCharacterWithNamePrefix")))
+                                .append(REPLACEMENT, ".RandMCharacterWithNamePrefix")))
                 .build();
 
         OutOperation outStage = Aggregation.out(matchRegex.toLowerCase() + "Set");
@@ -133,8 +138,10 @@ public class RandMService {
     public void runAggregationStep2() {
         LookupOperation lookupStage = LookupOperation.newLookup()
                 .from("mortySet")
-                .localField("name_prefix")
-                .foreignField("name_prefix")
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                .localField(NAMEPREFIX)
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                .foreignField(NAMEPREFIX)
                 .as("intersection");
 
         AggregationOperation matchStage = Aggregation.match(Criteria.where("intersection")
@@ -143,9 +150,9 @@ public class RandMService {
 
         AddFieldsOperation addFieldsStage = Aggregation.addFields()
                 .addFieldWithValue("_class",
-                        new Document("$replaceAll", new Document("input", "$_class")
+                        new Document(REPLACEALL, new Document(INPUT, "$_class")
                                 .append("find", ".RandMCharacterWithNamePrefix")
-                                .append("replacement", ".RandMCharacterWithNamePrefixIntersection")))
+                                .append(REPLACEMENT, ".RandMCharacterWithNamePrefixIntersection")))
                 .build();
 
         OutOperation outStage = Aggregation.out( "rickAndMortyIntersection");
