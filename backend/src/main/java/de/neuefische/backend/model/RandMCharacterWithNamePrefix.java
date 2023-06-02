@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RandMCharacterWithNamePrefix extends RandMCharacter {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     private String name_prefix;
 
     public static RandMCharacterWithNamePrefix fromIntersection(RandMCharacterWithNamePrefixIntersection object) {

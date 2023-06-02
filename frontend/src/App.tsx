@@ -1,10 +1,8 @@
 import './App.css';
-import fische from './images/fische.png'
-import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
-import {Route, Link, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import Home from "./Home/Home";
 import useGetNRandomCards from "./hooks/useGetNRandomCards";
@@ -19,7 +17,6 @@ function App() {
     const {cards, loadRandomCharacters} = useGetNRandomCards();
     const [counter, setCounter] = useState<number>(0);
     const [character] = useState('');
-    const [gotCharacter, setCharacter] = useState("");
     const {gameOfThronesCharacters} = useLoadGoTCharacters();
 
     function playButtonHandler(){
