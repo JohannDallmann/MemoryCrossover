@@ -5,11 +5,12 @@
     justify-content: center;
     width: 200px;
     height: 300px;
-    padding: 20px;
-    background-color: #f5f5f5;
+    padding: 1.6vh;
+    background-color: whitesmoke;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+
 }
 
 .character-card:hover {
@@ -33,6 +34,24 @@
     color:black;
     cursor:default;
 }
+.card-back {
+    width: 239.2px;
+    height: 339.2px;
+    border-radius: 1vh;
+    transition: transform 0.3s ease;
+    background-position: center;
+    justify-content: center;
+    background-size: cover;
+}
+.card-back:hover{
+    transform: translateY(-5px);
+}
+
+.card-back:hover {
+    transform: translateY(-5px);
+}
+
+
 a {
     text-decoration: none;
     color: black;

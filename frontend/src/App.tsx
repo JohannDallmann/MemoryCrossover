@@ -1,70 +1,51 @@
 import './App.css';
-import {Link, Route, Routes} from "react-router-dom";
-import fische from './images/fische.png'
-import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
-import GalleryComponent from "./components/GalleryComponent";
-import HighscoreList from "./highscoreList/HighscoreList";
-import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
+import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
+import CharacterGallery from "./characterGallery/CharacterGallery";
+import {Route, Routes} from "react-router-dom";
+import Game from "./characterGallery/Game";
+import Home from "./Home/Home";
+import useGetNRandomCards from "./hooks/useGetNRandomCards";
 import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
+import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
+import Header from "./components/Header";
+import HighscoreList from "./highscoreList/HighscoreList";
 
 
 function App() {
-    const [character, setCharacter] = useState("");
+    const {characters} = useLoadRandMCharacters();
+    const {cards, loadRandomCharacters} = useGetNRandomCards();
+    const [counter, setCounter] = useState<number>(0);
+    const [character] = useState('');
     const {gameOfThronesCharacters} = useLoadGoTCharacters();
+
+    function playButtonHandler(){
+        loadRandomCharacters();
+        setCounter(0);
+    }
+
 
     return (
 
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
-            <div className="header-container">
-                <div className="placeholder">
-                    <Link to="https://www.neuefische.de" target="_blank">
-                    <img className="neuefischeHeader" src={fische} alt="Gräte"/>
-                    </Link>
-                    <Link to="home" className="home">
-                        <h1 className="Dashboard">Memory Crossover</h1>
-                    </Link>
-                </div>
-                <div className="buttons-container">
-                    <DropdownMenu updateCharacter = {setCharacter}/>
-                    <Link to="home">
-                        <button className="costume-button"> Home </button>
-                    </Link>
-                    <button className="costume-button"> Play </button>
-                    <Link to="/highscorelist">
-                        <button className="costume-button">Highscore </button>
-                    </Link>
-                </div>
-            </div>
-            <div className="Frankenstein">
-                <div className="play-container">
-                    <h2 className="h2"> Java-Bo-23-1 </h2>
-                    <p className="p1"> Die zeit ist gekommen dich zu beweisen.
-                            <br/>
-                            Bereite dich auf das Ultimative Memory vor. </p>
-                    <div className="available-button">
-                        <div className="circle">
-                            <div className="arrow"></div>
-                        </div>
-                            <div className="text">Jetzt verfügbar</div>
-                    </div>
-                </div>
-                <div className="character-gallery-wrapper">
-                    <GalleryComponent character={character}/>
-                    <Routes>
-                        <Route path="/highscorelist" element=
-                            {<HighscoreList/>}/>
-                    </Routes>
-                </div>
-            </div>
-            <Routes>
-                <Route path="/gameofthronesgallery" element=
-                    {<CharacterGalleryGoT characters={gameOfThronesCharacters}/>}/>
-            </Routes>
-
-
+            <header>
+            <Header playButtonHandler={playButtonHandler}/>
+            </header>
+                <Routes>
+                    <Route path="/" element={<Home character={character}/>} />
+                    <Route path="/play" element={
+                        <div className="gameBoard">
+                            <Game cards={cards} counter={counter} setCounter={setCounter} />
+                        </div>}
+                    />
+                    <Route path="/highscorelist" element={<HighscoreList />} />
+                    <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters} />} />
+                    <Route path="/gameofthronesgallery" element=
+                        {<CharacterGalleryGoT gotCharacter={gameOfThronesCharacters}/>}/>
+                </Routes>
         </div>
-    );
+
+);
 }
 
 export default App;

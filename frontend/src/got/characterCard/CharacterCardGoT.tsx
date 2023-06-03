@@ -2,18 +2,18 @@ import React from 'react';
 import {GoTCharacter} from "../model/GoTCharacter";
 
 type Props={
-    character:GoTCharacter
+    gotCharacter:GoTCharacter
 }
 
 function CharacterCardGoT(props:Props) {
 
-    const {character} = props;
+    const {gotCharacter} = props;
 
     return (
         <div className="character-card">
-            <img src={character.imageUrl}  alt={character.fullName}/>
-            <h3>{props.character.fullName}</h3>
-            <h4>{props.character.family}</h4>
+            <img src={gotCharacter.imageUrl}  alt={gotCharacter.fullName}/>
+            <h3>{props.gotCharacter.fullName}</h3>
+            <h4>{props.gotCharacter.family}</h4>
         </div>
     );
 }
