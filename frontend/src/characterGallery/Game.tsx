@@ -24,7 +24,7 @@ export type State = {
     // It refers to the state of the game.
     // Further, parameters such as counter and secondsLeft
     // can be used for statistics or saving the result of the user's game.
-    counter: number;
+    steps: number;
     secondsLeft : number;
     status : Status;
     // TODO Change the win condition
@@ -40,7 +40,7 @@ export type State = {
 }
 
 const startGame = () : State => ({
-    counter: 0,
+    steps: 0,
     secondsLeft: 60,
     status: Status.Running,
     dumbWinCondition: 0,
@@ -67,6 +67,9 @@ const hasLosingCondition = (state : State) : boolean => {
     return state.secondsLeft === 0;
 }
 
+const nextStep = (state : State) : number => {
+    return state.steps + 1;
+}
 
 function Game(props:Props) {
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
@@ -102,6 +105,9 @@ function Game(props:Props) {
         } else {
             setTimeout(() => hideCards(firstCard,secondCard),0);
         }
+
+        const newStep = nextStep(gameState);
+        setGameState((prevState) => ({ ...prevState, steps: newStep }));
 
         if (gameState.dumbWinCondition === 2) {
             setGameState((prevState) => ({ ...prevState, status: Status.Won }));
@@ -140,7 +146,7 @@ function Game(props:Props) {
             {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, props.counter)}/>}
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
-                    {"Current Counter: " + props.counter}
+                    {"Turns: " + gameState.steps}
                 </div>
                 <div className={"timer"}>Time left: {gameState.secondsLeft} seconds
                     {gameState.status === Status.Won && <span className={"won-text"}> - You won!</span>}
