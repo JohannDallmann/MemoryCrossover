@@ -25,12 +25,18 @@ export type State = {
     cardsLeft: number;
 }
 
-const startGame = (props: Props) : State => ({
-    steps: 0,
-    secondsLeft: 60,
-    status: Status.Running,
-    cardsLeft: props.cards.length
-})
+const startGame = (props: Props): State => {
+    const totalCards = props.cards.length
+    const timePerCard = 3.5
+    const timeLimit = totalCards * timePerCard;
+
+    return {
+        steps: 0,
+        secondsLeft: timeLimit,
+        status: Status.Running,
+        cardsLeft: totalCards,
+    };
+};
 
 
 // TODO Just an example. Detailed implementation will come later
@@ -128,6 +134,7 @@ function Game(props:Props) {
 
         return () => clearInterval(interval);
     }, []);
+
 
     return (
         <div >
