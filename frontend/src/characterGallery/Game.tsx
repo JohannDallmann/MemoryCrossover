@@ -14,10 +14,6 @@ export enum Status {
     Stopped, Running, Won, Lost
 }
 
-// TODO General
-// There are a couple of problems with component updates.
-// It looks like the cards update along with the timer every second.
-// Probably the problem will be solved by separating these entities into components.
 export type State = {
     steps: number;
     secondsLeft : number;
@@ -157,7 +153,7 @@ function Game(props:Props) {
             firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
             secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
         } else {
-            setTimeout(() => hideCards(firstCard,secondCard),0);
+            setTimeout(() => hideCards(firstCard,secondCard),250);
         }
 
         const newStep = nextStep(gameState);
