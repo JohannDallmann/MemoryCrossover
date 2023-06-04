@@ -10,6 +10,7 @@ import java.util.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 class GoTServiceTest {
@@ -115,7 +116,6 @@ class GoTServiceTest {
                 new GoTCharacter("uuid5", 5, "Character Five", "Familie 1", "imageUrl5")
         );
         when(goTRepo.findAll()).thenReturn(characters);
-        List<GoTCharacter> expected = new ArrayList<>();
 
         // when
         List<GoTCharacter> randomCharacters = goTService.getRandomCharacters(2);
@@ -134,6 +134,36 @@ class GoTServiceTest {
         }
         for (int count : familyOccurrences.values()) {
             assertEquals(2, count);
+        }
+    }
+
+    @Test
+    void testGetRandomCharacters_MaxOnePairPerFamily() {
+        // given
+        List<GoTCharacter> characters = Arrays.asList(
+                new GoTCharacter("uuid1", 1, "Character One", "Familie 1", "imageUrl1"),
+                new GoTCharacter("uuid2", 2, "Character Two", "Familie 2", "imageUrl2"),
+                new GoTCharacter("uuid3", 3, "Character Three", "Familie 3", "imageUrl3"),
+                new GoTCharacter("uuid4", 4, "Character Four", "Familie 2", "imageUrl4"),
+                new GoTCharacter("uuid5", 5, "Character Five", "Familie 1", "imageUrl5"),
+                new GoTCharacter("uuid5", 6, "Character Six", "Familie 2", "imageUrl6"),
+                new GoTCharacter("uuid5", 7, "Character Seven", "Familie 1", "imageUrl7"),
+                new GoTCharacter("uuid5", 8, "Character Eight", "Familie 1", "imageUrl8"),
+                new GoTCharacter("uuid5", 9, "Character Nine", "Familie 2", "imageUrl9")
+        );
+        when(goTRepo.findAll()).thenReturn(characters);
+
+        // when
+        List<GoTCharacter> randomCharacters = goTService.getRandomCharacters(10);
+
+        // then
+        Map<String, Integer> cardsPerFamily = new HashMap<>();
+        for (GoTCharacter character : randomCharacters) {
+            String family = character.getFamily();
+            cardsPerFamily.put(family, cardsPerFamily.getOrDefault(family, 0) + 1);
+        }
+        for (int pairs : cardsPerFamily.values()) {
+            assertTrue(pairs <= 2);
         }
     }
 }

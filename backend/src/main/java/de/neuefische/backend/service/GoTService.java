@@ -63,15 +63,18 @@ public class GoTService {
                 .collect(Collectors.groupingBy(GoTCharacter::getFamily));
 
         List<GoTCharacter> randomCharacters = new ArrayList<>();
+        List<List<GoTCharacter>> characterListsByFamily = new ArrayList<>(charactersByFamily.values());
+        Collections.shuffle(characterListsByFamily);
 
-        for (List<GoTCharacter> characters : charactersByFamily.values()) {
-            Collections.shuffle(characters);
 
-            if(characters.size() < 2)
+        for (List<GoTCharacter> familyMemberList : characterListsByFamily) {
+            Collections.shuffle(familyMemberList);
+
+            if(familyMemberList.size() < 2)
                 continue;
 
             for (int i = 0; i < 2 ; i++) {
-                randomCharacters.add(characters.get(i));
+                randomCharacters.add(familyMemberList.get(i));
             }
 
             if (randomCharacters.size() >= numberOfCharacterPairs * 2) {
