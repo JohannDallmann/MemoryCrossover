@@ -126,6 +126,7 @@ function Game(props:Props) {
 
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
     const [gameState, setGameState] = useState<State>(startGame(props));
+    const [isTimerPulsating, setTimerPulsating] = useState(false);
 
 
     function increaseCounter(){
@@ -182,6 +183,9 @@ function Game(props:Props) {
                     return { ...prevState, status: Status.Lost };
                 } else {
                     const newSecondsLeft = prevState.secondsLeft - 1;
+                    if (newSecondsLeft === 5) {
+                        setTimerPulsating(true);
+                    }
                     if (hasWinningCondition({ ...prevState, secondsLeft: newSecondsLeft })) {
                         clearInterval(interval);
                         return { ...prevState, secondsLeft: newSecondsLeft, status: Status.Won };
@@ -195,6 +199,12 @@ function Game(props:Props) {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        if (gameState.status !== Status.Running) {
+            setTimerPulsating(false);
+        }
+    }, [gameState.status]);
+
 
     return (
         <div >
@@ -203,7 +213,7 @@ function Game(props:Props) {
                 <div className={"turns-counter"}>
                     {"Turns: " + gameState.steps}
                 </div>
-                <div className={"timer"}>Time left: {gameState.secondsLeft} seconds
+                <div className={`timer ${isTimerPulsating ? 'pulsate' : ''}`}>Time left: {gameState.secondsLeft} seconds
                     {gameState.status === Status.Won && <span className={"won-text"}> - You won!</span>}
                     {gameState.status === Status.Lost && <span className={"lost-text"}> - You lost!</span>}
                 </div>
