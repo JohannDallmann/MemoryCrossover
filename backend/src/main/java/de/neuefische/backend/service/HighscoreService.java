@@ -17,7 +17,8 @@ public class HighscoreService {
 
     public List<GameResult> save(GameResultDTO gameResult) {
         GameResult newGameResult = new GameResult(generateUUIDService.generateUUID(),
-                gameResult.getPlayerName(), gameResult.getScore(), LocalDateTime.now());
+                gameResult.getPlayerName(), gameResult.getScore(), gameResult.getRemainingTime(),
+                gameResult.getNumberOfSteps(), LocalDateTime.now());
         highscoreRepo.save(newGameResult);
         return highscoreRepo.findAll();
     }

@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GameResultDTO {
     private String playerName;
+    private int remainingTime;
+    private int numberOfSteps;
     private int score;
 }

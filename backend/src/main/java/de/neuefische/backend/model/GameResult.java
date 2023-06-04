@@ -17,5 +17,7 @@ public class GameResult {
     private String id;
     private String playerName;
     private int score;
+    private int remainingTime;
+    private int numberOfSteps;
     private LocalDateTime timestamp;
 }

@@ -3,7 +3,9 @@ import "./WinDisplay.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 type Props = {
-    score: number
+    score: number,
+    remainingTime: number,
+    numberOfSteps: number
 }
 function WinDisplay(props:Props) {
     const [inputValue, setInputValue] = useState("")
@@ -11,7 +13,8 @@ function WinDisplay(props:Props) {
     const nav = useNavigate();
 
     function addScore() {
-        axios.post("/api/randm/highscore", { playerName: inputValue, score: props.score })
+        axios.post("/api/randm/highscore", { playerName: inputValue, score: props.score,
+            remainingTime: props.remainingTime, numberOfSteps: props.numberOfSteps})
             .then(() => {
                 nav("/highscorelist")
             });

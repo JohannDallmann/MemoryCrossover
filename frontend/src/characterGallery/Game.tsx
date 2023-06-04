@@ -208,7 +208,8 @@ function Game(props:Props) {
 
     return (
         <div >
-            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps)}/>}
+            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps)}
+                                                            remainingTime={gameState.secondsLeft} numberOfSteps={gameState.steps} />}
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
                     {"Turns: " + gameState.steps}
