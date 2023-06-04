@@ -20,7 +20,7 @@ function WinDisplay(props:Props) {
     return (
         <div className="score-window">
             <h2>Congratulations! You won!</h2>
-            <p>Your score: {props.score} points !</p>
+            <p>Your score: {props.score} / 10 points !</p>
             <input type="text" value={inputValue} onChange={handlerInputChange}></input>
             <button onClick={addScore}>Submit</button>
             <button>Highscore</button>

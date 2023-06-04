@@ -38,18 +38,80 @@ const startGame = (props: Props): State => {
     };
 };
 
+// TODO The rating has the correct values only for the board with 12 cards.
+// For other board sizes, additional checks are needed,
+// as well as statistical data to determine the boundaries of the best and worst score
+const calculateTimeRating = (remainingTime:number) => {
+    const timeValues = [30, 26, 22, 18, 14]; // Input values
+    const ratingValues = [5, 4, 3, 2, 1]; // Output values
 
-// TODO Just an example. Detailed implementation will come later
+    // If remainingTime is even longer than the time required for the highest rating, return the highest rating
+    // Otherwise x1 will be undefined
+    if (remainingTime > timeValues[0]) {
+        return ratingValues[0];
+    }
+
+    // Find the index of the nearest lower value in the timeValues array
+    const index = timeValues.findIndex((value) => remainingTime >= value);
+
+    // If remainingTime is less than the smallest value, return the lowest rating
+    if (index === -1) {
+        return ratingValues[ratingValues.length - 1];
+    }
+
+    // If remainingTime is exactly equal to a value in timeValues, return the corresponding rating
+    if (remainingTime === timeValues[index]) {
+        return ratingValues[index];
+    }
+
+    // Perform linear interpolation to calculate the rating
+    const x0 = timeValues[index];
+    const x1 = timeValues[index - 1];
+    const y0 = ratingValues[index];
+    const y1 = ratingValues[index - 1];
+
+    return y0 + ((y1 - y0) / (x1 - x0)) * (remainingTime - x0);
+};
+
+const calculateStepsRating = (steps: number) => {
+    const stepsValues = [8, 10, 12, 14, 16]; // Input values
+    const ratingValues = [5, 4, 3, 2, 1]; // Output values
+
+    if (steps < stepsValues[0]) {
+        return ratingValues[0];
+    }
+
+    // Find the index of the nearest larger value in the stepsValues array
+    const index = stepsValues.findIndex((value) => steps <= value);
+
+    // If steps is greater than the largest value, return the lowest rating
+    if (index === -1) {
+        return ratingValues[ratingValues.length - 1];
+    }
+
+    // If steps is exactly equal to a value in stepsValues, return the corresponding rating
+    if (steps === stepsValues[index]) {
+        return ratingValues[index];
+    }
+
+    // Perform linear interpolation to calculate the rating
+    const x0 = stepsValues[index-1];
+    const x1 = stepsValues[index];
+    const y0 = ratingValues[index -1];
+    const y1 = ratingValues[index];
+
+    return y0 + ((y1 - y0) / (x1 - x0)) * (steps - x0);
+};
+
+// A rating system based on a 10-point scale. 5 points for time and 5 points for steps
 const calculateScore = (remainingTime: number, steps: number) : number => {
 
-    const timeWeight = 0.7;
-    const stepsWeight = 0.3;
+    const timeRating = calculateTimeRating(remainingTime);
+    const stepsRating = calculateStepsRating(steps);
 
-    const stepsScore = -steps * stepsWeight;
-    const timeScore = remainingTime * timeWeight;
-
-    return parseFloat((timeScore + stepsScore).toFixed(2));
+    return parseFloat((timeRating + stepsRating).toFixed(2));
 }
+
 
 const hasWinningCondition = (state : State) : boolean => {
     return state.cardsLeft === 0;
@@ -138,7 +200,7 @@ function Game(props:Props) {
 
     return (
         <div >
-            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, props.counter)}/>}
+            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps)}/>}
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
                     {"Turns: " + gameState.steps}
