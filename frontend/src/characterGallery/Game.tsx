@@ -121,10 +121,12 @@ const nextStep = (state : State) : number => {
     return state.steps + 1;
 }
 
+
 function Game(props:Props) {
 
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
     const [gameState, setGameState] = useState<State>(startGame(props));
+
 
     function increaseCounter(){
         props.setCounter(props.counter + 1);
@@ -213,7 +215,8 @@ function Game(props:Props) {
                                      character={currentCharacter}
                                      putCardsInArrayToCompare={putCardsInArrayToCompare}
                                      increaseCounter={increaseCounter}
-                                     counter ={props.counter}></GameCard>
+                                     counter ={props.counter}
+                                     gameStatus={gameState.status}></GameCard>
                 })
                 }
             </div>
