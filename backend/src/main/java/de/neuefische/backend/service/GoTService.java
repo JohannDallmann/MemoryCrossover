@@ -78,7 +78,7 @@ public class GoTService {
             }
 
             if (randomCharacters.size() >= numberOfCharacterPairs * 2) {
-                break;
+                return randomCharacters;
             }
         }
 
