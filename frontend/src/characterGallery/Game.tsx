@@ -20,9 +20,10 @@ function Game(props: Props) {
     const [selectedCard, setSelectedCard] = useState<number | null>(null);
     const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
 
-    function isGameWon(){
-        for (let i = 0; i < props.cards.length; i++) {
-            if (props.cards[i].hidden) {
+
+    function isGameWon() {
+        for (const card of props.cards) {
+            if (card.hidden) {
                 return false;
             }
         }
