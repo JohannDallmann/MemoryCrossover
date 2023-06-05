@@ -29,9 +29,11 @@ function GameCard(props: Props) {
             {character.hidden ? (
                 <div
                     onClick={showCard}
-                    disabled={gameStatus === Status.Lost}
+                    // disabled={gameStatus === Status.Lost}
+                    // pointerEvents: "none"
                     className="card-back"
-                    style={{ backgroundImage: `url(${backgroundImage})` }}
+                    style={{ backgroundImage: `url(${backgroundImage})`
+                        }}
                 ></div>
             ) : (
                 <div className="character-card">

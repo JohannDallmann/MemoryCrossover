@@ -32,7 +32,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
             const newAchievement: Achievement = {
                 name: "I Need Speed!",
                 conditions: "Complete the game within 12 seconds.",
-                player: "John",
+                player: "",
                 // timestamp: new Date(),
             };
             achievements.push(newAchievement)
@@ -43,7 +43,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
             const newAchievement: Achievement = {
                 name: "Minesweeper",
                 conditions: "Win the game in 6 turns on a board with 12 cards.",
-                player: "John",
+                player: "",
                 // timestamp: new Date(),
             };
         }
@@ -64,7 +64,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
             const newAchievement: Achievement = {
                 name: "I got 99 Problems, but Memory Ain't One",
                 conditions: "Get the maximum score for the game.",
-                player: "John",
+                player: "",
                 // timestamp: new Date(),
             };
             achievements.push(newAchievement)
@@ -84,7 +84,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                             <p className="achievement-card-description">{achievement.conditions}</p>
                             <p className="achievement-card-details">
                                 {/*Player: {achievement.player} | Time: {achievement.timestamp.toString()}*/}
-                                Player: {achievement.player}
+                                {/*Player: {achievement.player}*/}
 
                             </p>
                         </div>

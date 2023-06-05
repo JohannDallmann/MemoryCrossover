@@ -9,7 +9,7 @@ import cardback6 from '../images/cardback6.gif';
 
 import WinDisplay from "../components/WinDisplay";
 import Achievements from "../achievements/Achievements";
-import achievements from "../achievements/Achievements";
+
 
 
 type Props = {
@@ -18,10 +18,7 @@ type Props = {
     setCounter: (counter: number) => void;
 }
 
-function Game(props: Props) {
-    const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
-    const [selectedCard, setSelectedCard] = useState<number | null>(null);
-    const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
+
 export enum Status {
     Stopped, Running, Won, Lost
 }
@@ -142,9 +139,10 @@ function Game(props:Props) {
     // const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
     const [gameState, setGameState] = useState<State>(startGame(props));
     const [isTimerPulsating, setTimerPulsating] = useState(false);
-    // const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
+    const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
     const [selectedCard, setSelectedCard] = useState<number | null>(null);
     const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
+
 
     function increaseCounter(){
         props.setCounter(props.counter + 1);
@@ -240,7 +238,6 @@ function Game(props:Props) {
         }
     }, [gameState.status]);
 
-
     return (
         <div>
             {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps) }
@@ -249,8 +246,9 @@ function Game(props:Props) {
             />}
             <Achievements gameState={gameState} />
             <div className="status-bar">
-                <div className="turns-counter"> {"Turns: " + gameState.steps}</div>
-
+                <div className={"turns-counter"}>
+                    {"Turns: " + gameState.steps}
+                </div>
                 {cards.map((card) => (
                     <div
                         key={card.id}
@@ -260,17 +258,6 @@ function Game(props:Props) {
                         <img src={card.image} alt={`Card ${card.id}`} />
                     </div>
                 ))}
-                <div className="timer">Time left: Test-time</div>
-        <div >
-            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps) }
-                                                            remainingTime={gameState.secondsLeft}
-                                                            numberOfSteps={gameState.steps}
-                                                            />}
-            <Achievements gameState={gameState} />
-            <div className={"status-bar"}>
-                <div className={"turns-counter"}>
-                    {"Turns: " + gameState.steps}
-                </div>
                 <div className={`timer ${isTimerPulsating ? 'pulsate' : ''}`}>Time left: {gameState.secondsLeft} seconds
                     {gameState.status === Status.Won && <span className={"won-text"}> - You won!</span>}
                     {gameState.status === Status.Lost && <span className={"lost-text"}> - You lost!</span>}
@@ -288,22 +275,13 @@ function Game(props:Props) {
                             counter={props.counter}
                             gameStatus={gameState.status}
                             selectedCardImage={selectedCardImage}
-
                         />
                     );
                 })}
-                {props.cards.map((currentCharacter:CardCharacter)=>{
-                    return <GameCard key={currentCharacter.uuid}
-                                     character={currentCharacter}
-                                     putCardsInArrayToCompare={putCardsInArrayToCompare}
-                                     increaseCounter={increaseCounter}
-                                     counter ={props.counter}
-                                     gameStatus={gameState.status}></GameCard>
-                })
-                }
             </div>
         </div>
     );
+
 }
 
 export default Game;
