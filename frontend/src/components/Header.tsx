@@ -26,7 +26,13 @@ function Header(props:Props) {
                     <button className="costume-button"> Home </button>
                 </Link>
                 <Link to="/play">
-                    <button className="costume-button" onClick={props.playButtonHandler}> Play </button>
+                    <button className="costume-button" onClick={props.playButtonHandler}> Mixed </button>
+                </Link>
+                <Link to="/playrm">
+                    <button className="costume-button" onClick={props.playButtonHandler}> RM </button>
+                </Link>
+                <Link to="/playgot">
+                    <button className="costume-button" onClick={props.playButtonHandler}> GOT </button>
                 </Link>
 
                 <Link to="/highscorelist">

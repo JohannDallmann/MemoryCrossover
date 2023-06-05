@@ -26,9 +26,7 @@ function App() {
         setCounter(0);
     }
 
-
     return (
-
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>
             <header>
             <Header playButtonHandler={playButtonHandler}/>
@@ -38,6 +36,16 @@ function App() {
                     <Route path="/play" element={
                         <div className="gameBoard">
                             <Game cards={mixedCardSet} counter={counter} setCounter={setCounter} />
+                        </div>}
+                    />
+                    <Route path="/playrm" element={
+                        <div className="gameBoard">
+                            <Game cards={rmCards} counter={counter} setCounter={setCounter} />
+                        </div>}
+                    />
+                    <Route path="/playgot" element={
+                        <div className="gameBoard">
+                            <Game cards={gotCards} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
 
