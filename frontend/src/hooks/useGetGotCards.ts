@@ -19,6 +19,7 @@ function useGetGotCards(url:string) {
         setCards(randomNCharacters.map((card) => (
             { ...card, hidden: true, comparison: card.family, name: card.fullName, image: card.imageUrl }
         )));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [randomNCharacters]);
 
 

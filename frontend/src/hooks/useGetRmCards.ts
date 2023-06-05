@@ -17,12 +17,9 @@ function useGetRmCards(url:string) {
 
     useEffect(() => {
         setCards(randomNCharacters.map((card) => {
-
                 return {...card, hidden: true, comparison: card.species}
-
-
-
         } ));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [randomNCharacters]);
 
 

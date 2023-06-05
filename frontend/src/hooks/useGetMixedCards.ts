@@ -19,6 +19,7 @@ function useGetMixedCards(url:string) {
         setCards(randomNCharacters.map((card) => {
             return {...card, hidden: true}
         } ));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [randomNCharacters]);
 
     return { cards, loadRandomCharacters };
