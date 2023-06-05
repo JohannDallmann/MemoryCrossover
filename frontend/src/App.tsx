@@ -40,6 +40,7 @@ function App() {
                             <Game cards={mixedCardSet} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
+
                     <Route path="/highscorelist" element={<HighscoreList />} />
                     <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters} />} />
                     <Route path="/gameofthronesgallery" element=
