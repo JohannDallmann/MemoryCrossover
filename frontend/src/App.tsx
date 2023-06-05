@@ -34,7 +34,7 @@ function App() {
             <Header playButtonHandler={playButtonHandler}/>
             </header>
                 <Routes>
-                    <Route path="/" element={<Home character={character}/>} />
+                    <Route path="/" element={<Home character={character} playButtonHandler = {playButtonHandler}/>} />
                     <Route path="/play" element={
                         <div className="gameBoard">
                             <Game cards={mixedCardSet} counter={counter} setCounter={setCounter} />
