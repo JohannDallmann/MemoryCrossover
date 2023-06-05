@@ -1,7 +1,7 @@
 package de.neuefische.backend.controller;
 
-import de.neuefische.backend.model.GoTCharacter;
-import de.neuefische.backend.service.GoTService;
+import de.neuefische.backend.dto.CardDTO;
+import de.neuefische.backend.service.MixedCardSetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +12,13 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/got")
+@RequestMapping("/api/mixed")
 @RequiredArgsConstructor
-public class GoTController {
-    private final GoTService goTService;
-
-    @GetMapping("/characters")
-    public List<GoTCharacter> getAllCharacters(){
-        return goTService.getAllCharacters();
-    }
-
+public class MixedCardSetController {
+    private final MixedCardSetService mixedCardSetService;
     @GetMapping("/game/board/generate")
-    public List<GoTCharacter> getRandomCharacterPairs(@RequestParam(required = false) Integer quantity) {
+    public List<CardDTO> getRandomCharacterPairs(@RequestParam(required = false) Integer quantity) {
         int numberOfPairs = Objects.requireNonNullElse(quantity, 6); // Default: 6 pairs
-        return goTService.getRandomCharacters(numberOfPairs);
+        return mixedCardSetService.getRandomCharacters(numberOfPairs);
     }
-
 }

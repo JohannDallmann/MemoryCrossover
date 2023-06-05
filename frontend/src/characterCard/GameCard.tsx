@@ -1,6 +1,6 @@
 import React from 'react';
 import './CharacterCard.css';
-import { CardCharacter } from "../model/CardCharacter";
+import {CardCharacter} from "../model/CardCharacter";
 
 type Props = {
     character: CardCharacter;
@@ -41,9 +41,3 @@ function GameCard(props: Props) {
 }
 
 export default GameCard;
-
-
-
-
-
-

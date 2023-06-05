@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { RandMCharacter } from "../model/RandMCharacter";
 import axios from "axios";
 import {CardCharacter} from "../model/CardCharacter";
+import {GoTCharacter} from "../got/model/GoTCharacter";
 
-function useGetNRandomCards() {
-    const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
+function useGetGotCards(url:string) {
+    const [randomNCharacters, setRandomNCharacters] = useState<GoTCharacter[]>([]);
     const [cards, setCards] = useState<CardCharacter[]>([]);
-    const url: string = "/api/randm/game/board/generate?condition=SPECIES";
 
     useEffect(loadRandomCharacters, []);
 
@@ -18,7 +17,7 @@ function useGetNRandomCards() {
 
     useEffect(() => {
         setCards(randomNCharacters.map((card) => (
-            { ...card, hidden: true, comparison: card.species }
+            { ...card, hidden: true, comparison: card.family, name: card.fullName, image: card.imageUrl }
         )));
     }, [randomNCharacters]);
 
@@ -26,4 +25,4 @@ function useGetNRandomCards() {
     return { cards, loadRandomCharacters };
 }
 
-export default useGetNRandomCards;
+export default useGetGotCards;

@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import GameCard from "../characterCard/GameCard";
-import { CardCharacter } from "../model/CardCharacter";
+import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
 import defaultcardback from '../images/defaultcardback.jpeg'
 import cardback1 from '../images/cardback1.gif';
@@ -9,21 +9,21 @@ import cardback6 from '../images/cardback6.gif';
 
 
 type Props = {
-    cards: CardCharacter[];
-    counter: number;
+    cards:CardCharacter[];
+    counter:number;
     setCounter: (counter: number) => void;
-};
+}
 
 function Game(props: Props) {
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
     const [selectedCard, setSelectedCard] = useState<number | null>(null);
     const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
 
-    function increaseCounter() {
+    function increaseCounter(){
         props.setCounter(props.counter + 1);
     }
 
-    function putCardsInArrayToCompare(currentCard: CardCharacter) {
+    function putCardsInArrayToCompare(currentCard:CardCharacter){
         setSelectedCards([...selectedCards, currentCard]);
     }
 
@@ -39,15 +39,15 @@ function Game(props: Props) {
         const firstCard = selectedCards[0];
         const secondCard = selectedCards[1];
 
-        if (firstCard.comparison === secondCard.comparison) {
+        if (firstCard.comparison === secondCard.comparison){
             firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
             secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
         } else {
-            setTimeout(() => hideCards(firstCard, secondCard), 0);
+            setTimeout(() => hideCards(firstCard,secondCard),0);
         }
     }
 
-    function hideCards(firstCard: CardCharacter, secondCard: CardCharacter) {
+    function hideCards(firstCard:CardCharacter,secondCard:CardCharacter){
         firstCard.hidden = true;
         secondCard.hidden = true;
     }
@@ -88,7 +88,7 @@ function Game(props: Props) {
                 {props.cards.map((currentCharacter: CardCharacter) => {
                     return (
                         <GameCard
-                            key={currentCharacter.id}
+                            key={currentCharacter.uuid}
                             character={currentCharacter}
                             putCardsInArrayToCompare={putCardsInArrayToCompare}
                             increaseCounter={increaseCounter}
