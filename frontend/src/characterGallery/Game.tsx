@@ -136,7 +136,6 @@ const nextStep = (state : State) : number => {
 
 function Game(props:Props) {
 
-    // const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
     const [gameState, setGameState] = useState<State>(startGame(props));
     const [isTimerPulsating, setTimerPulsating] = useState(false);
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
@@ -153,11 +152,24 @@ function Game(props:Props) {
     }
 
     useEffect(() => {
+
         if (selectedCards.length === 2) {
             compareCards();
-            setSelectedCards([]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedCards]);
+
+    useEffect(() => {
+        if (selectedCards.length === 3) {
+            console.log("Three cards selected:", selectedCards);
+
+            const firstCard = selectedCards[0];
+            const secondCard = selectedCards[1];
+            const thirdCard = selectedCards[2];
+
+            hideCards(firstCard,secondCard)
+            setSelectedCards([thirdCard]);
+        }
     }, [selectedCards]);
 
     function compareCards() {
@@ -171,8 +183,7 @@ function Game(props:Props) {
 
             firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
             secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
-        } else {
-            setTimeout(() => hideCards(firstCard,secondCard),5000);
+            setSelectedCards([]);
         }
 
         const newStep = nextStep(gameState);

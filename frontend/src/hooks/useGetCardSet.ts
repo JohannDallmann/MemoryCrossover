@@ -4,7 +4,7 @@ import useGetMixedCards from "./useGetMixedCards";
 
 
 function useGetCardSet(){
-    const rmUrl: string = "/api/randm/game/board/generate?m=2&n=1&condition=SPECIES";
+    const rmUrl: string = "/api/randm/game/board/generate?m=12&n=1&condition=SPECIES";
     const gotUrl: string = "/api/got/game/board/generate";
     const mixedUrl: string = "/api/mixed/game/board/generate";
 

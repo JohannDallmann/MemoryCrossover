@@ -55,3 +55,27 @@
     -1px  1px 1px black,
     -1px -1px 1px black;
 }
+
+.achievement-list {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.achievement-item {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.achievement-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.achievement-container h2 {
+    color: #5ceb21;
+    font-size: 34px;
+}

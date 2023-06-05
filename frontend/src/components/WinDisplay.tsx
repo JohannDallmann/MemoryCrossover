@@ -61,8 +61,6 @@ function WinDisplay(props:Props) {
             />
             <div className="score-buttons-container">
                 <button className="score-buttons" onClick={addScore}>Submit Highscore</button>
-                <button className="score-buttons">Highscore List</button>
-                <button className="score-buttons">Home</button>
             </div>
         </div>
 
