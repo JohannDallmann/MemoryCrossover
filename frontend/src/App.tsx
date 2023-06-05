@@ -35,17 +35,17 @@ function App() {
                     <Route path="/" element={<Home character={character} playButtonHandler = {playButtonHandler}/>} />
                     <Route path="/play" element={
                         <div className="gameBoard">
-                            <Game cards={mixedCardSet} counter={counter} setCounter={setCounter} />
+                            <Game key="play" cards={mixedCardSet} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
                     <Route path="/playrm" element={
                         <div className="gameBoard">
-                            <Game cards={rmCards} counter={counter} setCounter={setCounter} />
+                            <Game key="playrm" cards={rmCards} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
                     <Route path="/playgot" element={
                         <div className="gameBoard">
-                            <Game cards={gotCards} counter={counter} setCounter={setCounter} />
+                            <Game key="playgot" cards={gotCards} counter={counter} setCounter={setCounter} />
                         </div>}
                     />
 
