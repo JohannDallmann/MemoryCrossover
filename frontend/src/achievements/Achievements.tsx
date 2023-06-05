@@ -43,6 +43,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 conditions: "Win the game in 6 turns on a board with 12 cards.",
                 player: "",
             };
+            achievements.push(newAchievement)
         }
 
         if (secondsLeft === 0) {

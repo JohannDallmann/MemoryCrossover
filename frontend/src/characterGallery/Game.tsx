@@ -172,7 +172,7 @@ function Game(props:Props) {
             firstCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
             secondCard.image = "https://t4.ftcdn.net/jpg/01/14/37/81/360_F_114378130_Zn6r0Vi0io6jTaKNEwW1B0F7dNyLAlva.jpg";
         } else {
-            setTimeout(() => hideCards(firstCard,secondCard),250);
+            setTimeout(() => hideCards(firstCard,secondCard),5000);
         }
 
         const newStep = nextStep(gameState);
