@@ -6,6 +6,7 @@ import defaultcardback from '../images/defaultcardback.jpeg'
 import cardback1 from '../images/cardback1.gif';
 import cardback3 from '../images/cardback3.gif';
 import cardback6 from '../images/cardback6.gif';
+import WinDisplay from "../components/WinDisplay";
 
 
 type Props = {
@@ -18,6 +19,15 @@ function Game(props: Props) {
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
     const [selectedCard, setSelectedCard] = useState<number | null>(null);
     const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
+
+    function isGameWon(){
+        for (let i = 0; i < props.cards.length; i++) {
+            if (props.cards[i].hidden) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     function increaseCounter(){
         props.setCounter(props.counter + 1);
@@ -70,6 +80,9 @@ function Game(props: Props) {
 
     return (
         <div>
+            {isGameWon() && <WinDisplay score={props.counter }
+
+            />}
             <div className="status-bar">
                 <div className="turns-counter">Current Counter: {props.counter}</div>
                 {cards.map((card) => (

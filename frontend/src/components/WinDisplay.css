@@ -1,0 +1,34 @@
+.score-window {
+    display: flex;
+    align-content: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("https://i.imgur.com/xxELELu.gif");
+    background-size: contain;
+    z-index: 1;
+    position: relative;
+    color: white;
+    font-size: 25px;
+    font-family: "Mark Pro", Arial, sans-serif;
+    margin-bottom: 1vh;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
+
+}
+.score-buttons {
+    display: flex;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+
+}
+
+.score-buttons-container{
+    display:flex;
+    justify-content: space-evenly;
+    width: 20%;
+
+
+}
