@@ -3,16 +3,17 @@ import { Score } from '../model/Score';
 import HighscoreListEntry from '../highscoreListEntry/HighscoreListEntry';
 import SortDropdown from '../sortDropdown/SortDropdown';
 import useHighscores from '../hooks/useHighscore';
+import './HighscoreList.css'
 
 function HighscoreList() {
-    const [selectedSort, setSelectedSort] = useState('score-desc');
+    const [selectedSort, setSelectedSort] = useState('score-asc');
     const [highscores, fetchHighscores] = useHighscores();
     const [highscoresSorted, fetchHighscoresSorted] = useHighscores();
 
 
     useEffect(() => {
         fetchHighscores(selectedSort)
-        fetchHighscoresSorted('score-desc')
+        fetchHighscoresSorted('score-asc')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedSort]);
 

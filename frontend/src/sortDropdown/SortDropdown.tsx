@@ -1,4 +1,5 @@
 import React from 'react';
+import './sortDropdown.css'
 
 type Props = {
     onChange:(event:string) => void
@@ -11,7 +12,7 @@ function SortDropdown(props:Props) {
     };
 
     return (
-        <select onChange={handleSortChange}>
+        <select className="select" onChange={handleSortChange}>
             <option value="score-asc">Score aufsteigend</option>
             <option value="score-desc">Score absteigend</option>
             <option value="timestamp-asc">Zeitstempel aufsteigend</option>

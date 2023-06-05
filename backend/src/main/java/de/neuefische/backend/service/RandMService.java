@@ -17,6 +17,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import de.neuefische.backend.repository.RandMRepo;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -26,14 +27,17 @@ public class RandMService {
     private final RandMCharacterWithNamePrefixIntersectionRepository randMCharNamePrefixIntersectionRepo;
     private final MongoTemplate mt;
 
-    String asciiLogo = "___  ___                                       _____                                                  \n" +
-            "|  \\/  |                                      /  __ \\                                                 \n" +
-            "| .  . |  ___  _ __ ___    ___   _ __  _   _  | /  \\/ _ __   ___   ___  ___   ___  __   __  ___  _ __ \n" +
-            "| |\\/| | / _ \\| '_ ` _ \\  / _ \\ | '__|| | | | | |    | '__| / _ \\ / __|/ __| / _ \\ \\ \\ / / / _ \\| '__|\n" +
-            "| |  | ||  __/| | | | | || (_) || |   | |_| | | \\__/\\| |   | (_) |\\__ \\\\__ \\| (_) | \\ V / |  __/| |   \n" +
-            "\\_|  |_/ \\___||_| |_| |_| \\___/ |_|    \\__, |  \\____/|_|    \\___/ |___/|___/ \\___/   \\_/   \\___||_|   \n" +
-            "                                        __/ |                                                         \n" +
-            "                                       |___/          ";
+    private static final Logger logger = Logger.getLogger(RandMService.class.getName());
+
+    String asciiLogo = """
+             
+             __  __                                    ____                                      \s
+            |  \\/  | ___ _ __ ___   ___  _ __ _   _   / ___|_ __ ___  ___ ___  _____   _____ _ __\s
+            | |\\/| |/ _ \\ '_ ` _ \\ / _ \\| '__| | | | | |   | '__/ _ \\/ __/ __|/ _ \\ \\ / / _ \\ '__|
+            | |  | |  __/ | | | | | (_) | |  | |_| | | |___| | | (_) \\__ \\__ \\ (_) \\ V /  __/ |  \s
+            |_|  |_|\\___|_| |_| |_|\\___/|_|   \\__, |  \\____|_|  \\___/|___/___/\\___/ \\_/ \\___|_|  \s
+                                              |___/                                              \s
+            """;
     WebClient webClient;
 
     @Value("${rickandmorty.url}")
@@ -47,15 +51,15 @@ public class RandMService {
     public List<RandMCharacter> getAllCharacters() {
 
         if (randMRepo.findAll().isEmpty()) {
-            System.out.print(asciiLogo);
-            System.out.println("Loading characters into the database using the Rick and Morty API");
+            logger.info(asciiLogo);
+            logger.info("Loading characters into the database using the Rick and Morty API");
             List<RandMCharacter> charactersFromApi = fillCharactersFromApi();
 
-            System.out.println("Creating the necessary service data");
+            logger.info("Creating the necessary service data");
             runAggregationStep1("Morty");
             runAggregationStep1("Rick");
             runAggregationStep2();
-            System.out.println("Initialization completed");
+            logger.info("Initialization completed");
 
             return charactersFromApi;
 
@@ -65,6 +69,11 @@ public class RandMService {
 
     }
 
+    static final String REPLACEALL = "$replaceAll";
+    static final String INPUT = "input";
+
+    static final String REPLACEMENT = "replacement";
+    static final String NAMEPREFIX = "name_prefix";
 
     public List<RandMCharacter> fillCharactersFromApi() {
         List<RandMCharacter> allCharacters = new ArrayList<>();
@@ -106,35 +115,33 @@ public class RandMService {
         AggregationOperation matchStage = Aggregation.match(Criteria.where("name").regex(matchRegex, "i"));
 
         AddFieldsOperation addFieldsStage1 = Aggregation.addFields()
-                .addFieldWithValue("name_prefix",
-                        new Document("$replaceAll", new Document("input", "$name")
+                .addFieldWithValue(NAMEPREFIX,
+                        new Document(REPLACEALL, new Document(INPUT, "$name")
                                 .append("find", matchRegex)
-                                .append("replacement", "")))
+                                .append(REPLACEMENT, "")))
                 .build();
 
         AddFieldsOperation addFieldsStage2 = Aggregation.addFields()
                 .addFieldWithValue("_class",
-                        new Document("$replaceAll", new Document("input", "$_class")
+                        new Document(REPLACEALL, new Document(INPUT, "$_class")
                                 .append("find", ".RandMCharacter")
-                                .append("replacement", ".RandMCharacterWithNamePrefix")))
+                                .append(REPLACEMENT, ".RandMCharacterWithNamePrefix")))
                 .build();
 
         OutOperation outStage = Aggregation.out(matchRegex.toLowerCase() + "Set");
 
         Aggregation aggregation = Aggregation.newAggregation(matchStage, addFieldsStage1, addFieldsStage2, outStage);
 
-        mt.aggregate(aggregation, "rickAndMortyCharacters", Object.class)
-                .forEach(result -> {
-                    // Process aggregation results
-                    // ...
-                });
+        mt.aggregate(aggregation, "rickAndMortyCharacters", Object.class);
     }
 
     public void runAggregationStep2() {
         LookupOperation lookupStage = LookupOperation.newLookup()
                 .from("mortySet")
-                .localField("name_prefix")
-                .foreignField("name_prefix")
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                .localField(NAMEPREFIX)
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                .foreignField(NAMEPREFIX)
                 .as("intersection");
 
         AggregationOperation matchStage = Aggregation.match(Criteria.where("intersection")
@@ -143,9 +150,9 @@ public class RandMService {
 
         AddFieldsOperation addFieldsStage = Aggregation.addFields()
                 .addFieldWithValue("_class",
-                        new Document("$replaceAll", new Document("input", "$_class")
+                        new Document(REPLACEALL, new Document(INPUT, "$_class")
                                 .append("find", ".RandMCharacterWithNamePrefix")
-                                .append("replacement", ".RandMCharacterWithNamePrefixIntersection")))
+                                .append(REPLACEMENT, ".RandMCharacterWithNamePrefixIntersection")))
                 .build();
 
         OutOperation outStage = Aggregation.out( "rickAndMortyIntersection");
@@ -153,11 +160,7 @@ public class RandMService {
 
         Aggregation aggregation = Aggregation.newAggregation(lookupStage, matchStage, addFieldsStage, outStage);
 
-        mt.aggregate(aggregation,"rickSet",  Object.class)
-                .forEach(result -> {
-                    // Process aggregation results
-                    // ...
-                });
+        mt.aggregate(aggregation,"rickSet",  Object.class);
     }
 
 

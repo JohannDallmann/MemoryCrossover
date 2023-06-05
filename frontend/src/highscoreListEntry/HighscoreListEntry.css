@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-start;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    padding: 1vh;
+    margin-bottom: 0.6vh;
     width: 50vh;
     height: 13vh;
     backdrop-filter: blur(8px);
@@ -52,4 +51,13 @@
     -1px  1px 1px black,
     -1px -1px 1px black;
     font-family: "Mark Pro", Arial, sans-serif;
+}
+.highscore-list-entry h5{
+    font-family: "Mark Pro", Arial, sans-serif;
+    color: turquoise;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
+    font-size: 1.2vh;
 }

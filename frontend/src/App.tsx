@@ -1,28 +1,23 @@
 import './App.css';
-import fische from './images/fische.png'
-import DropdownMenu from "./dropdown/menu";
 import React, {useState} from "react";
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
-import {Route, Link, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Game from "./characterGallery/Game";
 import Home from "./Home/Home";
-import useGetRmCards from "./hooks/useGetRmCards";
 import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
 import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
 import Header from "./components/Header";
 import HighscoreList from "./highscoreList/HighscoreList";
-import {CardCharacter} from "./model/CardCharacter";
-import useGetGotCards from "./hooks/useGetGotCards";
 import useGetCardSet from "./hooks/useGetCardSet";
 
 
 function App() {
     const {characters} = useLoadRandMCharacters();
-    const {gameOfThronesCharacters} = useLoadGoTCharacters();
     const [counter, setCounter] = useState<number>(0);
     const [character] = useState('');
     const {rmCards, gotCards, mixedCardSet, loadRandomCharactersRM, loadRandomCharactersGOT, loadRandomCharactersMixed} = useGetCardSet();
+    const {gameOfThronesCharacters} = useLoadGoTCharacters();
 
     function playButtonHandler(){
         loadRandomCharactersRM();
@@ -30,6 +25,7 @@ function App() {
         loadRandomCharactersMixed();
         setCounter(0);
     }
+
 
     return (
 
