@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {State, Status} from "../characterGallery/Game";
 
-type Achievement = {
+export type Achievement = {
     name: string;
     conditions: string;
     player: string;
-    time: Date;
+    // timestamp: Date;
 };
 
 type AchievementsProps = {
@@ -23,7 +23,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
     }, [gameState]);
 
     const checkAchievements = (state: State) => {
-        const { timeLimit, secondsLeft, steps, cardsLeft,score } = state;
+        const { timeLimit, secondsLeft, steps, cardsLeft, score } = state;
         const achievements: Achievement[] = [];
 
         if ( (timeLimit-secondsLeft) <= 12) {
@@ -32,7 +32,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "I Need Speed!",
                 conditions: "Complete the game within 12 seconds.",
                 player: "John",
-                time: new Date(),
+                // timestamp: new Date(),
             };
             achievements.push(newAchievement)
         }
@@ -43,7 +43,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "Minesweeper",
                 conditions: "Win the game in 6 turns on a board with 12 cards.",
                 player: "John",
-                time: new Date(),
+                // timestamp: new Date(),
             };
         }
 
@@ -53,7 +53,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "Long Long Time",
                 conditions: "Allow the timer to go down to 0 seconds and then win the game.",
                 player: "John",
-                time: new Date(),
+                // timestamp: new Date(),
             };
             achievements.push(newAchievement)
         }
@@ -64,7 +64,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "I got 99 Problems, but Memory Ain't One",
                 conditions: "Get the maximum score for the game.",
                 player: "John",
-                time: new Date(),
+                // timestamp: new Date(),
             };
             achievements.push(newAchievement)
         }
@@ -82,7 +82,9 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                             <h3 className="achievement-card-title">{achievement.name}</h3>
                             <p className="achievement-card-description">{achievement.conditions}</p>
                             <p className="achievement-card-details">
-                                Player: {achievement.player} | Time: {achievement.time.toString()}
+                                {/*Player: {achievement.player} | Time: {achievement.timestamp.toString()}*/}
+                                Player: {achievement.player}
+
                             </p>
                         </div>
                     </li>

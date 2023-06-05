@@ -4,6 +4,7 @@ import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
 import WinDisplay from "../components/WinDisplay";
 import Achievements from "../achievements/Achievements";
+import achievements from "../achievements/Achievements";
 
 
 type Props = {
@@ -213,8 +214,10 @@ function Game(props:Props) {
 
     return (
         <div >
-            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps)}
-                                                            remainingTime={gameState.secondsLeft} numberOfSteps={gameState.steps} />}
+            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps) }
+                                                            remainingTime={gameState.secondsLeft}
+                                                            numberOfSteps={gameState.steps}
+                                                            />}
             <Achievements gameState={gameState} />
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
