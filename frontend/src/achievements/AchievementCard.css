@@ -1,22 +1,57 @@
 .achievement-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 300px;
+    padding: 20px;
+    background-image: url("https://pyxis.nymag.com/v1/imgs/5da/56c/3bf66ee5214cbd361855f0c79c1d7d8611-leo-toast-9.h473.w710.gif");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .achievement-card-title {
     font-size: 18px;
-    font-weight: bold;
     margin-bottom: 5px;
+    color: whitesmoke;
+    font-weight: bolder;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
 }
 
 .achievement-card-description {
     font-size: 14px;
     margin-bottom: 10px;
+    color: whitesmoke;
+    font-weight: bolder;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
 }
 
 .achievement-card-details {
     font-size: 12px;
-    color: #777;
+    color: whitesmoke;
+    font-weight: bolder;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
+}
+.achievement-container{
+    display: flex;
+    flex-direction: row;
+    color: whitesmoke;
+    font-weight: bolder;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
 }

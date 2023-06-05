@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {State, Status} from "../characterGallery/Game";
+import './AchievementCard.css'
 
 export type Achievement = {
     name: string;
@@ -73,8 +74,8 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
     };
 
     return (
-        <div>
-            <h2>Achievements</h2>
+        <div className="achievement-container">
+            {achievements.length > 0 && <h2>Achievements</h2>}
             <ul>
                 {achievements.map((achievement, index) => (
                     <li key={index}>
