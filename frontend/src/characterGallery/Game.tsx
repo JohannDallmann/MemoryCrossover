@@ -3,6 +3,8 @@ import GameCard from "../characterCard/GameCard";
 import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
 import WinDisplay from "../components/WinDisplay";
+import Achievements from "../achievements/Achievements";
+
 
 type Props = {
     cards:CardCharacter[];
@@ -16,9 +18,11 @@ export enum Status {
 
 export type State = {
     steps: number;
+    timeLimit: number;
     secondsLeft : number;
     status : Status;
     cardsLeft: number;
+    score: number;
 }
 
 const startGame = (props: Props): State => {
@@ -28,9 +32,11 @@ const startGame = (props: Props): State => {
 
     return {
         steps: 0,
+        timeLimit: timeLimit,
         secondsLeft: timeLimit,
         status: Status.Running,
         cardsLeft: totalCards,
+        score: 0
     };
 };
 
@@ -121,13 +127,11 @@ const nextStep = (state : State) : number => {
     return state.steps + 1;
 }
 
-
 function Game(props:Props) {
 
     const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
     const [gameState, setGameState] = useState<State>(startGame(props));
     const [isTimerPulsating, setTimerPulsating] = useState(false);
-
 
     function increaseCounter(){
         props.setCounter(props.counter + 1);
@@ -188,7 +192,8 @@ function Game(props:Props) {
                     }
                     if (hasWinningCondition({ ...prevState, secondsLeft: newSecondsLeft })) {
                         clearInterval(interval);
-                        return { ...prevState, secondsLeft: newSecondsLeft, status: Status.Won };
+                        return { ...prevState, secondsLeft: newSecondsLeft, status: Status.Won,
+                            score: calculateScore(newSecondsLeft, prevState.steps) };
                     } else {
                         return { ...prevState, secondsLeft: newSecondsLeft };
                     }
@@ -210,6 +215,7 @@ function Game(props:Props) {
         <div >
             {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps)}
                                                             remainingTime={gameState.secondsLeft} numberOfSteps={gameState.steps} />}
+            <Achievements gameState={gameState} />
             <div className={"status-bar"}>
                 <div className={"turns-counter"}>
                     {"Turns: " + gameState.steps}

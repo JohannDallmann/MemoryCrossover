@@ -1,0 +1,22 @@
+.achievement-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.achievement-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.achievement-card-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.achievement-card-details {
+    font-size: 12px;
+    color: #777;
+}
