@@ -7,6 +7,7 @@ function useGetGotCards(url:string) {
     const [randomNCharacters, setRandomNCharacters] = useState<GoTCharacter[]>([]);
     const [cards, setCards] = useState<CardCharacter[]>([]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(loadRandomCharacters, []);
 
     function loadRandomCharacters() {
