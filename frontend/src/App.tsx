@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Routes} from "react-router-dom";
@@ -25,6 +25,7 @@ function App() {
         loadRandomCharactersMixed();
         setCounter(0);
     }
+
 
     return (
         <div style={{ backgroundImage: "url('https://cdnb.artstation.com/p/assets/images/images/019/672/653/large/mohammed-gadi-rnm.jpg?1564526784')", backgroundAttachment: "fixed", backgroundSize: "cover", backgroundPosition: "center", minHeight: "100vh" }}>

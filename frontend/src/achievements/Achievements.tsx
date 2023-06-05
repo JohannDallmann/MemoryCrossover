@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {State, Status} from "../characterGallery/Game";
 import './AchievementCard.css'
+import { useLocation } from "react-router-dom";
 
 export type Achievement = {
     name: string;
@@ -21,6 +22,14 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
             checkAchievements(gameState);
         }
     }, [gameState]);
+
+
+    const location = useLocation();
+
+    useEffect(() => {
+        // Reset the achievements array when the route changes
+        setAchievements([]);
+    }, [location]);
 
     const checkAchievements = (state: State) => {
         const { timeLimit, secondsLeft, steps, cardsLeft, score } = state;

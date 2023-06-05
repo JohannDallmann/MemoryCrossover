@@ -241,7 +241,7 @@ function Game(props:Props) {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [gameState.steps]);
 
     useEffect(() => {
         if (gameState.status !== Status.Running) {
@@ -255,7 +255,7 @@ function Game(props:Props) {
                                                             remainingTime={gameState.secondsLeft}
                                                             numberOfSteps={gameState.steps}
             />}
-            <Achievements gameState={gameState} />
+            <Achievements gameState={gameState}/>
             <div className="status-bar">
                 <div className={"turns-counter"}>
                     {"Turns: " + gameState.steps}
