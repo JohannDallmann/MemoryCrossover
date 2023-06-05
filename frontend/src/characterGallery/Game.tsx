@@ -56,7 +56,7 @@ function Game(props:Props) {
 
             <div className="card-container">
                 {props.cards.map((currentCharacter:CardCharacter)=>{
-                    return <GameCard key={currentCharacter.id}
+                    return <GameCard key={currentCharacter.uuid}
                                      character={currentCharacter}
                                      putCardsInArrayToCompare={putCardsInArrayToCompare}
                                      increaseCounter={increaseCounter}
