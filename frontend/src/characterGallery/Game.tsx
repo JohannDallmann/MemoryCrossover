@@ -47,7 +47,7 @@ const startGame = (props: Props): State => {
     };
 };
 
-// TODO The rating has the correct values only for the board with 12 cards.
+// The rating has the correct values only for the board with 12 cards.
 // For other board sizes, additional checks are needed,
 // as well as statistical data to determine the boundaries of the best and worst score
 const calculateTimeRating = (remainingTime:number) => {

@@ -2,12 +2,12 @@ import React, {ChangeEvent, useState} from 'react';
 import "./WinDisplay.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {Achievement} from "../achievements/Achievements";
+
+
 type Props = {
     score: number,
     remainingTime: number,
     numberOfSteps: number,
-    // achievements: Achievement[],
 }
 function WinDisplay(props:Props) {
     const [inputValue, setInputValue] = useState("")
@@ -43,21 +43,6 @@ function WinDisplay(props:Props) {
         if (inputValue === '') {
             setIsPlaceholderVisible(true);
         }
-    };
-
-    // const saveAchievement = () => {
-    //     props.achievements.forEach(achievement => {
-    //         axios.post('/achievements/earned', achievement)
-    //             .then(response => {
-    //             })
-    //             .catch(error => {
-    //             });
-    //     });
-    // };
-
-    const handleSubmit = () => {
-        addScore();
-        // saveAchievement();
     };
 
 

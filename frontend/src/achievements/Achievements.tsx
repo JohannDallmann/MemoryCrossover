@@ -6,7 +6,6 @@ export type Achievement = {
     name: string;
     conditions: string;
     player: string;
-    // timestamp: Date;
 };
 
 type AchievementsProps = {
@@ -33,7 +32,6 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "I Need Speed!",
                 conditions: "Complete the game within 12 seconds.",
                 player: "",
-                // timestamp: new Date(),
             };
             achievements.push(newAchievement)
         }
@@ -44,7 +42,6 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "Minesweeper",
                 conditions: "Win the game in 6 turns on a board with 12 cards.",
                 player: "",
-                // timestamp: new Date(),
             };
         }
 
@@ -53,8 +50,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
             const newAchievement: Achievement = {
                 name: "Long Long Time",
                 conditions: "Allow the timer to go down to 0 seconds and then win the game.",
-                player: "John",
-                // timestamp: new Date(),
+                player: "",
             };
             achievements.push(newAchievement)
         }
@@ -65,7 +61,6 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                 name: "I got 99 Problems, but Memory Ain't One",
                 conditions: "Get the maximum score for the game.",
                 player: "",
-                // timestamp: new Date(),
             };
             achievements.push(newAchievement)
         }
@@ -83,9 +78,6 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                             <h3 className="achievement-card-title">{achievement.name}</h3>
                             <p className="achievement-card-description">{achievement.conditions}</p>
                             <p className="achievement-card-details">
-                                {/*Player: {achievement.player} | Time: {achievement.timestamp.toString()}*/}
-                                {/*Player: {achievement.player}*/}
-
                             </p>
                         </div>
                     </li>
