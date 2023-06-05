@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 type Props = {
     character: string;
+    playButtonHandler: () => void;
 };
 
 function Home(props: Props) {
@@ -14,10 +15,10 @@ function Home(props: Props) {
 
             <div className="play-container">
                 <h2 className="h2"> Java-Bo-23-1 </h2>
-                <p className="p1"> Die zeit ist gekommen dich zu beweisen.
+                <p className="p1"> Die Zeit ist gekommen, dich zu beweisen.
                     <br />
-                    Bereite dich auf das Ultimative Memory vor. </p>
-                <Link to="/play" className="available-button">
+                    Bereite dich auf das ultimative Memory vor. </p>
+                <Link to="/play" onClick={props.playButtonHandler} className="available-button">
                     <div className="circle">
                         <div className="arrow"></div>
                     </div>

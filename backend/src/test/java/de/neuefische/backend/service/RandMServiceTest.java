@@ -8,7 +8,6 @@ import de.neuefische.backend.repository.RandMCharacterWithNamePrefixIntersection
 import de.neuefische.backend.repository.RandMRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.*;
 
@@ -20,8 +19,7 @@ class RandMServiceTest {
     RandMRepo randMRepo = mock(RandMRepo.class);
     GenerateUUIDService generateUUIDService = mock(GenerateUUIDService.class);
     RandMCharacterWithNamePrefixIntersectionRepository RandMCharNamePrefixIntersectionRepo = mock(RandMCharacterWithNamePrefixIntersectionRepository.class);
-    MongoTemplate mongoTemplate = mock(MongoTemplate.class);;
-    WebClient webClient = mock(WebClient.class);
+    MongoTemplate mongoTemplate = mock(MongoTemplate.class);
 
     RandMService randMService = new RandMService(randMRepo, generateUUIDService, RandMCharNamePrefixIntersectionRepo, mongoTemplate);
 
@@ -37,11 +35,12 @@ class RandMServiceTest {
         List<RandMCharacter> allCharacters = randMService.getAllCharacters();
 
         //then
+        assertEquals(characters, allCharacters);
         verify(randMRepo, times(2)).findAll();
     }
 
     @Test
-    public void testGetSamplePairing() {
+    void testGetSamplePairing() {
 
         int m = 4;
         int n = 4;
@@ -91,7 +90,7 @@ class RandMServiceTest {
     }
 
     @Test
-    public void testGetSamplePairingForUniqueSpecies() {
+    void testGetSamplePairingForUniqueSpecies() {
         int m = 4;
         int n = 4;
         int datasetSize = m*n;

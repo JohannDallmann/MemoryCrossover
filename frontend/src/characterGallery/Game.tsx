@@ -1,7 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import GameCard from "../characterCard/GameCard";
 import {CardCharacter} from "../model/CardCharacter";
 import './Game.css';
+import defaultcardback from '../images/defaultcardback.jpeg'
+import cardback1 from '../images/cardback1.gif';
+import cardback3 from '../images/cardback3.gif';
+import cardback6 from '../images/cardback6.gif';
+
 import WinDisplay from "../components/WinDisplay";
 import Achievements from "../achievements/Achievements";
 import achievements from "../achievements/Achievements";
@@ -13,6 +18,10 @@ type Props = {
     setCounter: (counter: number) => void;
 }
 
+function Game(props: Props) {
+    const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
+    const [selectedCard, setSelectedCard] = useState<number | null>(null);
+    const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
 export enum Status {
     Stopped, Running, Won, Lost
 }
@@ -130,9 +139,12 @@ const nextStep = (state : State) : number => {
 
 function Game(props:Props) {
 
-    const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
+    // const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([])
     const [gameState, setGameState] = useState<State>(startGame(props));
     const [isTimerPulsating, setTimerPulsating] = useState(false);
+    // const [selectedCards, setSelectedCards] = useState<CardCharacter[]>([]);
+    const [selectedCard, setSelectedCard] = useState<number | null>(null);
+    const [selectedCardImage, setSelectedCardImage] = useState<string | null>(defaultcardback);
 
     function increaseCounter(){
         props.setCounter(props.counter + 1);
@@ -147,6 +159,7 @@ function Game(props:Props) {
             compareCards();
             setSelectedCards([]);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCards]);
 
     function compareCards() {
@@ -173,6 +186,22 @@ function Game(props:Props) {
         firstCard.hidden = true;
         secondCard.hidden = true;
     }
+
+    const cards = useMemo(() => [
+        { id: 1, image: cardback1 },
+        { id: 3, image: cardback3 },
+        { id: 6, image: cardback6 },
+        { id: 7, image: defaultcardback }
+    ], []);
+
+    useEffect(() => {
+        if (selectedCard !== null) {
+            const selectedCardObject = cards.find((card) => card.id === selectedCard);
+            if (selectedCardObject) {
+                setSelectedCardImage(selectedCardObject.image);
+            }
+        }
+    }, [selectedCard, cards]);
 
     useEffect(() => {
         if (props.cards.length > 0) {
@@ -213,6 +242,25 @@ function Game(props:Props) {
 
 
     return (
+        <div>
+            {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps) }
+                                                            remainingTime={gameState.secondsLeft}
+                                                            numberOfSteps={gameState.steps}
+            />}
+            <Achievements gameState={gameState} />
+            <div className="status-bar">
+                <div className="turns-counter"> {"Turns: " + gameState.steps}</div>
+
+                {cards.map((card) => (
+                    <div
+                        key={card.id}
+                        className={`mini-card ${selectedCard === card.id ? "selected" : ""}`}
+                        onClick={() => setSelectedCard(card.id)}
+                    >
+                        <img src={card.image} alt={`Card ${card.id}`} />
+                    </div>
+                ))}
+                <div className="timer">Time left: Test-time</div>
         <div >
             {gameState.status === Status.Won && <WinDisplay score={calculateScore(gameState.secondsLeft, gameState.steps) }
                                                             remainingTime={gameState.secondsLeft}
@@ -230,8 +278,22 @@ function Game(props:Props) {
             </div>
 
             <div className="card-container">
+                {props.cards.map((currentCharacter: CardCharacter) => {
+                    return (
+                        <GameCard
+                            key={currentCharacter.uuid}
+                            character={currentCharacter}
+                            putCardsInArrayToCompare={putCardsInArrayToCompare}
+                            increaseCounter={increaseCounter}
+                            counter={props.counter}
+                            gameStatus={gameState.status}
+                            selectedCardImage={selectedCardImage}
+
+                        />
+                    );
+                })}
                 {props.cards.map((currentCharacter:CardCharacter)=>{
-                    return <GameCard key={currentCharacter.id}
+                    return <GameCard key={currentCharacter.uuid}
                                      character={currentCharacter}
                                      putCardsInArrayToCompare={putCardsInArrayToCompare}
                                      increaseCounter={increaseCounter}

@@ -5,28 +5,38 @@
     width: 100%;
     max-width: 960px;
     height: 400px;
-    gap: 4px;
+    gap: 1.5vh;
     align-items: center;
     margin: auto;
-    padding: 10px;
+    padding: 0.5vh;
+
 }
 .status-bar {
+    display: flex;
+    flex-wrap:nowrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     box-sizing: border-box;
     padding: 10px;
     width: 100%;
     max-width: 960px;
-    display: block;
-    background-color: #eee;
     margin-left: auto;
     margin-right: auto;
     backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.3);
+    font-family: "Mark Pro", Arial, sans-serif;
+    font-weight: bold;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
 }
 .turns-counter, .timer {
     display: inline-block;
-    color: white;
+    color: cyan;
     margin: 10px 20px;
     font-size: 25px;
     font-family: "Mark Pro", Arial, sans-serif;
@@ -36,6 +46,20 @@
     font-family: "Mark Pro", Arial, sans-serif;
 }
 
+.mini-card{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    height: 3vh;
+    width: 3vh;
+    padding: 0.1vh;
+}
+.mini-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .won-text{
     color: aqua;
 }
