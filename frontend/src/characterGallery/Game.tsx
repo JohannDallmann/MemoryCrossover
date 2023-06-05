@@ -95,7 +95,7 @@ function Game(props: Props) {
                         <img src={card.image} alt={`Card ${card.id}`} />
                     </div>
                 ))}
-                <div className="timer">Time left: Test-time</div>
+                <div className="timer"></div>
             </div>
 
             <div className="card-container">

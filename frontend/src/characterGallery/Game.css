@@ -3,7 +3,7 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: 1fr 1fr 1fr;
     width: 100%;
-    max-width: 960px;
+    max-width: 1440px;
     height: 400px;
     gap: 1.5vh;
     align-items: center;
@@ -22,7 +22,7 @@
     box-sizing: border-box;
     padding: 10px;
     width: 100%;
-    max-width: 960px;
+    max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
     backdrop-filter: blur(8px);
