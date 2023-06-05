@@ -74,12 +74,11 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
     };
 
     return (
-        <div>
-            <h2>Achievements</h2>
+        <div className="achievement-container">
+            {achievements.length > 0 && <h2>Achievements</h2>}
             <ul>
                 {achievements.map((achievement, index) => (
                     <li key={index}>
-                        <div className="achievement-container">
                         <div className="achievement-card">
                             <h3 className="achievement-card-title">{achievement.name}</h3>
                             <p className="achievement-card-description">{achievement.conditions}</p>
@@ -87,7 +86,6 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
                                 Player: {achievement.player} | Time: {achievement.time.toString()}
                             </p>
                         </div>
-                    </div>
                     </li>
                 ))}
             </ul>

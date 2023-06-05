@@ -6,7 +6,6 @@
     width: 200px;
     height: 300px;
     padding: 20px;
-
     background-image: url("https://pyxis.nymag.com/v1/imgs/5da/56c/3bf66ee5214cbd361855f0c79c1d7d8611-leo-toast-9.h473.w710.gif");
     background-position: center;
     background-size: cover;
@@ -49,6 +48,10 @@
 .achievement-container{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-
+    color: whitesmoke;
+    font-weight: bolder;
+    text-shadow:  1px  1px 1px black,
+    1px -1px 1px black,
+    -1px  1px 1px black,
+    -1px -1px 1px black;
 }
