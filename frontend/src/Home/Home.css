@@ -37,7 +37,7 @@
 .h2 {
     display: flex;
     color: #F0F0F0;
-    font-size: 31.008px;
+    font-size: 24px;
     font-family: "Mark Pro", Arial, sans-serif;
     margin-left: 10vh;
     font-weight: bolder;
@@ -50,7 +50,7 @@
 .p1 {
     display: flex;
     color: aqua;
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Mark Pro", Arial, sans-serif;
     margin-left: 10vh;
     margin-top: -2vh;

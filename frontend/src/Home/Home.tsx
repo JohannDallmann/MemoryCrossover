@@ -14,15 +14,15 @@ function Home(props: Props) {
         <div>
 
             <div className="play-container">
-                <h2 className="h2"> Java-Bo-23-1 </h2>
-                <p className="p1"> Die Zeit ist gekommen, dich zu beweisen.
-                    <br />
-                    Bereite dich auf das ultimative Memory vor. </p>
+                <h2 className="h2"> Welcome to your adventure! </h2>
+                <p className="p1"> Choose between three different cardsets for the memory game. <br/>
+                    You can either play with characters from Game of Thrones (GOT), Rick and Morty (RM) and a mixed cardset (Mixed).
+                    <br/> Be fast, because the time is ticking...</p>
                 <Link to="/play" onClick={props.playButtonHandler} className="available-button">
                     <div className="circle">
                         <div className="arrow"></div>
                     </div>
-                    <div className="text">Jetzt verfügbar</div>
+                    <div className="text">Play Now</div>
                 </Link>
             </div>
 

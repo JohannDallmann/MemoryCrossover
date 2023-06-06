@@ -22,8 +22,8 @@ function Header(props:Props) {
 
             <div className="buttons-container">
                 <DropdownMenu updateCharacter={() => {}} />
-                <Link to="/">
-                    <button className="costume-button"> Home </button>
+                <Link to="/highscorelist">
+                    <button className="costume-button">Highscore </button>
                 </Link>
                 <Link to="/play">
                     <button className="costume-button" onClick={props.playButtonHandler}> Mixed </button>
@@ -34,10 +34,10 @@ function Header(props:Props) {
                 <Link to="/playgot">
                     <button className="costume-button" onClick={props.playButtonHandler}> GOT </button>
                 </Link>
-
-                <Link to="/highscorelist">
-                    <button className="costume-button">Highscore </button>
+                <Link to="/">
+                    <button className="costume-button"> Home </button>
                 </Link>
+
             </div>
         </div>
     );

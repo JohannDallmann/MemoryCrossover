@@ -13,10 +13,10 @@ function SortDropdown(props:Props) {
 
     return (
         <select className="select" onChange={handleSortChange}>
-            <option value="score-asc">Score aufsteigend</option>
             <option value="score-desc">Score absteigend</option>
-            <option value="timestamp-asc">Zeitstempel aufsteigend</option>
+            <option value="score-asc">Score aufsteigend</option>
             <option value="timestamp-desc">Zeitstempel absteigend</option>
+            <option value="timestamp-asc">Zeitstempel aufsteigend</option>
         </select>
     );
 }
