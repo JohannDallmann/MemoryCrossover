@@ -16,7 +16,6 @@ function useGetMixedCards(url:string) {
     }
 
     useEffect(() => {
-        console.log(randomNCharacters)
         setCards(randomNCharacters.map((card) => {
             return {...card, hidden: true}
         } ));

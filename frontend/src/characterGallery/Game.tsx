@@ -161,8 +161,6 @@ function Game(props:Props) {
 
     useEffect(() => {
         if (selectedCards.length === 3) {
-            console.log("Three cards selected:", selectedCards);
-
             const firstCard = selectedCards[0];
             const secondCard = selectedCards[1];
             const thirdCard = selectedCards[2];
