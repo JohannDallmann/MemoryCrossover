@@ -12,7 +12,6 @@ type Props = {
 function WinDisplay(props:Props) {
     const [inputValue, setInputValue] = useState("")
     const nav = useNavigate();
-    const [isPlaceholderVisible, setIsPlaceholderVisible] = useState(true);
 
     function addScore() {
         axios.post("/api/randm/highscore", {
@@ -35,17 +34,6 @@ function WinDisplay(props:Props) {
         }
     };
 
-    const handleInputFocus = () => {
-        setIsPlaceholderVisible(false);
-    };
-
-    const handleInputBlur = () => {
-        if (inputValue === '') {
-            setIsPlaceholderVisible(true);
-        }
-    };
-
-
     return (
         <div className="score-window">
             <h2>Congratulations! You won!</h2>
@@ -55,8 +43,6 @@ function WinDisplay(props:Props) {
                 value={inputValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
                 placeholder="Add your name "
             />
             <div className="score-buttons-container">

@@ -214,6 +214,7 @@ function Game(props:Props) {
         if (props.cards.length > 0) {
             setGameState(startGame(props));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.cards]);
 
     useEffect(() => {
