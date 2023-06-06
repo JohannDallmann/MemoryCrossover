@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import axios from "axios";
 import {RandMCharacter} from "../model/RandMCharacter";
 
-function UseLoadRandMCharacters() {
+function UseLoadRMCharacters() {
     const [characters, setCharacters] = useState<RandMCharacter[]>([])
 
     useEffect(loadCharacters,[])
@@ -16,4 +16,4 @@ function UseLoadRandMCharacters() {
     return {characters};
 }
 
-export default UseLoadRandMCharacters;
+export default UseLoadRMCharacters;

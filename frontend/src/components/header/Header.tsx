@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import fische from '../images/fische.png';
-import DropdownMenu from '../dropdown/menu';
+import fische from '../../images/fische.png';
+import DropdownMenu from './dropdownMenu/DropdownMenu';
 
 type Props = {
     playButtonHandler: () => void;

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link, Route, Routes} from "react-router-dom";
-import CharacterGallery from "../characterGallery/CharacterGallery";
-import useLoadRandMCharacters from "../hooks/useLoadRandMCharacters";
+import CharacterGalleryRM from "./characterGallery/CharacterGalleryRM";
+import useLoadRandMCharacters from "../hooks/useLoadRMCharacters";
 
 function GalleryComponent(props:any) {
     console.log(props.character)
@@ -27,7 +27,7 @@ function GalleryComponent(props:any) {
                                     element={
                                         <>
                                             <Link to="/" onClick={closeDropdown}></Link>
-                                            <CharacterGallery characters={characters} />
+                                            <CharacterGalleryRM characters={characters} />
                                         </>
                                     }
                                 />

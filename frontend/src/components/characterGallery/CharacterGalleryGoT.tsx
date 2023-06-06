@@ -1,6 +1,6 @@
 import React from 'react';
-import {GoTCharacter} from "../model/GoTCharacter";
-import CharacterCardGoT from "../characterCard/CharacterCardGoT";
+import {GoTCharacter} from "../../model/GoTCharacter";
+import CharacterCardGoT from "../cards/CharacterCardGoT";
 
 type Props ={
     gotCharacter:GoTCharacter[]

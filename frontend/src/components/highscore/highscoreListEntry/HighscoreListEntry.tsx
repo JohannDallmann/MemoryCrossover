@@ -1,16 +1,16 @@
 import React from 'react';
-import { Score } from '../model/Score';
+import { Score } from '../../../model/Score';
 import moment from 'moment';
 import './HighscoreListEntry.css';
-import challengerRank from '../images/challengerRank.png';
-import grandmasterRank from '../images/grandmasterRank.png';
-import masterRank from '../images/masterRank.png';
-import diamondRank from '../images/diamondRank.png';
-import platinumRank from '../images/platinumRank.png';
-import goldRank from '../images/goldRank.png';
-import silverRank from '../images/silverRank.png';
-import bronzeRank from '../images/bronzeRank.png';
-import ironRank from '../images/ironRank.png';
+import challengerRank from '../../../images/challengerRank.png';
+import grandmasterRank from '../../../images/grandmasterRank.png';
+import masterRank from '../../../images/masterRank.png';
+import diamondRank from '../../../images/diamondRank.png';
+import platinumRank from '../../../images/platinumRank.png';
+import goldRank from '../../../images/goldRank.png';
+import silverRank from '../../../images/silverRank.png';
+import bronzeRank from '../../../images/bronzeRank.png';
+import ironRank from '../../../images/ironRank.png';
 
 type Props = {
     score: Score;

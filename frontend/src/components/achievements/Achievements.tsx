@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {State, Status} from "../characterGallery/Game";
+import {State, Status} from "../game/Game";
 import './AchievementCard.css'
 import { useLocation } from "react-router-dom";
 

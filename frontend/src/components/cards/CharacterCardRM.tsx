@@ -1,12 +1,12 @@
 import React from 'react';
-import {RandMCharacter} from "../model/RandMCharacter";
+import {RandMCharacter} from "../../model/RandMCharacter";
 import './CharacterCard.css';
 
 type Props={
     character:RandMCharacter
 }
 
-function CharacterCard(props:Props) {
+function CharacterCardRM(props:Props) {
 
     const {character} = props;
 
@@ -19,4 +19,4 @@ function CharacterCard(props:Props) {
     );
 }
 
-export default CharacterCard;
+export default CharacterCardRM;

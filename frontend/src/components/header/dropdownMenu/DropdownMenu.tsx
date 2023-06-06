@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import './menu.css';
-import '../characterGallery/CharacterGallery.css';
+import './DropdownMenu.css';
+import '../../characterGallery/CharacterGallery.css';
 
 function DropdownMenu(props: any) {
     const [isCharacterGalleryOpen, setIsCharacterGalleryOpen] = useState(false);

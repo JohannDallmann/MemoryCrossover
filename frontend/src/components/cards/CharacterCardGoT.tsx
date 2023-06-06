@@ -1,5 +1,5 @@
 import React from 'react';
-import {GoTCharacter} from "../model/GoTCharacter";
+import {GoTCharacter} from "../../model/GoTCharacter";
 
 type Props={
     gotCharacter:GoTCharacter

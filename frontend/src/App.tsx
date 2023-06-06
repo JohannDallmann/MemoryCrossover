@@ -1,14 +1,14 @@
 import './App.css';
 import React, {useState} from "react";
-import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
-import CharacterGallery from "./characterGallery/CharacterGallery";
+import useLoadRandMCharacters from "./hooks/useLoadRMCharacters";
+import CharacterGalleryRM from "./components/characterGallery/CharacterGalleryRM";
 import {Route, Routes} from "react-router-dom";
-import Game from "./characterGallery/Game";
-import Home from "./Home/Home";
-import useLoadGoTCharacters from "./got/hooks/useLoadGoTCharacters";
-import CharacterGalleryGoT from "./got/characterGallery/CharacterGalleryGoT";
-import Header from "./components/Header";
-import HighscoreList from "./highscoreList/HighscoreList";
+import Game from "./components/game/Game";
+import Home from "./components/Home/Home";
+import useLoadGoTCharacters from "./hooks/useLoadGoTCharacters";
+import CharacterGalleryGoT from "./components/characterGallery/CharacterGalleryGoT";
+import Header from "./components/header/Header";
+import HighscoreList from "./components/highscore/highscoreList/HighscoreList";
 import useGetCardSet from "./hooks/useGetCardSet";
 
 
@@ -51,7 +51,7 @@ function App() {
                     />
 
                     <Route path="/highscorelist" element={<HighscoreList />} />
-                    <Route path="/rickandmortygallery" element={<CharacterGallery characters={characters} />} />
+                    <Route path="/rickandmortygallery" element={<CharacterGalleryRM characters={characters} />} />
                     <Route path="/gameofthronesgallery" element=
                         {<CharacterGalleryGoT gotCharacter={gameOfThronesCharacters}/>}/>
                 </Routes>

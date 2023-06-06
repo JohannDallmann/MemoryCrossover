@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import {CardCharacter} from "../model/CardCharacter";
-import {GoTCharacter} from "../got/model/GoTCharacter";
+import {GoTCharacter} from "../model/GoTCharacter";
 
 function useGetGotCards(url:string) {
     const [randomNCharacters, setRandomNCharacters] = useState<GoTCharacter[]>([]);

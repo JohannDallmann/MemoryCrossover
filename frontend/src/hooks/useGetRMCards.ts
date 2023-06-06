@@ -3,7 +3,7 @@ import { RandMCharacter } from "../model/RandMCharacter";
 import axios from "axios";
 import {CardCharacter} from "../model/CardCharacter";
 
-function useGetRmCards(url:string) {
+function useGetRMCards(url:string) {
     const [randomNCharacters, setRandomNCharacters] = useState<RandMCharacter[]>([]);
     const [cards, setCards] = useState<CardCharacter[]>([]);
 
@@ -27,4 +27,4 @@ function useGetRmCards(url:string) {
     return { cards, loadRandomCharacters };
 }
 
-export default useGetRmCards;
+export default useGetRMCards;

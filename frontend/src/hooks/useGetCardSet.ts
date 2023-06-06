@@ -1,4 +1,4 @@
-import useGetRmCards from "./useGetRmCards";
+import useGetRMCards from "./useGetRMCards";
 import useGetGotCards from "./useGetGotCards";
 import useGetMixedCards from "./useGetMixedCards";
 
@@ -8,7 +8,7 @@ function useGetCardSet(){
     const gotUrl: string = "/api/got/game/board/generate";
     const mixedUrl: string = "/api/mixed/game/board/generate";
 
-    const {cards: rmCards, loadRandomCharacters: loadRandomCharactersRM} = useGetRmCards(rmUrl);
+    const {cards: rmCards, loadRandomCharacters: loadRandomCharactersRM} = useGetRMCards(rmUrl);
     const {cards: gotCards, loadRandomCharacters: loadRandomCharactersGOT} =useGetGotCards(gotUrl);
     const {cards: mixedCardSet, loadRandomCharacters: loadRandomCharactersMixed} =useGetMixedCards(mixedUrl);
 

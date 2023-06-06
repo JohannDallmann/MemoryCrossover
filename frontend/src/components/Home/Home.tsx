@@ -1,5 +1,5 @@
 import React from 'react';
-import GalleryComponent from '../components/GalleryComponent';
+import GalleryComponent from '../Gallery';
 import './Home.css';
 import {Link} from "react-router-dom";
 

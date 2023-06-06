@@ -1,13 +1,13 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import GameCard from "../characterCard/GameCard";
-import {CardCharacter} from "../model/CardCharacter";
+import GameCard from "../cards/GameCard";
+import {CardCharacter} from "../../model/CardCharacter";
 import './Game.css';
-import defaultcardback from '../images/defaultcardback.jpeg'
-import cardback1 from '../images/cardback1.gif';
-import cardback3 from '../images/cardback3.gif';
-import cardback6 from '../images/cardback6.gif';
+import defaultcardback from '../../images/defaultcardback.jpeg'
+import cardback1 from '../../images/cardback1.gif';
+import cardback3 from '../../images/cardback3.gif';
+import cardback6 from '../../images/cardback6.gif';
 
-import WinDisplay from "../components/WinDisplay";
+import WinDisplay from "../winDisplay/WinDisplay";
 import Achievements from "../achievements/Achievements";
 
 

@@ -1,8 +1,8 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import { Score } from '../model/Score';
+import { Score } from '../../../model/Score';
 import HighscoreListEntry from '../highscoreListEntry/HighscoreListEntry';
 import SortDropdown from '../sortDropdown/SortDropdown';
-import useHighscores from '../hooks/useHighscore';
+import useHighscores from '../../../hooks/useHighscore';
 import './HighscoreList.css'
 
 function HighscoreList() {
