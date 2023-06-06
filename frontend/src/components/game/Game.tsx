@@ -9,6 +9,8 @@ import cardback6 from '../../images/cardback6.gif';
 
 import WinDisplay from "../winDisplay/WinDisplay";
 import Achievements from "../achievements/Achievements";
+import {State} from "../../model/State";
+import {Status} from "../../model/Status";
 
 
 
@@ -17,21 +19,6 @@ type Props = {
     counter:number;
     setCounter: (counter: number) => void;
 }
-
-
-export enum Status {
-    Stopped, Running, Won, Lost
-}
-
-export type State = {
-    steps: number;
-    timeLimit: number;
-    secondsLeft : number;
-    status : Status;
-    cardsLeft: number;
-    score: number;
-}
-
 const startGame = (props: Props): State => {
     const totalCards = props.cards.length
     const timePerCard = 3.5

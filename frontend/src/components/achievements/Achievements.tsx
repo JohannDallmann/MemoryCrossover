@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {State, Status} from "../game/Game";
-import './AchievementCard.css'
+import './Achievements.css'
 import { useLocation } from "react-router-dom";
+import {State} from "../../model/State";
+import {Status} from "../../model/Status";
 
 export type Achievement = {
     id:number;

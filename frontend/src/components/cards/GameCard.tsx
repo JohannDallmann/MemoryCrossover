@@ -1,7 +1,7 @@
 import React from 'react';
 import './CharacterCard.css';
 import {CardCharacter} from "../../model/CardCharacter";
-import {Status} from "../game/Game";
+import {Status} from "../../model/Status";
 
 
 type Props = {
