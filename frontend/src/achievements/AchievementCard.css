@@ -47,13 +47,16 @@
 }
 .achievement-container{
     display: flex;
-    flex-direction: row;
     color: whitesmoke;
     font-weight: bolder;
     text-shadow:  1px  1px 1px black,
     1px -1px 1px black,
     -1px  1px 1px black,
     -1px -1px 1px black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .achievement-list {
@@ -65,14 +68,6 @@
 .achievement-item {
     flex: 1;
     margin-right: 10px;
-}
-
-.achievement-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
 }
 
 .achievement-container h2 {

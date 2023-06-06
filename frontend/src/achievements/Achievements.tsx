@@ -4,6 +4,7 @@ import './AchievementCard.css'
 import { useLocation } from "react-router-dom";
 
 export type Achievement = {
+    id:number;
     name: string;
     conditions: string;
     player: string;
@@ -38,6 +39,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
         if ( (timeLimit-secondsLeft) <= 12) {
             console.log("I Need Speed earned!")
             const newAchievement: Achievement = {
+                id: 1,
                 name: "I Need Speed!",
                 conditions: "Complete the game within 12 seconds.",
                 player: "",
@@ -48,6 +50,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
         if (steps === 6 && cardsLeft === 0) {
             console.log("Minesweeper earned!")
             const newAchievement: Achievement = {
+                id: 2,
                 name: "Minesweeper",
                 conditions: "Win the game in 6 turns on a board with 12 cards.",
                 player: "",
@@ -58,6 +61,7 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
         if (secondsLeft === 0) {
             console.log("Long Long Time earned!")
             const newAchievement: Achievement = {
+                id: 3,
                 name: "Long Long Time",
                 conditions: "Allow the timer to go down to 0 seconds and then win the game.",
                 player: "",
@@ -68,8 +72,20 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
         if (score === 10) {
             console.log("I got 99 Problems, but Memory Ain't One earned!")
             const newAchievement: Achievement = {
+                id: 5,
                 name: "I got 99 Problems, but Memory Ain't One",
                 conditions: "Get the maximum score for the game.",
+                player: "",
+            };
+            achievements.push(newAchievement)
+        }
+
+        if (steps === secondsLeft) {
+            console.log("Balance of Power earned!")
+            const newAchievement: Achievement = {
+                id: 6,
+                name: "Balance of Power",
+                conditions: "Win the game by keeping the balance between turns and remaining time.",
                 player: "",
             };
             achievements.push(newAchievement)
@@ -82,8 +98,8 @@ const Achievements: React.FC<AchievementsProps> = ({ gameState }) => {
         <div className="achievement-container">
             {achievements.length > 0 && <h2>Achievements</h2>}
             <ul className="achievement-list">
-                {achievements.map((achievement, index) => (
-                    <li key={index} className="achievement-item">
+                {achievements.map((achievement) => (
+                    <li key={achievement.id} className="achievement-item">
                         <div className="achievement-card">
                             <h3 className="achievement-card-title">{achievement.name}</h3>
                             <p className="achievement-card-description">{achievement.conditions}</p>

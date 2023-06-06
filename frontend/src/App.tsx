@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import useLoadRandMCharacters from "./hooks/useLoadRandMCharacters";
 import CharacterGallery from "./characterGallery/CharacterGallery";
 import {Route, Routes} from "react-router-dom";
