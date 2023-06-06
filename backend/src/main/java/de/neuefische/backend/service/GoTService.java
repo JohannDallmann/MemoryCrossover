@@ -78,6 +78,7 @@ public class GoTService {
             }
 
             if (randomCharacters.size() >= numberOfCharacterPairs * 2) {
+                Collections.shuffle(randomCharacters);
                 return randomCharacters;
             }
         }
