@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link, Route, Routes} from "react-router-dom";
-import CharacterGalleryRM from "./characterGallery/CharacterGalleryRM";
-import useLoadRandMCharacters from "../hooks/useLoadRMCharacters";
+import CharacterGalleryRM from "../characterGallery/CharacterGalleryRM";
+import useLoadRandMCharacters from "../../hooks/useLoadRMCharacters";
 
 function GalleryComponent(props:any) {
     console.log(props.character)
